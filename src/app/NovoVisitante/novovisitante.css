@@ -1,0 +1,93 @@
+/* visitor.css */
+
+/* ... restante do código ... */
+
+.text-center {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-acao {
+    margin: 0 10px; /* Adiciona margens laterais para separar os botões */
+    flex: 1; /* Isso fará com que os botões ocupem todo o espaço disponível, dividindo-o igualmente */
+    max-width: 48%; /* Isso garante que ambos os botões possam caber lado a lado com alguma folga */
+}
+
+/* Para dispositivos móveis, você pode querer que os botões ocupem toda a largura */
+@media (max-width: 767px) {
+    .btn-acao {
+        margin: 5px 0;
+        max-width: 100%; /* Os botões vão ocupar toda a largura em dispositivos móveis */
+    }
+}
+
+/* ... restante do código ... */
+
+
+/* Global settings */
+.container-fluid.titulo {
+    margin-top: 50px;
+}
+
+/* Styles for Desktop */
+@media (min-width: 768px) {
+    .container-fluid.titulo .col-lg-6 {
+        border: 1px solid #ddd;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .container-fluid.titulo h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .btn-acao {
+        margin: 10px;
+    }
+}
+
+/* Styles for Mobile */
+@media (max-width: 767px) {
+    .container-fluid.titulo .col-lg-6 {
+        padding: 10px;
+    }
+
+    .container-fluid.titulo h1 {
+        font-size: 1.5em;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .btn-acao {
+        margin: 5px;
+        width: 100%;
+    }
+}
+
+/* Common styles */
+.mb-3 {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="tel"] {
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+}
+
+.text-center {
+    margin-top: 20px;
+}
+
+.alert {
+    margin-top: 20px;
+}

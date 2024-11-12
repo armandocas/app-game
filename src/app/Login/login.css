@@ -1,0 +1,49 @@
+.form-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-signin {
+    width: 330px;
+    max-width: 100%;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signin input[type="email"],
+.form-signin input[type="password"] {
+    width: 100%;
+}
+
+/* Especificamente para dispositivos como iPhone (landscape e portrait) */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    
+    .form-signin {
+        width: 90%;
+        padding: 10px;
+    }
+
+    /* Aumenta o tamanho da fonte para melhor legibilidade em dispositivos móveis */
+    .form-signin label,
+    .login-links a {
+        font-size: 12pt;
+    }
+}
+
+.login-links a {
+    text-decoration: none;
+    font-size: 10pt;
+    display: block;
+    margin: 5px 0;
+}
+
+.logo-small {
+    width: 200px; /* Ajuste para o tamanho desejado */
+    max-width: 100%;
+    height: auto; /* Mantém a proporção da imagem */
+}
