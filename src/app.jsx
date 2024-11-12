@@ -8,19 +8,7 @@ import NovaConta from './app/NovaConta/novaconta';
 import ResetSenha from './app/ResetSenha/resetsenha';
 import Home from './app/Home/home';
 import NovoVisitante from './app/NovoVisitante/novovisitante.jsx';
-import NovaBorda from './app/NovaBorda/novaborda';
-import NovaBebida from './app/NovaBebida/novabebida';
-import NovoEntregador from './app/NovoEntregador/novoentregador';
 import EditarVisitante from './app/EditarVisitante/editarvisitante';
-import EditarSabor from './app/EditarSabor/editarsabor';
-import EditarEntregador from './app/EditarEntregador/editarentregador';
-import EditarBorda from './app/EditarBorda/editarborda';
-import EditarBebida from './app/EditarBebidas/editarbebidas';
-import NovoSabor from './app/NovoSabor/novosabor';
-import ListaSabores from './app/ListaSabores/listasabores';
-import ListaBebidas from './app/ListaBebidas/listabebidas';
-import ListaDelivery from './app/ListaDelivery/listadelivery';
-import ListaBorda from './app/ListaBordas/listaborda';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -46,38 +34,6 @@ function App() {
           }
         />
         <Route
-          path="/app/saboreslista"
-          element={
-            <SecureRoute>
-              <ListaSabores />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/borda"
-          element={
-            <SecureRoute>
-              <ListaBorda />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/delivery"
-          element={
-            <SecureRoute>
-              <ListaDelivery />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/bebidas"
-          element={
-            <SecureRoute>
-              <ListaBebidas />
-            </SecureRoute>
-          }
-        />
-        <Route
           path="/app/novovisitante"
           element={
             <SecureRoute>
@@ -86,74 +42,10 @@ function App() {
           }
         />
         <Route
-          path="/app/novosabor"
-          element={
-            <SecureRoute>
-              <NovoSabor />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/novaborda"
-          element={
-            <SecureRoute>
-              <NovaBorda />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/novabebida"
-          element={
-            <SecureRoute>
-              <NovaBebida />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/novoentregador"
-          element={
-            <SecureRoute>
-              <NovoEntregador />
-            </SecureRoute>
-          }
-        />
-        <Route
           path="/app/editarvisitante/:id"
           element={
             <SecureRoute>
               <EditarVisitante />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/editarsabor/:id"
-          element={
-            <SecureRoute>
-              <EditarSabor />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/editarborda/:id"
-          element={
-            <SecureRoute>
-              <EditarBorda />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/editarbebida/:id"
-          element={
-            <SecureRoute>
-              <EditarBebida />
-            </SecureRoute>
-          }
-        />
-        <Route
-          path="/app/editarentregador/:id"
-          element={
-            <SecureRoute>
-              <EditarEntregador />
             </SecureRoute>
           }
         />
