@@ -10,6 +10,7 @@ import Home from './app/Home/home';
 import NovoVisitante from './app/NovoVisitante/novovisitante.jsx';
 import EditarVisitante from './app/EditarVisitante/editarvisitante';
 import MegaSena from './pages/MegaSena/MegaSena.jsx';
+import LotoFacil from './pages/LotoFacil/LotoFacil.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/app/novaconta" element={<NovaConta />} />
         <Route path="/app/resetsenha" element={<ResetSenha />} />
         <Route path="/app/megasena" element={<MegaSena />} />
+        <Route path="/app/lotofacil" element={<LotoFacil />} />
 
         <Route
           path="/app/home"

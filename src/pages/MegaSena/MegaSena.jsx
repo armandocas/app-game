@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import firebaseApp from '../../Config/firebase';
-import './MegaSena.css'; // Certifique-se de incluir o CSS que criamos
-import { ToastContainer, toast } from 'react-toastify';
+import './MegaSena.css';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function MegaSena() {
@@ -26,18 +26,33 @@ function MegaSena() {
 
   async function adicionarJogo() {
     if (numerosSelecionados.length < 6) {
-      toast.error('Por favor, selecione ao menos 6 números.');
+      toast.error('Por favor, selecione ao menos 6 números.', {
+        position: "top-center",
+      });
       return;
     }
-
+  
     try {
-      await addDoc(collection(db, "megasena"), {
-        numeros: numerosSelecionados,
-        data: new Date().toLocaleString(),
+      const jogo = {
+        numeros: [...numerosSelecionados], // Garante que `numeros` seja um array de números
+        data: new Date().toLocaleString(), // Data em string
+      };
+  
+      // Log para ver o que está sendo enviado ao Firebase
+      console.log("Dados do jogo que serão enviados:", jogo);
+  
+      await addDoc(collection(db, "megasena"), jogo);
+      
+      toast.success('Jogo salvo com sucesso!', {
+        position: "top-center",
       });
-      toast.success('Jogo salvo com sucesso!');
+      
+      setNumerosSelecionados([]);
     } catch (error) {
-      toast.error('Erro ao salvar o jogo: ' + error.message);
+      toast.error('Erro ao salvar o jogo: ' + error.message, {
+        position: "top-center",
+      });
+      console.error("Erro ao salvar o jogo:", error);
     }
   }
 
@@ -58,8 +73,7 @@ function MegaSena() {
   }
 
   return (
-    <div className="mega-sena-container">
-      <ToastContainer />
+    <div className="container mega-sena-container">
       <h1>Mega Sena - Inserir Jogo</h1>
       <p>Escolha de 6 a 20 números dos 60 disponíveis. Ganhe com 6, 5 ou 4 acertos.</p>
       <div className="numeros-container">
@@ -77,12 +91,12 @@ function MegaSena() {
         })}
       </div>
 
-      <div className="numeros-selecionados">
+      <div className="selecionados">
         <p>Números Selecionados: {numerosSelecionados.join(', ')}</p>
       </div>
 
       <div className="botoes-container">
-        <button className="btn btn-primary me-2" onClick={completarJogo}>Completar o Jogo</button>
+        <button className="btn btn-primary" onClick={completarJogo}>Completar o Jogo</button>
         <button className="btn btn-secondary" onClick={limparVolante}>Limpar Volante</button>
       </div>
 
@@ -95,6 +109,9 @@ function MegaSena() {
           Voltar
         </Link>
       </div>
+
+      {/* Componente ToastContainer para exibir as notificações */}
+      <ToastContainer />
     </div>
   );
 }

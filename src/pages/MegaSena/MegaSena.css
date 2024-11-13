@@ -37,12 +37,23 @@
     border: 2px solid #388E3C; /* Cor da borda para números selecionados */
   }
   
-  .botoes-container {
+  .salvar-voltar-container {
+    display: flex;
+    justify-content: center; /* Alinha os botões ao centro */
+    gap: 20px; /* Espaçamento entre os botões */
     margin-top: 20px;
-  }
+}  
   
   .numeros-selecionados {
     font-size: 18px;
     margin-top: 20px;
   }
+
+  .botoes-container {
+    display: flex;
+    justify-content: center; /* Centralizar os botões */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-top: 20px;
+  }
+  
   
