@@ -4,7 +4,7 @@ import './novaconta.css';
 
 // Importando métodos específicos do Firebase v9
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import firebaseApp from '../Config/firebase';
+import firebaseApp from '../../Config/firebase';
 
 function NovaConta() {
   const ano = new Date();

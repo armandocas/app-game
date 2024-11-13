@@ -5,7 +5,7 @@ import { AuthContext } from '../Context/auth';
 
 // Importando métodos específicos do Firebase v9
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import firebaseApp from '../Config/firebase';
+import firebaseApp from '../../Config/firebase';
 
 function Login() {
   const ano = new Date();

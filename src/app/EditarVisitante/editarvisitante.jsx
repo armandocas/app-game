@@ -5,7 +5,7 @@ import './editarvisitante.css';
 
 // Importando métodos específicos do Firebase v9
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
-import firebaseApp from '../Config/firebase';
+import firebaseApp from '../../Config/firebase';
 import axios from 'axios';
 
 function EditarVisitante() {

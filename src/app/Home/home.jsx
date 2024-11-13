@@ -1,143 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Components/Navbar/navbar';
-import ListaVisitantes from '../Components/ListaVisitante/listavisitante';
 import './home.css';
 
-// Importando métodos específicos do Firebase v9
-import { getFirestore, collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import firebaseApp from '../Config/firebase';
-
-import SweetAlert from 'react-bootstrap-sweetalert';
-
-import visitantesPDF from '../Reports/Visitantes/visitantes';
-
 function Home() {
-  const [visitantes, setVisitantes] = useState([]);
-  const [busca, setBusca] = useState('');
-  const [texto, setTexto] = useState('');
-  const [excluido, setExcluido] = useState('');
-  const [confirmacao, setConfirmacao] = useState(false);
-  const [confirmacaoId, setConfirmacaoId] = useState('');
-
-  // Obtendo a instância do Firestore
-  const db = getFirestore(firebaseApp);
-
-  function deleteUser(id) {
-    const visitanteRef = doc(db, 'visitors', id);
-    deleteDoc(visitanteRef).then(() => {
-      setExcluido(id);
-      setConfirmacao(false);
-    }).catch((erro) => {
-      console.error('Erro ao excluir visitante:', erro);
-    });
-  }
-
-  function confirmDeleteUser(id) {
-    setConfirmacaoId(id);
-    setConfirmacao(true);
-  }
-
-  useEffect(() => {
-    const fetchVisitantes = async () => {
-      const visitantesCollection = collection(db, 'visitors');
-      try {
-        const resultado = await getDocs(visitantesCollection);
-        let listaVisi = [];
-        resultado.docs.forEach((doc) => {
-          if (doc.data().fullName.indexOf(busca) >= 0) {
-            listaVisi.push({
-              id: doc.id,
-              nome: doc.data().fullName || '',
-              rua: doc.data().street || '',
-              numero: doc.data().num || '',
-              bairro: doc.data().district || '',
-              fone: doc.data().phoneWhatsApp || '',
-              city: doc.data().city || '',
-              uf: doc.data().uf || '',
-              postalCode: doc.data().postalCode || '',
-              complement: doc.data().complement || ''
-            });
-          }
-        });
-
-        setVisitantes(listaVisi);
-        console.log("listaVisi:", listaVisi);
-      } catch (erro) {
-        console.error('Erro ao buscar visitantes:', erro);
-      }
-    };
-
-    fetchVisitantes();
-  }, [db, busca, excluido]);
-
   return (
     <div>
       <Navbar />
-      <div className="container-fluid titulo">
-        <h1>Home</h1>
-
-        <div className="row">
-          <div className="col-4">
-            <Link to='/app/novovisitante' className="btn btn-primary btn-cli" type="button">
-              <i></i> Adicionar
+      <div className="container-fluid titulo text-center">
+        <h1>Bem-vindo ao Gerenciador de Jogos!</h1>
+        <p className="lead">Selecione um dos jogos abaixo para inserir ou gerenciar seus jogos.</p>
+        
+        <div className="row mt-4">
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/megasena" className="btn btn-primary w-100">
+              Mega Sena
             </Link>
-            <button
-              onClick={(e) => visitantesPDF(visitantes)}
-              className="btn btn-danger btn-cli"
-              type="submit"
-              target="_blank"
-              id="button-addon2"
-            >
-              Gerar PDF
-            </button>
           </div>
-
-          <div className="col-8">
-            <div className="input-group mb-3">
-              <input
-                onChange={(e) => setTexto(e.target.value)}
-                onKeyPress={(event) => {
-                  if (event.key === 'Enter') {
-                    setBusca(texto);
-                  }
-                }}
-                type="text"
-                className="form-control"
-                placeholder="Pesquisar por nome"
-                aria-describedby="button-addon2"
-              />
-              <button
-                onClick={(e) => setBusca(texto)}
-                className="btn btn-primary"
-                type="button"
-                id="button-addon2"
-              >
-                <i></i> Pesquisar
-              </button>
-            </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotofacil" className="btn btn-primary w-100">
+              LotoFácil
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/quina" className="btn btn-primary w-100">
+              Quina
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotomania" className="btn btn-primary w-100">
+              Lotomania
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena" className="btn btn-primary w-100">
+              Dupla Sena
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/timemania" className="btn btn-primary w-100">
+              Timemania
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte" className="btn btn-primary w-100">
+              Dia de Sorte
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/supersete" className="btn btn-primary w-100">
+              Super Sete
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/milionaria" className="btn btn-primary w-100">
+              +Milionária
+            </Link>
           </div>
         </div>
-
-        <ListaVisitantes arrayVisitantes={visitantes} clickDelete={confirmDeleteUser} />
-
-        {confirmacao && (
-          <SweetAlert
-            warning
-            showCancel
-            showCloseButton
-            confirmBtnText="Sim"
-            confirmBtnBsStyle="danger"
-            cancelBtnText="Não"
-            cancelBtnBsStyle="light"
-            title="Exclusão"
-            onConfirm={() => deleteUser(confirmacaoId)}
-            onCancel={() => setConfirmacao(false)}
-            reverseButtons={true}
-          >
-            Deseja excluir o visitante selecionado?
-          </SweetAlert>
-        )}
       </div>
     </div>
   );

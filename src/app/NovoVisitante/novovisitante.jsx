@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 // import Navbar from '../Components/Navbar/navbar';
 import './novovisitante.css';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import firebaseApp from '../Config/firebase';
+import firebaseApp from '../../Config/firebase';
 import axios from 'axios';
 
 function NovoVisitante() {

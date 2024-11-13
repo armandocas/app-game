@@ -4,7 +4,7 @@ import './resetsenha.css';
 
 // Importando métodos específicos do Firebase v9
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import firebaseApp from '../Config/firebase';
+import firebaseApp from '../../Config/firebase';
 
 function ResetSenha() {
   const ano = new Date();

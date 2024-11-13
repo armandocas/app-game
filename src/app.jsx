@@ -9,6 +9,7 @@ import ResetSenha from './app/ResetSenha/resetsenha';
 import Home from './app/Home/home';
 import NovoVisitante from './app/NovoVisitante/novovisitante.jsx';
 import EditarVisitante from './app/EditarVisitante/editarvisitante';
+import MegaSena from './pages/MegaSena/MegaSena.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -21,9 +22,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/app" element={<Login />} />
         <Route path="/app/novaconta" element={<NovaConta />} />
         <Route path="/app/resetsenha" element={<ResetSenha />} />
+        <Route path="/app/megasena" element={<MegaSena />} />
 
         <Route
           path="/app/home"
