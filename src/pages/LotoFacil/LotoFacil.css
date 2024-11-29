@@ -1,98 +1,159 @@
 .loto-facil-container {
-    text-align: center;
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+p {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+input[type="file"] {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.botoes-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  width: 100%; /* Botão ocupa largura total em mobile */
+  max-width: 300px; /* Limita largura máxima */
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  width: 100%;
+  max-width: 300px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.contagens,
+.frequencias {
+  text-align: left;
+  margin-top: 40px;
+}
+
+.contagens h2,
+.frequencias h2 {
+  font-size: 1.5rem;
+  color: #343a40;
+  margin-bottom: 15px;
+}
+
+.contagens p,
+.frequencias p {
+  font-size: 1rem;
+  color: #495057;
+  margin-left: 20px;
+}
+
+.mt-3 {
+  margin-top: 20px;
+}
+
+.mt-4 {
+  margin-top: 30px;
+}
+
+.mb-3 {
+  margin-bottom: 20px;
+}
+
+.container {
+  padding: 40px;
+}
+
+input[type="file"] {
+  border: 1px solid #ced4da;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%; /* Input ocupa largura total em mobile */
+}
+
+@media (max-width: 768px) {
+  .loto-facil-container {
+      padding: 15px;
+      max-width: 100%; /* Ocupa toda a largura em dispositivos menores */
   }
-  
+
   h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #343a40;
+      font-size: 1.5rem; /* Tamanho menor do título */
   }
-  
+
   p {
-    font-size: 1rem;
-    color: #6c757d;
+      font-size: 0.9rem;
   }
-  
-  input[type="file"] {
-    margin-bottom: 20px;
-  }
-  
-  .botoes-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-  
+
   .btn {
-    padding: 10px 20px;
-    font-size: 1rem;
+      font-size: 0.9rem; /* Botões com fontes menores */
+      padding: 8px 15px; /* Ajusta o espaçamento */
   }
-  
-  .btn-success {
-    background-color: #28a745;
-    border: none;
+
+  .botoes-container {
+      flex-direction: column; /* Botões ficam em coluna */
+      gap: 10px; /* Espaçamento entre os botões */
   }
-  
-  .btn-success:hover {
-    background-color: #218838;
-  }
-  
-  .btn-secondary {
-    background-color: #6c757d;
-    border: none;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #5a6268;
-  }
-  
-  .contagens,
-  .frequencias {
-    text-align: left;
-    margin-top: 40px;
-  }
-  
-  .contagens h2,
-  .frequencias h2 {
-    font-size: 1.5rem;
-    color: #343a40;
-    margin-bottom: 15px;
-  }
-  
+
   .contagens p,
   .frequencias p {
-    font-size: 1rem;
-    color: #495057;
-    margin-left: 20px;
+      margin-left: 10px; /* Reduz a margem */
+      font-size: 0.9rem; /* Texto menor */
   }
-  
-  .mt-3 {
-    margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+  h1 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
   }
-  
-  .mt-4 {
-    margin-top: 30px;
+
+  p {
+      font-size: 0.8rem;
   }
-  
-  .mb-3 {
-    margin-bottom: 20px;
+
+  .btn {
+      font-size: 0.8rem;
+      padding: 6px 10px;
   }
-  
-  .container {
-    padding: 40px;
+
+  .contagens h2,
+  .frequencias h2 {
+      font-size: 1.2rem;
   }
-  
-  input[type="file"] {
-    border: 1px solid #ced4da;
-    padding: 5px;
-    border-radius: 5px;
+
+  .contagens p,
+  .frequencias p {
+      font-size: 0.8rem;
   }
-  
-  
+}

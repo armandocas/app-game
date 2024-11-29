@@ -1,0 +1,118 @@
+.quina-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 1200px; /* Limite para desktops */
+    margin: auto;
+    background-color: #f9f9f9; /* Cor de fundo */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.numeros-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px; /* Espaçamento entre as bolinhas */
+}
+
+.numero {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.numero:hover {
+    background-color: #cccccc;
+    transform: scale(1.1);
+}
+
+.numero.selecionado {
+    background-color: #007bff;
+    color: #ffffff;
+    border: 2px solid #0056b3;
+}
+
+.botoes-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.selecionados p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.mt-3 {
+    margin-top: 20px;
+}
+
+.mt-4 {
+    margin-top: 30px;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 576px) {
+    .numero {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        margin: 4px;
+    }
+
+    .btn-success,
+    .btn-secondary {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .botoes-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .quina-container {
+        padding: 15px;
+    }
+}

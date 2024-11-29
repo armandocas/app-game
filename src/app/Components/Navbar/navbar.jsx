@@ -41,7 +41,7 @@ function Navbar() {
             <Link to="/app/bebidas" className="nav-link" aria-current="page" >Bebidas</Link>
           </li> */}
           <li className="nav-item">
-            <a href="/app" onClick={Logout} className="nav-link logout" aria-current="page" >Sair</a>
+            <a href="/" onClick={Logout} className="nav-link logout" aria-current="page" >Sair</a>
           </li>
         </ul>
       </div>
