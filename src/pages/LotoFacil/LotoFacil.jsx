@@ -8,6 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function LotoFacil() {
   const [fileContent, setFileContent] = useState('');
+
+  console.log("🚀 ~ file: LotoFacil.jsx:12 ~ LotoFacil ~ fileContent:", fileContent);
+
   const [contagens, setContagens] = useState([]);
   const [frequencias, setFrequencias] = useState({});
   const [jogos, setJogos] = useState([]);
