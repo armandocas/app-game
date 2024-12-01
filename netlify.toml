@@ -1,6 +1,6 @@
 [build]
   publish = "build" # Caminho para a pasta de build (gerada pelo React)
-  command = "npm run build" # Comando para construir o projeto
+  command = "yarn build" # Comando para construir o projeto usando Yarn
 
 [[redirects]]
   from = "/*"
