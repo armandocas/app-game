@@ -34,7 +34,7 @@ function ResetSenha() {
   return (
     <div className="d-flex align-items-center text-center form-container">
       <form className="form-signin">
-        <img className="mb-4" src="Images/trevo-logo-removebg.png" alt="Logo Trevo Zillionaire"/>
+        <img className="mb-4 logo-small" src="/Images/trevo-logo-removebg.png" alt="Logo Trevo Zillionaire"/>
         <h1 className="h3 mb-3 fw-normal">Recuperar Senha</h1>
 
         <div className="form-floating">

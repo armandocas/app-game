@@ -46,7 +46,7 @@ function NovaConta() {
   return (
     <div className="d-flex align-items-center text-center form-container">
       <form className="form-signin">
-        <img className="mb-4" src="Images/trevo-logo-removebg.png" alt="Logo Trevo Zillionaire"/>
+        <img className="mb-4 logo-small" src="/Images/trevo-logo-removebg.png" alt="Logo Trevo Zillionaire"/>
         <h1 className="h3 mb-3 fw-normal">Criar Conta</h1>
 
         <div className="form-floating">
@@ -64,7 +64,7 @@ function NovaConta() {
           <input
             onChange={(e) => setSenha(e.target.value)}
             type="password"
-            className="form-control"
+            className="form-control mt-3"
             id="floatingPassword"
             placeholder="Senha"
           />
@@ -73,7 +73,7 @@ function NovaConta() {
 
         <button
           onClick={cadastrarUsuario}
-          className="w-100 btn btn-lg btn-primary"
+          className="w-100 btn btn-lg btn-primary mt-3"
           type="button"
         >
           Criar conta
@@ -87,7 +87,7 @@ function NovaConta() {
         {sucesso === 'S' && <Navigate to="/app/home" replace />}
 
         <div className="login-links mt-5">
-          <Link to="/app" className="mx-3">
+          <Link to="/" className="mx-3">
             Já tenho uma conta.
           </Link>
         </div>

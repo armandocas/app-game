@@ -65,7 +65,7 @@ function Login() {
               }
             }}
             type="password"
-            className="form-control"
+            className="form-control mt-3"
             id="floatingPassword"
             placeholder="Senha"
           />
@@ -74,7 +74,7 @@ function Login() {
 
         <button
           onClick={LoginUsuario}
-          className="w-100 btn btn-lg btn-primary"
+          className="w-100 btn btn-lg btn-primary mt-3"
           type="button"
         >
           Acessar
