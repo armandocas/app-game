@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app.jsx';
 import { AuthProvider } from './app/Context/auth';
+import agendarAtualizacaoHistorico from './scheduler'; // Importe o agendador
+
+// Inicializar o agendador
+agendarAtualizacaoHistorico();
 
 // Obtendo a referência ao elemento root
 const rootElement = document.getElementById('root');

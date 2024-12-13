@@ -144,8 +144,13 @@ function LotoFacil() {
       )}
 
       <div className="mt-3">
-        <Link to="/app/home" className="btn btn-secondary">
+        <Link to="/app/lotofacilhome" className="btn btn-secondary">
           Voltar
+        </Link>
+      </div>
+      <div className="mt-3">
+        <Link to="/app/home" className="btn btn-secondary">
+          HOME
         </Link>
       </div>
 
