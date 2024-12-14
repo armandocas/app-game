@@ -78,3 +78,27 @@
 .table .cidades {
   white-space: pre-wrap; /* Wrap long text */
 }
+
+.numeros-sorteados-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.numero-sorteado {
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0; /* Cor de fundo das bolinhas */
+  color: #333; /* Cor do número */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #ccc; /* Borda das bolinhas */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+  
+
+}
+

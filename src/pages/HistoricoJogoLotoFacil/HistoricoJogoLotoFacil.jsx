@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import {
   getFirestore,
   collection,
@@ -120,7 +121,16 @@ function HistoricoJogoLotoFacil() {
               <tr key={jogo.sorteio}>
                 <td>{jogo.sorteio}</td>
                 <td>{jogo.data_do_sorteio}</td>
-                <td>{jogo.numeros_sorteados.join(", ")}</td>
+                <td>
+  <div className="numeros-sorteados-container">
+    {jogo.numeros_sorteados.map((numero, idx) => (
+      <div key={idx} className="numero-sorteado">
+        {numero}
+      </div>
+    ))}
+  </div>
+</td>
+
                 <td>
                   <table className="premio-detalhes">
                     <thead>
@@ -165,6 +175,11 @@ function HistoricoJogoLotoFacil() {
           </tbody>
         </table>
       </div>
+        <div className="mt-3">
+          <Link to="/app/lotofacilhome" className="btn btn-secondary">
+            Voltar
+          </Link>
+        </div>
       {!finalDaLista && (
         <button
           className="btn btn-primary mt-3"
