@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getFirestore,
   collection,
   query,
-  where,
+  orderBy,
+  limit,
+  startAfter,
   getDocs,
 } from "firebase/firestore";
 import firebaseApp from "../../Config/firebase";
@@ -15,52 +17,28 @@ const db = getFirestore(firebaseApp);
 function HistoricoJogoLotoFacil() {
   const [dados, setDados] = useState([]);
   const [carregando, setCarregando] = useState(false);
+  const [lastVisible, setLastVisible] = useState(null); // Último documento visível
+  const [finalDaLista, setFinalDaLista] = useState(false); // Indica se chegamos ao final da coleção
 
-  // Estados para filtros
-  const [filtroDataInicio, setFiltroDataInicio] = useState("");
-  const [filtroDataFim, setFiltroDataFim] = useState("");
-  const [filtroCidade, setFiltroCidade] = useState("");
-  const [filtroPremio, setFiltroPremio] = useState("");
-  const [filtroNumero, setFiltroNumero] = useState("");
-
-  // Converte YYYY-MM-DD para DD/MM/YYYY
-  function ajustarDataParaFormatoDDMMYYYY(data) {
-    const [ano, mes, dia] = data.split("-");
-    return `${dia}/${mes}/${ano}`;
-  }
-
-  // Função para carregar dados com filtros
-  async function carregarDadosComFiltros() {
+  // Função para carregar a primeira página de dados
+  async function carregarDados() {
     setCarregando(true);
     try {
-      let q = collection(db, "historico_lotofacil");
+      const q = query(
+        collection(db, "historico_lotofacil"),
+        orderBy("sorteio", "desc"),
+        limit(10)
+      );
 
-      // Aplica filtros
-      const filtros = [];
-      if (filtroDataInicio && filtroDataFim) {
-        const dataInicio = ajustarDataParaFormatoDDMMYYYY(filtroDataInicio);
-        const dataFim = ajustarDataParaFormatoDDMMYYYY(filtroDataFim);
-        console.log("Filtro Data Início:", dataInicio);
-        console.log("Filtro Data Fim:", dataFim);
-        filtros.push(where("data_do_sorteio", ">=", dataInicio));
-        filtros.push(where("data_do_sorteio", "<=", dataFim));
-      }
-      if (filtroCidade) {
-        filtros.push(where("cidades.cidade", "==", filtroCidade));
-      }
-      if (filtroPremio) {
-        filtros.push(where("premios.v1a", ">=", filtroPremio));
-      }
-      if (filtroNumero) {
-        filtros.push(where("numeros_sorteados", "array-contains", filtroNumero));
-      }
+      const querySnapshot = await getDocs(q);
+      const novosDados = querySnapshot.docs.map((doc) => doc.data());
+      setDados(novosDados);
 
-      // Monta a query
-      const qFinal = query(q, ...filtros);
-      const querySnapshot = await getDocs(qFinal);
+      // Armazena o último documento visível para paginação
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
 
-      const dadosFiltrados = querySnapshot.docs.map((doc) => doc.data());
-      setDados(dadosFiltrados);
+      // Verifica se há mais documentos para carregar
+      setFinalDaLista(querySnapshot.empty);
     } catch (error) {
       console.error("Erro ao carregar dados:", error.message);
     } finally {
@@ -68,54 +46,72 @@ function HistoricoJogoLotoFacil() {
     }
   }
 
+  // Função para carregar mais dados
+  async function carregarMaisDados() {
+    if (finalDaLista || !lastVisible) return; // Não carrega mais se já estiver no final
+
+    setCarregando(true);
+    try {
+      const q = query(
+        collection(db, "historico_lotofacil"),
+        orderBy("sorteio", "desc"),
+        startAfter(lastVisible),
+        limit(10)
+      );
+
+      const querySnapshot = await getDocs(q);
+      const novosDados = querySnapshot.docs.map((doc) => doc.data());
+      setDados((prevDados) => [...prevDados, ...novosDados]);
+
+      // Atualiza o último documento visível
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+
+      // Verifica se chegamos ao final da coleção
+      setFinalDaLista(querySnapshot.empty);
+    } catch (error) {
+      console.error("Erro ao carregar mais dados:", error.message);
+    } finally {
+      setCarregando(false);
+    }
+  }
+
+  // Função para exibir cidades ou mensagem de acumulação
+  function renderCidadesOuAcumulacao(jogo) {
+    if (jogo.cidades.length > 0) {
+      return jogo.cidades.map((cidade, idx) => (
+        <div key={idx}>
+          {cidade.cidade} - {cidade.estado}
+        </div>
+      ));
+    } else {
+      return (
+        <div>
+          <strong>🚨 ACUMULOU! 🚨</strong> <br />
+          💰 Próximo prêmio: <strong>{jogo.valor_do_proximo_premio}</strong> <br />
+          📍 Data do próximo sorteio: <strong>{jogo.data_de_fechamento}</strong>
+        </div>
+      );
+    }
+  }
+
+  // Carrega os dados ao montar o componente
+  useEffect(() => {
+    carregarDados();
+  }, []);
+
   return (
     <div className="historico-jogo-container">
       <h1>Histórico de Jogo - LotoFácil</h1>
-
-      {/* Filtros */}
-      <div className="filtros">
-        <input
-          type="date"
-          value={filtroDataInicio}
-          onChange={(e) => setFiltroDataInicio(e.target.value)}
-          placeholder="Data Início"
-        />
-        <input
-          type="date"
-          value={filtroDataFim}
-          onChange={(e) => setFiltroDataFim(e.target.value)}
-          placeholder="Data Fim"
-        />
-        <input
-          type="text"
-          value={filtroCidade}
-          onChange={(e) => setFiltroCidade(e.target.value)}
-          placeholder="Cidade"
-        />
-        <input
-          type="number"
-          value={filtroPremio}
-          onChange={(e) => setFiltroPremio(e.target.value)}
-          placeholder="Prêmio Mínimo"
-        />
-        <input
-          type="number"
-          value={filtroNumero}
-          onChange={(e) => setFiltroNumero(e.target.value)}
-          placeholder="Número Sorteado"
-        />
-        <button onClick={carregarDadosComFiltros}>Aplicar Filtros</button>
-      </div>
 
       {carregando && <p>Carregando...</p>}
       <div className="tabela-container">
         <table className="table">
           <thead>
             <tr>
-              <th>Sorteio</th>
+              <th>Concurso</th>
               <th>Data</th>
               <th>Números Sorteados</th>
-              <th>Prêmio Principal</th>
+              <th>Detalhes do Prêmio</th>
               <th>Cidades dos Ganhadores</th>
             </tr>
           </thead>
@@ -125,19 +121,59 @@ function HistoricoJogoLotoFacil() {
                 <td>{jogo.sorteio}</td>
                 <td>{jogo.data_do_sorteio}</td>
                 <td>{jogo.numeros_sorteados.join(", ")}</td>
-                <td>{jogo.premios.v1a}</td>
                 <td>
-                  {jogo.cidades.map((cidade, idx) => (
-                    <div key={idx}>
-                      {cidade.cidade} - {cidade.estado}
-                    </div>
-                  ))}
+                  <table className="premio-detalhes">
+                    <thead>
+                      <tr>
+                        <th>Acertos</th>
+                        <th>Prêmio</th>
+                        <th>Ganhadores</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>15</td>
+                        <td>{jogo.premios.v1a}</td>
+                        <td>{jogo.premios.w1a}</td>
+                      </tr>
+                      <tr>
+                        <td>14</td>
+                        <td>{jogo.premios.v2a}</td>
+                        <td>{jogo.premios.w2a}</td>
+                      </tr>
+                      <tr>
+                        <td>13</td>
+                        <td>{jogo.premios.v3a}</td>
+                        <td>{jogo.premios.w3a}</td>
+                      </tr>
+                      <tr>
+                        <td>12</td>
+                        <td>{jogo.premios.v4a}</td>
+                        <td>{jogo.premios.w4a}</td>
+                      </tr>
+                      <tr>
+                        <td>11</td>
+                        <td>{jogo.premios.v5a}</td>
+                        <td>{jogo.premios.w5a}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </td>
+                <td>{renderCidadesOuAcumulacao(jogo)}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {!finalDaLista && (
+        <button
+          className="btn btn-primary mt-3"
+          onClick={carregarMaisDados}
+          disabled={carregando}
+        >
+          Carregar Jogos Anteriores
+        </button>
+      )}
     </div>
   );
 }
