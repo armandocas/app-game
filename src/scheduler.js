@@ -3,7 +3,7 @@ import coletarDadosLotoFacil from "./Config/historicoLotoFacilService";
 
 function agendarAtualizacaoHistorico() {
   // Agenda a execução para todos os dias às 03:00 AM
-  schedule.scheduleJob("15 20 * * *", async () => {
+  schedule.scheduleJob("21 12 * * *", async () => {
     console.log("Executando a tarefa às 20:15...");
     try {
       await coletarDadosLotoFacil();

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   getFirestore,
   collection,
@@ -37,8 +39,6 @@ function HistoricoJogoLotoFacil() {
 
       // Armazena o último documento visível para paginação
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-
-      // Verifica se há mais documentos para carregar
       setFinalDaLista(querySnapshot.empty);
     } catch (error) {
       console.error("Erro ao carregar dados:", error.message);
@@ -49,7 +49,7 @@ function HistoricoJogoLotoFacil() {
 
   // Função para carregar mais dados
   async function carregarMaisDados() {
-    if (finalDaLista || !lastVisible) return; // Não carrega mais se já estiver no final
+    if (finalDaLista || !lastVisible) return;
 
     setCarregando(true);
     try {
@@ -64,10 +64,7 @@ function HistoricoJogoLotoFacil() {
       const novosDados = querySnapshot.docs.map((doc) => doc.data());
       setDados((prevDados) => [...prevDados, ...novosDados]);
 
-      // Atualiza o último documento visível
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-
-      // Verifica se chegamos ao final da coleção
       setFinalDaLista(querySnapshot.empty);
     } catch (error) {
       console.error("Erro ao carregar mais dados:", error.message);
@@ -76,26 +73,59 @@ function HistoricoJogoLotoFacil() {
     }
   }
 
-  // Função para exibir cidades ou mensagem de acumulação
-  function renderCidadesOuAcumulacao(jogo) {
-    if (jogo.cidades.length > 0) {
-      return jogo.cidades.map((cidade, idx) => (
-        <div key={idx}>
-          {cidade.cidade} - {cidade.estado}
-        </div>
-      ));
-    } else {
-      return (
-        <div>
-          <strong>🚨 ACUMULOU! 🚨</strong> <br />
-          💰 Próximo prêmio: <strong>{jogo.valor_do_proximo_premio}</strong> <br />
-          📍 Data do próximo sorteio: <strong>{jogo.data_de_fechamento}</strong>
-        </div>
+  // Função para carregar todos os dados da base
+  async function carregarTodosDados() {
+  const todosDados = [];
+  let lastVisible = null; // Variável para paginação manual
+  try {
+    while (true) {
+      const q = query(
+        collection(db, "historico_lotofacil"),
+        orderBy("sorteio", "desc"),
+        ...(lastVisible ? [startAfter(lastVisible)] : []), // Continua de onde parou
+        limit(500) // Limite de 500 por requisição (limite do Firestore)
       );
-    }
-  }
 
-  // Carrega os dados ao montar o componente
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) break; // Sai do loop se não houver mais documentos
+
+      const novosDados = querySnapshot.docs.map((doc) => doc.data());
+      todosDados.push(...novosDados);
+
+      lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]; // Atualiza último documento visível
+    }
+    return todosDados;
+  } catch (error) {
+    console.error("Erro ao carregar todos os dados:", error.message);
+    return [];
+  }
+}
+
+
+// Função para baixar todos os dados em um arquivo .txt
+  async function baixarTodosJogos() {
+
+     // Exibe o Toast de carregamento
+  toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000 });
+
+  const todosOsDados = await carregarTodosDados();
+
+  const linhas = todosOsDados.map((jogo) => {
+    return `${jogo.numeros_sorteados.join("; ")}\n`;
+  });
+
+  const conteudo = linhas.join("\n"); // Junta tudo
+  const blob = new Blob([conteudo], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "historico_lotofacil.txt";
+  link.click();
+
+   // Exibe o Toast de sucesso
+   toast.success("Arquivo gerado com sucesso!", { autoClose: 3000 });
+  
+}
+
   useEffect(() => {
     carregarDados();
   }, []);
@@ -122,64 +152,40 @@ function HistoricoJogoLotoFacil() {
                 <td>{jogo.sorteio}</td>
                 <td>{jogo.data_do_sorteio}</td>
                 <td>
-  <div className="numeros-sorteados-container">
-    {jogo.numeros_sorteados.map((numero, idx) => (
-      <div key={idx} className="numero-sorteado">
-        {numero}
-      </div>
-    ))}
-  </div>
-</td>
-
-                <td>
-                  <table className="premio-detalhes">
-                    <thead>
-                      <tr>
-                        <th>Acertos</th>
-                        <th>Prêmio</th>
-                        <th>Ganhadores</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>15</td>
-                        <td>{jogo.premios.v1a}</td>
-                        <td>{jogo.premios.w1a}</td>
-                      </tr>
-                      <tr>
-                        <td>14</td>
-                        <td>{jogo.premios.v2a}</td>
-                        <td>{jogo.premios.w2a}</td>
-                      </tr>
-                      <tr>
-                        <td>13</td>
-                        <td>{jogo.premios.v3a}</td>
-                        <td>{jogo.premios.w3a}</td>
-                      </tr>
-                      <tr>
-                        <td>12</td>
-                        <td>{jogo.premios.v4a}</td>
-                        <td>{jogo.premios.w4a}</td>
-                      </tr>
-                      <tr>
-                        <td>11</td>
-                        <td>{jogo.premios.v5a}</td>
-                        <td>{jogo.premios.w5a}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="numeros-sorteados-container">
+                    {jogo.numeros_sorteados.map((numero, idx) => (
+                      <div key={idx} className="numero-sorteado">
+                        {numero}
+                      </div>
+                    ))}
+                  </div>
                 </td>
-                <td>{renderCidadesOuAcumulacao(jogo)}</td>
+                <td>{jogo.premios.v1a}</td>
+                <td>
+                  {jogo.cidades.length > 0
+                    ? jogo.cidades.map((cidade, idx) => (
+                        <div key={idx}>
+                          {cidade.cidade} - {cidade.estado}
+                        </div>
+                      ))
+                    : "ACUMULOU"}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-        <div className="mt-3">
-          <Link to="/app/lotofacilhome" className="btn btn-secondary">
-            Voltar
-          </Link>
-        </div>
+      <div className="mt-3">
+        <Link to="/app/lotofacilhome" className="btn btn-secondary">
+          Voltar
+        </Link>
+      </div>
+      <div className="mt-3">
+      <button className="btn btn-success ml-2" onClick={baixarTodosJogos}>
+      <ToastContainer />
+           Baixar Todos os Jogos (.txt)
+        </button>
+      </div>
       {!finalDaLista && (
         <button
           className="btn btn-primary mt-3"

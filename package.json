@@ -36,8 +36,7 @@
     "eject": "react-scripts eject",
     "client": "react-scripts start",
     "proxy": "node src/Config/proxy.js"
-}
-,
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
