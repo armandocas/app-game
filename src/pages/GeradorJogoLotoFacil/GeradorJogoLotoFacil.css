@@ -38,8 +38,29 @@
 }
 
 .botoes-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  align-items: center; /* Alinha verticalmente */
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.botoes-container .btn {
+  flex: 0 1 45%; /* Ocupa até 45% da largura */
+  max-width: 160px; /* Largura máxima */
+  margin: 5px; /* Espaçamento uniforme entre os botões */
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .botoes-container {
+    flex-direction: column; /* Coloca os botões em coluna no mobile */
+    gap: 8px; /* Reduz o espaçamento entre os botões */
+  }
+
+  .botoes-container .btn {
+    flex: none; /* Botões não compartilham largura */
+    width: 100%; /* Ocupam 100% da largura */
+    max-width: 90%; /* Limita a largura para um visual agradável */
+  }
 }

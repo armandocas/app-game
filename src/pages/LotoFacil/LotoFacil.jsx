@@ -109,7 +109,7 @@ function LotoFacil() {
 
   return (
     <div className="container loto-facil-container">
-      <h1>LotoFácil - Inserir Jogos</h1>
+      <h1>LotoFácil - Upload</h1>
       <p>Faça upload do arquivo .txt com seus jogos:</p>
       <input type="file" accept=".txt" onChange={handleFileChange} />
 

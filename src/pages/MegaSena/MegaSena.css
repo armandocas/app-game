@@ -93,3 +93,31 @@
       word-wrap: break-word; /* Quebra de linha se necessário */
   }
 }
+.botoes-container {
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  align-items: center; /* Alinha verticalmente */
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.botoes-container .btn {
+  flex: 0 1 45%; /* Ocupa até 45% da largura */
+  max-width: 160px; /* Largura máxima */
+  margin: 5px; /* Espaçamento uniforme entre os botões */
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .botoes-container {
+    flex-direction: column; /* Empilha os botões no mobile */
+    gap: 8px; /* Espaçamento vertical */
+  }
+
+  .botoes-container .btn {
+    flex: none; /* Ocupa toda a largura */
+    width: 100%; /* Garante que os botões fiquem largos */
+    max-width: 90%; /* Limita a largura para um visual agradável */ 
+  }
+}
+

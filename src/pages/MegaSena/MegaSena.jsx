@@ -96,9 +96,9 @@ function MegaSena() {
       </div>
 
       <div className="botoes-container">
-        <button className="btn btn-primary" onClick={completarJogo}>Completar o Jogo</button>
-        <button className="btn btn-secondary" onClick={limparVolante}>Limpar Volante</button>
-      </div>
+       <button className="btn btn-primary" onClick={completarJogo}>Completar o Jogo</button>
+       <button className="btn btn-secondary" onClick={limparVolante}>Limpar Volante</button>
+    </div>
 
       <button className="btn btn-success mt-3" onClick={adicionarJogo}>
         Salvar Jogo
