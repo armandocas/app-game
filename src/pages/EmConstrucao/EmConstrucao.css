@@ -44,10 +44,7 @@
     color: #fff;
     transition: background-color 0.3s;
   }
-  
-  .btn:hover {
-    background-color: #5a6268;
-  }
+
   
   /* Animação para o ícone */
   @keyframes bounce {
