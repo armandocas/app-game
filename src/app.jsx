@@ -15,6 +15,8 @@ import GeradorJogoLotoFacil from './pages/GeradorJogoLotoFacil/GeradorJogoLotoFa
 import HistoricoJogoLotoFacil from './pages/HistoricoJogoLotoFacil/HistoricoJogoLotoFacil.jsx';
 import LotoFacil from './pages/LotoFacil/LotoFacil.jsx';
 import Quina from './pages/Quina/Quina.jsx';
+import EmConstrucao from './pages/EmConstrucao/EmConstrucao.jsx';
+
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -35,6 +37,8 @@ function App() {
         <Route path="/app/lotofacil/historico-de-jogos-lotofacil" element={<HistoricoJogoLotoFacil />} />
         <Route path="/app/lotofacilhome" element={<LotoFacilHome />} />
         <Route path="/app/quina" element={<Quina />} />
+        <Route path="/app/pagina-em-construcao" element={<EmConstrucao />} />
+
 
 
         <Route

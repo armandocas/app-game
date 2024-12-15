@@ -1,0 +1,61 @@
+
+.em-construcao-container {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .em-construcao-container h1 {
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .em-construcao-container p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .imagem-construcao {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .imagem {
+    width: 150px;
+    height: auto;
+    animation: bounce 2s infinite; /* Adiciona uma leve animação */
+  }
+  
+  .botoes-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Animação para o ícone */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
