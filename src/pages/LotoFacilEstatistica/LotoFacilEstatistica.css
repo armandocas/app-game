@@ -1,0 +1,54 @@
+.estatistica-container {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .btn {
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+
+  
+  .resultado {
+    margin-top: 20px;
+  }
+  
+  .tabela-probabilidade {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 60%;
+  }
+  
+  .tabela-probabilidade th,
+  .tabela-probabilidade td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .tabela-probabilidade th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .tabela-probabilidade tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .tabela-probabilidade tr:hover {
+    background-color: #ddd;
+  }
+  
+  @media (max-width: 768px) {
+    .tabela-probabilidade {
+      width: 100%;
+    }
+  }
+  
