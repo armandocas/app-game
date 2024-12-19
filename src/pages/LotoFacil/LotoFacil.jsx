@@ -30,6 +30,12 @@ function LotoFacil() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.type !== "text/plain") {
+        toast.error("Por favor, faça upload de um arquivo .txt", {
+          position: "top-center",
+        });
+        return;
+      }
       const reader = new FileReader();
       reader.onload = (event) => {
         const content = event.target.result;
@@ -40,6 +46,7 @@ function LotoFacil() {
       reader.readAsText(file);
     }
   };
+  
 
   const contarNumeros = (numeros) => {
     const ranges = [
@@ -140,9 +147,15 @@ function LotoFacil() {
         position: "top-center",
       });
     } catch (error) {
-      toast.error("Erro ao salvar jogos no Banco de Dados: " + error.message, {
-        position: "top-center",
-      });
+      if (error.code === "permission-denied") {
+        toast.error("Erro: Permissão negada ao salvar os jogos.", {
+          position: "top-center",
+        });
+      } else {
+        toast.error("Erro ao salvar jogos no Banco de Dados: " + error.message, {
+          position: "top-center",
+        });
+      }
     }
   };
   
@@ -205,9 +218,14 @@ function LotoFacil() {
             ))}
           </div>
         ))}
-        <button className="btn btn-success mt-3" onClick={salvarJogosNoFirebase}>
-          Salvar Jogos
-        </button>
+        {user ? (
+           <button className="btn btn-success mt-1" onClick={salvarJogosNoFirebase}>
+             Salvar Jogos
+          </button>
+          ) : (
+        <p className="text-danger">Usuário não autenticado. Faça login para salvar os jogos.</p>
+       )}
+
       </Modal>
 
       <div className="mt-3">

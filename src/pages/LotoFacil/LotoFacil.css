@@ -91,16 +91,14 @@ input[type="file"] {
   margin-bottom: 20px;
 }
 
-.btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-}
-
 .btn-success {
   background-color: #28a745;
   border: none;
-  width: 100%; /* Botão ocupa largura total em mobile */
-  max-width: 300px; /* Limita largura máxima */
+  width: 90%; /* Reduz a largura em relação ao total */
+  max-width: 250px; /* Limita a largura máxima */
+  font-size: 0.9rem; /* Diminui um pouco o tamanho da fonte */
+  padding: 8px 12px; /* Ajusta o espaçamento interno */
+  margin-top: 10px; /* Adiciona um pequeno espaçamento superior */
 }
 
 .btn-success:hover {

@@ -8,10 +8,12 @@ function Modal({ isOpen, onClose, title, children }) {
     <div className="modal">
       <div className="modal-content">
         <h3>{title}</h3>
-        <div className="modal-body">{children}</div>
+        <div className="modal-body">{children}</div>{/*Conteúdo do Modal bolinhas*/}
+        <div className='modal-footer'>
         <button className="btn btn-danger" onClick={onClose}>
           Fechar
         </button>
+        </div>
       </div>
     </div>
   );
