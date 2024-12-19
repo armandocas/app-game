@@ -22,9 +22,7 @@ function LotoFacil() {
   const [modalPadrao, setModalPadrao] = useState("");
   const [modalJogos, setModalJogos] = useState([]);
   const [showContagens, setShowContagens] = useState(true);
-  const [jogos, setJogos] = useState([]);
 
-  console.log("🚀 ~ file: LotoFacil.jsx:27 ~ LotoFacil ~ jogos:", jogos);
 
   const { user } = useContext(AuthContext);
   const db = getFirestore(firebaseApp);
@@ -72,7 +70,6 @@ function LotoFacil() {
     });
 
     setContagens(resultadoContagens);
-    setJogos(jogosProcessados);
   };
 
   const calcularFrequencias = (conteudo) => {
@@ -118,14 +115,25 @@ function LotoFacil() {
   };
 
   const salvarJogosNoFirebase = async () => {
+    if (!user || !user.uid) {
+      toast.error("Erro: Usuário não está autenticado.", {
+        position: "top-center",
+      });
+      return;
+    }
+  
     try {
-      console.log("Jogos que serão salvos:", modalJogos); // Loga os jogos antes de salvar
+      console.log("Jogos que serão salvos:", modalJogos, {
+        userId: user.uid,
+        email: user.email,
+      });
+  
       for (const jogo of modalJogos) {
         await addDoc(collection(db, "lotofacil-jogo-salvo"), {
           numeros: jogo,
           data: new Date().toLocaleString(),
-          userId: user?.uid,
-          email: user?.email,
+          userId: user.uid, // Garante que o userId é definido
+          email: user.email, // Salva o email associado ao usuário logado
         });
       }
       toast.success("Jogos salvos com sucesso!", {
@@ -137,6 +145,7 @@ function LotoFacil() {
       });
     }
   };
+  
 
   return (
     <div className="container loto-facil-container">
