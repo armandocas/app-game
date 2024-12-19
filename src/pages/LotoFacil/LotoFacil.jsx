@@ -23,6 +23,9 @@ function LotoFacil() {
   const [modalJogos, setModalJogos] = useState([]);
   const [showContagens, setShowContagens] = useState(true);
   const [jogos, setJogos] = useState([]);
+
+  console.log("🚀 ~ file: LotoFacil.jsx:27 ~ LotoFacil ~ jogos:", jogos);
+
   const { user } = useContext(AuthContext);
   const db = getFirestore(firebaseApp);
 
