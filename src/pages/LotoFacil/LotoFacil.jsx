@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import firebaseApp from '../../Config/firebase';
-import './LotoFacil.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import firebaseApp from "../../Config/firebase";
+import "./LotoFacil.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Modal from "../../components/Modal/Modal";
+import "../../components/Modal/Modal.css";
+import { AuthContext } from "../../../src/app/Context/auth";
+
+// Componente para exibir números em bolinhas
+const BolaNumero = ({ numero }) => {
+  return <div className="bola-numero">{numero}</div>;
+};
 
 function LotoFacil() {
-  const [fileContent, setFileContent] = useState('');
-
-  console.log("🚀 ~ file: LotoFacil.jsx:12 ~ LotoFacil ~ fileContent:", fileContent);
-
+  const [fileContent, setFileContent] = useState("");
   const [contagens, setContagens] = useState([]);
   const [frequencias, setFrequencias] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalPadrao, setModalPadrao] = useState("");
+  const [modalJogos, setModalJogos] = useState([]);
+  const [showContagens, setShowContagens] = useState(true);
   const [jogos, setJogos] = useState([]);
+  const { user } = useContext(AuthContext);
   const db = getFirestore(firebaseApp);
 
-  // Função para lidar com o upload do arquivo
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -24,14 +33,13 @@ function LotoFacil() {
       reader.onload = (event) => {
         const content = event.target.result;
         setFileContent(content);
-        processarArquivo(content);  // Mantém a contagem dos números por intervalo
-        calcularFrequencias(content); // Calcula as frequências dos padrões
+        processarArquivo(content);
+        calcularFrequencias(content);
       };
       reader.readAsText(file);
     }
   };
 
-  // Função para contar os números nos intervalos
   const contarNumeros = (numeros) => {
     const ranges = [
       { min: 1, max: 5 },
@@ -46,17 +54,16 @@ function LotoFacil() {
     );
   };
 
-  // Função para processar o arquivo e calcular as contagens por intervalo
   const processarArquivo = (conteudo) => {
-    const linhas = conteudo.split('\n');
-    let resultadoContagens = [];
-    let jogosProcessados = [];
+    const linhas = conteudo.split("\n");
+    const resultadoContagens = [];
+    const jogosProcessados = [];
 
     linhas.forEach((linha, index) => {
-      if (linha.trim() !== '') {
-        const numeros = linha.split(';').map(Number);
+      if (linha.trim() !== "") {
+        const numeros = linha.split(";").map(Number);
         const resultado = contarNumeros(numeros);
-        resultadoContagens.push(`Conjunto ${index + 1}: ${resultado.join(', ')}`);
+        resultadoContagens.push(`Conjunto ${index + 1}: ${resultado.join(", ")}`);
         jogosProcessados.push(numeros);
       }
     });
@@ -65,18 +72,16 @@ function LotoFacil() {
     setJogos(jogosProcessados);
   };
 
-  // Função para calcular as frequências dos padrões de contagem
   const calcularFrequencias = (conteudo) => {
-    const linhas = conteudo.split('\n');
-    let frequenciasTemp = {};
+    const linhas = conteudo.split("\n");
+    const frequenciasTemp = {};
 
     linhas.forEach((linha) => {
-      if (linha.trim() !== '') {
-        const numeros = linha.split(';').map(Number);
+      if (linha.trim() !== "") {
+        const numeros = linha.split(";").map(Number);
         const resultado = contarNumeros(numeros);
-        const chave = resultado.join(',');
+        const chave = resultado.join(",");
 
-        // Contar quantas vezes cada conjunto aparece
         if (frequenciasTemp[chave]) {
           frequenciasTemp[chave]++;
         } else {
@@ -88,20 +93,43 @@ function LotoFacil() {
     setFrequencias(frequenciasTemp);
   };
 
-  // Função para salvar os jogos no Firebase
+  const abrirModal = (padrao) => {
+    setModalPadrao(padrao);
+
+    const jogosGerados = [];
+    for (let i = 0; i < 3; i++) {
+      const novoJogo = [];
+      padrao.split(",").forEach((quantidade, idx) => {
+        const min = idx * 5 + 1;
+        const max = idx * 5 + 5;
+        while (novoJogo.filter((num) => num >= min && num <= max).length < parseInt(quantidade)) {
+          const numero = Math.floor(Math.random() * (max - min + 1)) + min;
+          if (!novoJogo.includes(numero)) novoJogo.push(numero);
+        }
+      });
+      jogosGerados.push(novoJogo.sort((a, b) => a - b));
+    }
+
+    setModalJogos(jogosGerados);
+    setModalOpen(true);
+  };
+
   const salvarJogosNoFirebase = async () => {
     try {
-      for (const jogo of jogos) {
-        await addDoc(collection(db, "lotofacil"), {
+      console.log("Jogos que serão salvos:", modalJogos); // Loga os jogos antes de salvar
+      for (const jogo of modalJogos) {
+        await addDoc(collection(db, "lotofacil-jogo-salvo"), {
           numeros: jogo,
           data: new Date().toLocaleString(),
+          userId: user?.uid,
+          email: user?.email,
         });
       }
-      toast.success('Jogos salvos com sucesso!', {
+      toast.success("Jogos salvos com sucesso!", {
         position: "top-center",
       });
     } catch (error) {
-      toast.error('Erro ao salvar jogos no Banco de Dados: ' + error.message, {
+      toast.error("Erro ao salvar jogos no Banco de Dados: " + error.message, {
         position: "top-center",
       });
     }
@@ -110,25 +138,29 @@ function LotoFacil() {
   return (
     <div className="container loto-facil-container">
       <h1>LotoFácil - Upload</h1>
-      <p>Faça upload do arquivo .txt com seus jogos:</p>
+      <p>Faça upload do arquivo .txt com seus jogos e descubra os padrões:</p>
       <input type="file" accept=".txt" onChange={handleFileChange} />
 
-      <div className="botoes-container mt-3">
-        {jogos.length > 0 && (
-          <button className="btn btn-success" onClick={salvarJogosNoFirebase}>
-            Salvar Jogos
-          </button>
-        )}
-      </div>
-
-      {contagens.length > 0 && (
-        <div className="contagens mt-4">
-          <h2>Contagem de Números por Intervalo</h2>
-          {contagens.map((contagem, index) => (
-            <p key={index}>
-              <strong>{`Conjunto ${index + 1}:`}</strong> {contagem.split(': ')[1]}
-            </p>
-          ))}
+      {fileContent && (
+        <div className="mt-4">
+          <h2>
+            Contagem de Números por Intervalo{" "}
+            <button
+              className="btn btn-sm btn-secondary"
+              onClick={() => setShowContagens(!showContagens)}
+            >
+              {showContagens ? "Minimizar" : "Expandir"}
+            </button>
+          </h2>
+          {showContagens && (
+            <>
+              {contagens.map((contagem, index) => (
+                <p key={index}>
+                  <strong>{`Conjunto ${index + 1}:`}</strong> {contagem.split(": ")[1]}
+                </p>
+              ))}
+            </>
+          )}
         </div>
       )}
 
@@ -136,12 +168,35 @@ function LotoFacil() {
         <div className="frequencias mt-4">
           <h2>Frequências dos Padrões</h2>
           {Object.entries(frequencias).map(([chave, frequencia], index) => (
-            <p key={index}>
-              <strong>{`Padrão ${chave}:`}</strong> {frequencia} <strong>vez(es)</strong>
-            </p>
+            <div key={index} className="frequencia-item">
+              <span>
+                <strong>{`Padrão ${chave}:`}</strong> {frequencia} vez(es)
+              </span>
+              <button
+                className="btn-usar-padrao"
+                onClick={() => abrirModal(chave)}
+              >
+                Usar Padrão
+              </button>
+            </div>
           ))}
         </div>
       )}
+
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        <h3>Padrão Selecionado: {modalPadrao}</h3>
+        <h4>Jogos Gerados:</h4>
+        {modalJogos.map((jogo, index) => (
+          <div key={index} className="jogo-bolinhas">
+            {jogo.map((num) => (
+              <BolaNumero key={num} numero={num} />
+            ))}
+          </div>
+        ))}
+        <button className="btn btn-success mt-3" onClick={salvarJogosNoFirebase}>
+          Salvar Jogos
+        </button>
+      </Modal>
 
       <div className="mt-3">
         <Link to="/app/lotofacilhome" className="btn btn-secondary">
@@ -154,7 +209,6 @@ function LotoFacil() {
         </Link>
       </div>
 
-      {/* Componente ToastContainer para exibir as notificações */}
       <ToastContainer />
     </div>
   );

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './LotoFacilEstatistica.css';
+import { Link } from 'react-router-dom';
 
 function LotoFacilEstatistica() {
   const [linhas, setLinhas] = useState([]); // Armazena os números do arquivo .txt
   const [probabilidades, setProbabilidades] = useState({});
   const [erro, setErro] = useState(null);
+  const fileInputRef = useRef(null); // Referência para o campo de upload
 
   // Função para ler o arquivo .txt e atualizar "linhas"
   const handleFileUpload = (e) => {
@@ -13,7 +15,7 @@ function LotoFacilEstatistica() {
       const reader = new FileReader();
       reader.onload = (event) => {
         const conteudo = event.target.result;
-  
+
         const novasLinhas = conteudo
           .trim()
           .split("\n")
@@ -27,7 +29,7 @@ function LotoFacilEstatistica() {
               .filter((numero) => numero !== null) // Remove entradas inválidas
           )
           .filter((linha) => linha.length > 0); // Remove linhas vazias
-  
+
         if (novasLinhas.length === 0) {
           setErro("O arquivo não contém números válidos.");
         } else {
@@ -36,15 +38,14 @@ function LotoFacilEstatistica() {
           setErro(null);
         }
       };
-  
+
       reader.onerror = () => {
         setErro("Erro ao ler o arquivo. Certifique-se de que é um arquivo .txt válido.");
       };
-  
+
       reader.readAsText(file);
     }
   };
-  
 
   // Função para calcular probabilidade de cada número
   const calcularProbabilidade = () => {
@@ -70,6 +71,16 @@ function LotoFacilEstatistica() {
     setProbabilidades(resultado);
   };
 
+  // Função para limpar as probabilidades e o campo de upload
+  const limparProbabilidades = () => {
+    setProbabilidades({});
+    setErro(null);
+    setLinhas([]);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; // Limpa o campo de upload
+    }
+  };
+
   return (
     <div className="container estatistica-container">
       <h1>📊 Estatísticas - LotoFácil</h1>
@@ -81,6 +92,7 @@ function LotoFacilEstatistica() {
         accept=".txt"
         className="upload-btn"
         onChange={handleFileUpload}
+        ref={fileInputRef} // Conecta o campo ao ref
       />
 
       {/* Botão para calcular as probabilidades */}
@@ -103,19 +115,32 @@ function LotoFacilEstatistica() {
               </tr>
             </thead>
             <tbody>
-            {Object.entries(probabilidades)
-  .sort(([, probA], [, probB]) => probB - probA) // Ordena pela probabilidade em ordem decrescente
-  .map(([numero, prob]) => (
-    <tr key={numero}>
-      <td>{numero}</td>
-      <td>{prob}%</td>
-    </tr>
-  ))}
-
+              {Object.entries(probabilidades)
+                .sort(([, probA], [, probB]) => probB - probA) // Ordena pela probabilidade em ordem decrescente
+                .map(([numero, prob]) => (
+                  <tr key={numero}>
+                    <td>{numero}</td>
+                    <td>{prob}%</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
       )}
+
+      {/* Botão para limpar as probabilidades */}
+      <div className="mt-3">
+        <button className="btn btn-danger" onClick={limparProbabilidades}>
+          Limpar Probabilidades
+        </button>
+      </div>
+
+      {/* Botão de voltar */}
+      <div className="mt-3">
+        <Link to="/app/lotofacilhome" className="btn btn-secondary">
+          Voltar
+        </Link>
+      </div>
     </div>
   );
 }

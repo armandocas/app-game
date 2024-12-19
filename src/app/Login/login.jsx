@@ -2,8 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import './login.css';
 import { AuthContext } from '../Context/auth';
-
-// Importando métodos específicos do Firebase v9
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from '../../Config/firebase';
 
@@ -12,16 +10,17 @@ function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [sucesso, setSucesso] = useState('');
-  const { setLogado } = useContext(AuthContext);
+  const { setLogado, setUser } = useContext(AuthContext); // Captura o `setUser` do contexto
 
-  // Obtendo a instância de autenticação do Firebase
   const auth = getAuth(firebaseApp);
 
   function LoginUsuario() {
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
+        const user = userCredential.user; // Captura o usuário autenticado
         localStorage.setItem("logado", "S");
         setLogado(true);
+        setUser(user); // Armazena o usuário no contexto
         setSucesso('S');
       })
       .catch((error) => {
@@ -42,8 +41,7 @@ function Login() {
   return (
     <div className="d-flex align-items-center text-center form-container">
       <form className="form-signin">
-      <img className="mb-4 logo-small" src="Images/trevo-logo-removebg.png" alt="Logo Trevo Zillionaire"/>
-
+        <img className="mb-4 logo-small" src="Images/trevo-logo-removebg.png" alt="Logo Trevo Zillionaire" />
 
         <div className="form-floating">
           <input
