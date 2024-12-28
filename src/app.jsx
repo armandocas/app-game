@@ -14,6 +14,7 @@ import LotoFacilHome from './pages/LotoFacilHome/LotoFacilHome.jsx';
 import MegaSenaHome from './pages/MegaSenaHome/MegaSenaHome.jsx';
 import GeradorJogoLotoFacil from './pages/GeradorJogoLotoFacil/GeradorJogoLotoFacil.jsx';
 import HistoricoJogoLotoFacil from './pages/HistoricoJogoLotoFacil/HistoricoJogoLotoFacil.jsx';
+import HistoricoJogoMegaSena from './pages/HistoricoJogoMegaSena/HistoricoJogoMegaSena.jsx';
 import LotoFacil from './pages/LotoFacil/LotoFacil.jsx';
 import Quina from './pages/Quina/Quina.jsx';
 import EmConstrucao from './pages/EmConstrucao/EmConstrucao.jsx';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/app/lotofacil/gerar-via-arquivo" element={<LotoFacil />} />
         <Route path="/app/lotofacil/gerador-jogo-lotofacil" element={<GeradorJogoLotoFacil />} />
         <Route path="/app/lotofacil/historico-de-jogos-lotofacil" element={<HistoricoJogoLotoFacil />} />
+        <Route path="/app/megasena/historico-de-jogos-megasena" element={<HistoricoJogoMegaSena />} />
         <Route path="/app/lotofacilhome" element={<LotoFacilHome />} />
         <Route path="/app/megasenahome" element={<MegaSenaHome />} />
         <Route path="/app/quina" element={<Quina />} />
