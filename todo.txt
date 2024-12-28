@@ -1,0 +1,4 @@
+4. Geração com Base no Comportamento do Usuário
+Números Favoritos: Permita que o usuário informe números favoritos que 
+sempre devem estar presentes.
+Exclusão de Números: Usuários podem remover números que não desejam ver nos sorteios.
