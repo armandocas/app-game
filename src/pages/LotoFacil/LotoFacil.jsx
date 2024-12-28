@@ -189,22 +189,24 @@ function LotoFacil() {
         </div>
       )}
 
-      {Object.keys(frequencias).length > 0 && (
+     {Object.keys(frequencias).length > 0 && (
         <div className="frequencias mt-4">
           <h2>Frequências dos Padrões</h2>
-          {Object.entries(frequencias).map(([chave, frequencia], index) => (
-            <div key={index} className="frequencia-item">
-              <span>
-                <strong>{`Padrão ${chave}:`}</strong> {frequencia} vez(es)
-              </span>
-              <button
-                className="btn-usar-padrao"
-                onClick={() => abrirModal(chave)}
-              >
-                Usar Padrão
-              </button>
-            </div>
-          ))}
+          {Object.entries(frequencias)
+            .sort(([, a], [, b]) => b - a) // Ordena do maior para o menor com base na frequência
+            .map(([chave, frequencia], index) => (
+         <div key={index} className="frequencia-item">
+          <span>
+            <strong>{`Padrão ${chave}:`}</strong> {frequencia} vez(es)
+          </span>
+        <button
+            className="btn-usar-padrao"
+            onClick={() => abrirModal(chave)}
+        >
+            Usar Padrão
+        </button>
+        </div>
+           ))}
         </div>
       )}
 
