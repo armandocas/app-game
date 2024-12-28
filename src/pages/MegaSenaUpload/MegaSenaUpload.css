@@ -1,0 +1,218 @@
+.megasena-upload-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  input[type="file"] {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .frequencia-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .btn-usar-padrao {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaço entre o texto e o ícone */
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-usar-padrao:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-usar-padrao:focus {
+    outline: 3px solid #0056b3;
+  }
+  
+  .btn-usar-padrao-icon {
+    font-size: 16px;
+  }
+  
+  .bola-numero {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #4caf50;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px;
+  }
+  
+  .jogo-bolinhas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  .botoes-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    width: 90%; /* Reduz a largura em relação ao total */
+    max-width: 250px; /* Limita a largura máxima */
+    font-size: 0.9rem; /* Diminui um pouco o tamanho da fonte */
+    padding: 8px 12px; /* Ajusta o espaçamento interno */
+    margin-top: 10px; /* Adiciona um pequeno espaçamento superior */
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  .contagens,
+  .frequencias {
+    text-align: left;
+    margin-top: 40px;
+  }
+  
+  .contagens h2,
+  .frequencias h2 {
+    font-size: 1.5rem;
+    color: #343a40;
+    margin-bottom: 15px;
+  }
+  
+  .contagens p,
+  .frequencias p {
+    font-size: 1rem;
+    color: #495057;
+    margin-left: 20px;
+  }
+  
+  .mt-3 {
+    margin-top: 20px;
+  }
+  
+  .mt-4 {
+    margin-top: 30px;
+  }
+  
+  .mb-3 {
+    margin-bottom: 20px;
+  }
+  
+  .container {
+    padding: 40px;
+  }
+  
+  input[type="file"] {
+    border: 1px solid #ced4da;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%; /* Input ocupa largura total em mobile */
+  }
+  
+  @media (max-width: 768px) {
+    .megasena-upload-container {
+        padding: 15px;
+        max-width: 100%; /* Ocupa toda a largura em dispositivos menores */
+    }
+  
+    h1 {
+        font-size: 1.5rem; /* Tamanho menor do título */
+    }
+  
+    p {
+        font-size: 0.9rem;
+    }
+  
+    .btn {
+        font-size: 0.9rem; /* Botões com fontes menores */
+        padding: 8px 15px; /* Ajusta o espaçamento */
+    }
+  
+    .botoes-container {
+        flex-direction: column; /* Botões ficam em coluna */
+        gap: 10px; /* Espaçamento entre os botões */
+    }
+  
+    .contagens p,
+    .frequencias p {
+        margin-left: 10px; /* Reduz a margem */
+        font-size: 0.9rem; /* Texto menor */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    h1 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+  
+    p {
+        font-size: 0.8rem;
+    }
+  
+    .btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+  
+    .contagens h2,
+    .frequencias h2 {
+        font-size: 1.2rem;
+    }
+  
+    .contagens p,
+    .frequencias p {
+        font-size: 0.8rem;
+    }
+  }
+  
