@@ -18,6 +18,7 @@ import LotoFacil from './pages/LotoFacil/LotoFacil.jsx';
 import Quina from './pages/Quina/Quina.jsx';
 import EmConstrucao from './pages/EmConstrucao/EmConstrucao.jsx';
 import LotoFacilEstatistica from './pages/LotoFacilEstatistica/LotoFacilEstatistica.jsx';
+import MegaSenaEstatistica from './pages/MegaSenaEstatistica/MegaSenaEstatistica.jsx';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/app/quina" element={<Quina />} />
         <Route path="/app/pagina-em-construcao" element={<EmConstrucao />} />
         <Route path="/app/lotofacil-estatistica" element={<LotoFacilEstatistica />} />
+        <Route path="/app/megasena/megasena-estatistica" element={<MegaSenaEstatistica />} />
 
 
 
