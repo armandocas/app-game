@@ -2,3 +2,9 @@
 Números Favoritos: Permita que o usuário informe números favoritos que 
 sempre devem estar presentes.
 Exclusão de Números: Usuários podem remover números que não desejam ver nos sorteios.
+-------------
+5. Geração Balanceada
+Crie jogos equilibrados:
+
+Par e Ímpar Balanceado: Distribua 3 números pares e 3 ímpares.
+Regiões Balanceadas: Escolha 2 números de cada região do volante (1-20, 21-40, 41-60).
