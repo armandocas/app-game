@@ -11,6 +11,7 @@ import NovoVisitante from './app/NovoVisitante/novovisitante.jsx';
 import EditarVisitante from './app/EditarVisitante/editarvisitante';
 import MegaSena from './pages/MegaSena/MegaSena.jsx';
 import LotoFacilHome from './pages/LotoFacilHome/LotoFacilHome.jsx';
+import MegaSenaHome from './pages/MegaSenaHome/MegaSenaHome.jsx';
 import GeradorJogoLotoFacil from './pages/GeradorJogoLotoFacil/GeradorJogoLotoFacil.jsx';
 import HistoricoJogoLotoFacil from './pages/HistoricoJogoLotoFacil/HistoricoJogoLotoFacil.jsx';
 import LotoFacil from './pages/LotoFacil/LotoFacil.jsx';
@@ -32,11 +33,12 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/app/novaconta" element={<NovaConta />} />
         <Route path="/app/resetsenha" element={<ResetSenha />} />
-        <Route path="/app/megasena" element={<MegaSena />} />
+        <Route path="/app/megasena/gerador-jogo-megasena" element={<MegaSena />} />
         <Route path="/app/lotofacil/gerar-via-arquivo" element={<LotoFacil />} />
         <Route path="/app/lotofacil/gerador-jogo-lotofacil" element={<GeradorJogoLotoFacil />} />
         <Route path="/app/lotofacil/historico-de-jogos-lotofacil" element={<HistoricoJogoLotoFacil />} />
         <Route path="/app/lotofacilhome" element={<LotoFacilHome />} />
+        <Route path="/app/megasenahome" element={<MegaSenaHome />} />
         <Route path="/app/quina" element={<Quina />} />
         <Route path="/app/pagina-em-construcao" element={<EmConstrucao />} />
         <Route path="/app/lotofacil-estatistica" element={<LotoFacilEstatistica />} />

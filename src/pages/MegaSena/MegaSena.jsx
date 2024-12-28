@@ -75,7 +75,7 @@ function MegaSena() {
   return (
     <div className="container mega-sena-container">
       <h1>Mega Sena - Inserir Jogo</h1>
-      <p>Escolha de 6 a 20 números dos 60 disponíveis. Ganhe com 6, 5 ou 4 acertos.</p>
+      <p>Escolha 6 números dos 60 disponíveis. Ganhe com 6, 5 ou 4 acertos.</p>
       <div className="numeros-container">
         {[...Array(60)].map((_, index) => {
           const numero = index + 1;
@@ -105,7 +105,7 @@ function MegaSena() {
       </button>
 
       <div className="mt-3">
-        <Link to="/app/home" className="btn btn-secondary">
+        <Link to="/app/megasenahome" className="btn btn-secondary">
           Voltar
         </Link>
       </div>

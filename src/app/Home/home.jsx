@@ -13,7 +13,7 @@ function Home() {
         
         <div className="row mt-4">
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/megasena" className="btn btn-primary w-100">
+            <Link to="/app/megasenahome" className="btn btn-primary w-100">
               Mega Sena
             </Link>
           </div>
