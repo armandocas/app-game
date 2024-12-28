@@ -8,3 +8,7 @@ Crie jogos equilibrados:
 
 Par e Ímpar Balanceado: Distribua 3 números pares e 3 ímpares.
 Regiões Balanceadas: Escolha 2 números de cada região do volante (1-20, 21-40, 41-60).
+-------------
+6. Geração com Base em Dados
+Utilize aniversários, dados especiais ou transferências derivadas de dados.
+Exemplo: Data "25/12/2023" gera os números 25, 12, 20, 23, e os faltantes são aleatórios.

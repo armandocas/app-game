@@ -42,6 +42,11 @@ function MegaSenaHome() {
               Gerar balanceados
             </Link>
           </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/megasena/gerar-via-arquivo-dados" className="btn btn-primary w-100">
+              Gerar baseado em dados
+            </Link>
+          </div>
           <div className="mt-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home
