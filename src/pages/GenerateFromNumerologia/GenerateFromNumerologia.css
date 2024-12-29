@@ -1,0 +1,130 @@
+.generate-numbers-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #495057;
+  }
+  
+  p.info {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"] {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+  
+  .generate-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .generate-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .generated-numbers {
+    margin-top: 20px;
+  }
+  
+  .numbers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #4caf50;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .clear-button, .back-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .clear-button:hover, .back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  
+  @media (max-width: 576px) {
+    .generate-numbers-container {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    h3 {
+      font-size: 1.2rem;
+    }
+  
+    input[type="text"] {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  
+    .generate-button {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+  
+    .number {
+      width: 30px;
+      height: 30px;
+      font-size: 0.9rem;
+    }
+  }
+  

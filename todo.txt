@@ -12,3 +12,29 @@ Regiões Balanceadas: Escolha 2 números de cada região do volante (1-20, 21-40
 6. Geração com Base em Dados
 Utilize aniversários, dados especiais ou transferências derivadas de dados.
 Exemplo: Data "25/12/2023" gera os números 25, 12, 20, 23, e os faltantes são aleatórios.
+-------------
+7. Geração Automática com Inteligência Artificial
+Implemente um algoritmo de aprendizado de máquina que analisa padrões em 
+sorteios anteriores para sugerir números que têm maior probabilidade de serem sorteados.
+-------------
+8. Geração com Base em Numerologia
+Aplique técnicas de numerologia para transformar nomes ou dados em números que serão 
+usados ​​no jogo.
+-------------
+9. Geração com Exclusões Baseadas no Histórico
+Evite combinações já sorteadas para garantir que o jogo seja único. 
+Consulte um banco de dados de sorteios anteriores e gere símbolos inéditos.
+-------------
+10. Geração em Modo "Surpresa"
+Crie jogos completamente aleatórios, mas adicione elementos de surpresa:
+-------------
+Mostre animações ou gráficos para tornar o processo interativo.
+Gere números gradativamente para criar suspense.
+11. Geração com Base no Zodíaco
+Mapeie os signos do zodíaco para números ou dados específicos e use-os para criar símbolos.
+-------------
+12. Geração em Forma de Simulação
+Imite um sorteio real, mostrando números sendo "sorteados" virtualmente, o que pode ser 
+mais envolvente para o usuário.
+-------------
+Essas ideias podem ser inovadoras como opções para os usuários no sistema. Você pode oferecer uma interface onde o usuário escolhe o método que deseja usar para gerar os números, adicionando um elemento de personalização e interatividade.
