@@ -30,8 +30,23 @@ Gere números gradativamente para criar suspense.
 11. Geração com Base no Zodíaco
 Mapeie os signos do zodíaco para números ou dados específicos e use-os para criar símbolos.
 -------------
-12. Geração em Forma de Simulação
-Imite um sorteio real, mostrando números sendo "sorteados" virtualmente, o que pode ser 
-mais envolvente para o usuário.
+12. Geração com Base em Dados Geográficos
+Utilize informações de localização, como cidades ou países, para gerar números.
+Associe números a coordenadas geográficas, fusos horários ou dados populacionais.
 -------------
-Essas ideias podem ser inovadoras como opções para os usuários no sistema. Você pode oferecer uma interface onde o usuário escolhe o método que deseja usar para gerar os números, adicionando um elemento de personalização e interatividade.
+14. Geração com Base em Padrões Visuais
+Permita ao usuário desenhar padrões em uma grade, como linhas ou formas, que serão convertidos em números do sorteio.
+Utilize o reconhecimento de formas para transformar imagens ou rabiscos em números.
+-------------
+15. Geração com Base em Dados Específicos
+Dados Significativos : Dados de eventos históricos ou feriados.
+Dados Futuras : Utilize variações, como datas comemorativas futuras.
+-------------
+17. Geração com Base em Emojis
+Peça ao usuário que escolhe emojis, onde cada emoji está associado a números ocultos.
+Torne a experiência mais divertida e visualmente interessante.
+-------------
+20. Personalização Avançada
+Configuração de Regras : Permite ao usuário configurar regras, como quantidade de pares ou ímpares, intervalo de números, ou números fixos.
+Temas e Estilos : Ofereça diferentes temas visuais para personalizar a interface.
+-------------

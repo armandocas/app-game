@@ -26,6 +26,7 @@ import GerarBalanceados from './pages/GerarBalanceados/GerarBalanceados.jsx';
 import GenerateFromData from './pages/BaseadoDados/BaseadoDados.jsx';
 import GenerateFromNumerology from './pages/GenerateFromNumerologia/GenerateFromNumerologia.jsx';
 import GenerateSurprise from './pages/GenerateSurprise/GenerateSurprise.jsx';
+import GenerateZodiac from './pages/GenerateZodiac/GenerateZodiac.jsx';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
         <Route path="/app/megasena/gerar-via-arquivo-dados" element={<GenerateFromData />} />
         <Route path="/app/megasena/gerar-via-arquivo-numerologia" element={<GenerateFromNumerology />} />
         <Route path="/app/megasena/modo-surpresa" element={<GenerateSurprise />} />
+        <Route path="/app/megasena/zodiaco" element={<GenerateZodiac />} />
 
 
 
