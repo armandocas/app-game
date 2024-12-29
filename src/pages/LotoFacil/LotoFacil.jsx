@@ -5,8 +5,8 @@ import firebaseApp from "../../Config/firebase";
 import "./LotoFacil.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "../../components/Modal/Modal";
-import "../../components/Modal/Modal.css";
+import ModalLotoFacil from "../../components/Modal-Lotofacil/ModalLotoFacil";
+import "../../components/Modal-Lotofacil/ModalLotoFacil.css";
 import { AuthContext } from "../../../src/app/Context/auth";
 
 // Componente para exibir números em bolinhas
@@ -210,7 +210,7 @@ function LotoFacil() {
         </div>
       )}
 
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+      <ModalLotoFacil isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <h3>Padrão Selecionado: {modalPadrao}</h3>
         <h4>Jogos Gerados:</h4>
         {modalJogos.map((jogo, index) => (
@@ -228,7 +228,7 @@ function LotoFacil() {
         <p className="text-danger">Usuário não autenticado. Faça login para salvar os jogos.</p>
        )}
 
-      </Modal>
+      </ModalLotoFacil>
 
       <div className="mt-3">
         <Link to="/app/lotofacilhome" className="btn btn-secondary">
