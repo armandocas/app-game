@@ -21,15 +21,12 @@ sorteios anteriores para sugerir números que têm maior probabilidade de serem 
 Aplique técnicas de numerologia para transformar nomes ou dados em números que serão 
 usados ​​no jogo.
 -------------
-9. Geração com Exclusões Baseadas no Histórico
-Evite combinações já sorteadas para garantir que o jogo seja único. 
-Consulte um banco de dados de sorteios anteriores e gere símbolos inéditos.
 -------------
 10. Geração em Modo "Surpresa"
 Crie jogos completamente aleatórios, mas adicione elementos de surpresa:
--------------
 Mostre animações ou gráficos para tornar o processo interativo.
 Gere números gradativamente para criar suspense.
+-------------
 11. Geração com Base no Zodíaco
 Mapeie os signos do zodíaco para números ou dados específicos e use-os para criar símbolos.
 -------------
