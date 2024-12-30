@@ -43,7 +43,7 @@ function Home() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/pagina-em-construcao" className="btn btn-primary w-100">
+            <Link to="/app/dia-de-sorte-home" className="btn btn-primary w-100">
               Dia de Sorte
             </Link>
           </div>
