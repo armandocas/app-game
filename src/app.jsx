@@ -37,6 +37,8 @@ import TimeManiaHome from './pages/TimeManiaHome/TimeManiaHome.jsx';
 import GeradorTimeMania from './pages/GeradorTimeMania/GeradorTimeMania.jsx';
 import DiaDeSorteHome from './pages/DiaDeSorteHome/DiaDeSorteHome.jsx';
 import GeradorDiaDeSorte from './pages/GeradorDiaDeSorte/GeradorDiaDeSorte.jsx';
+import SuperSeteHome from './pages/SuperSeteHome/SuperSeteHome.jsx';
+import GeradorSuperSete from './pages/GeradorSuperSete/GeradorSuperSete.jsx';
 
 
 function App() {
@@ -80,6 +82,8 @@ function App() {
         <Route path="/app/timemania/gerador-jogo-timemania" element={<GeradorTimeMania />} />
         <Route path="/app/dia-de-sorte-home" element={<DiaDeSorteHome />} />
         <Route path="/app/diadesorte/gerador-jogo-diadesorte" element={<GeradorDiaDeSorte />} />
+        <Route path="/app/supersetehome" element={<SuperSeteHome />} />
+        <Route path="/app/supersete/gerador-jogo-supersete" element={<GeradorSuperSete />} />
 
 
 
