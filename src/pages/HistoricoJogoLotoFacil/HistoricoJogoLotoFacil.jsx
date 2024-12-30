@@ -106,7 +106,9 @@ function HistoricoJogoLotoFacil() {
   async function baixarTodosJogos() {
 
      // Exibe o Toast de carregamento
-  toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000 });
+  toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000, 
+    position: "top-center"
+   });
 
   const todosOsDados = await carregarTodosDados();
 
@@ -122,7 +124,9 @@ function HistoricoJogoLotoFacil() {
   link.click();
 
    // Exibe o Toast de sucesso
-   toast.success("Arquivo gerado com sucesso!", { autoClose: 3000 });
+   toast.success("Arquivo gerado com sucesso!", { autoClose: 3000,
+    position: "top-center"
+    });
   
 }
 
