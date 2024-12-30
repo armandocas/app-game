@@ -1,0 +1,31 @@
+.titulo {
+    margin-top: 80px;
+  }
+  
+  .lead {
+    color: #6c757d;
+    font-size: 1.2rem;
+  }
+  
+  .row {
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .btn-primary-milionaria {
+    background-color: #5d28da;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    width: 200px;
+  }
+  
+  .btn-primary-milionaria:hover {
+    background-color: #a994da;
+    transform: scale(1.05);
+  }
+  

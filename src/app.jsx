@@ -39,6 +39,8 @@ import DiaDeSorteHome from './pages/DiaDeSorteHome/DiaDeSorteHome.jsx';
 import GeradorDiaDeSorte from './pages/GeradorDiaDeSorte/GeradorDiaDeSorte.jsx';
 import SuperSeteHome from './pages/SuperSeteHome/SuperSeteHome.jsx';
 import GeradorSuperSete from './pages/GeradorSuperSete/GeradorSuperSete.jsx';
+import MilionariaHome from './pages/MilionariaHome/MilionariaHome.jsx';
+import GeradorMilionaria from './pages/GeradorMilionaria/GeradorMilionaria.jsx';
 
 
 function App() {
@@ -84,6 +86,8 @@ function App() {
         <Route path="/app/diadesorte/gerador-jogo-diadesorte" element={<GeradorDiaDeSorte />} />
         <Route path="/app/supersetehome" element={<SuperSeteHome />} />
         <Route path="/app/supersete/gerador-jogo-supersete" element={<GeradorSuperSete />} />
+        <Route path="/app/milionariahome" element={<MilionariaHome />} />
+        <Route path="/app/milionaria/gerador-jogo-milionaria" element={<GeradorMilionaria />} />
 
 
 
