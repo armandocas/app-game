@@ -126,6 +126,25 @@ function HistoricoJogoMegaSena() {
   
 }
 
+  // Função para exibir cidades ou mensagem de acumulação
+  function renderCidadesOuAcumulacao(jogo) {
+    if (jogo.cidades.length > 0) {
+      return jogo.cidades.map((cidade, idx) => (
+        <div key={idx}>
+          {cidade.cidade} - {cidade.estado}
+        </div>
+      ));
+    } else {
+      return (
+        <div>
+          <strong>🚨 ACUMULOU! 🚨</strong> <br />
+          💰 Próximo prêmio: <strong>{jogo.valor_do_proximo_premio}</strong> <br />
+          📍 Data do próximo sorteio: <strong>{jogo.data_de_fechamento}</strong>
+        </div>
+      );
+    }
+  }
+
   useEffect(() => {
     carregarDados();
   }, []);
@@ -152,24 +171,43 @@ function HistoricoJogoMegaSena() {
                 <td>{jogo.sorteio}</td>
                 <td>{jogo.data_do_sorteio}</td>
                 <td>
-                  <div className="numeros-sorteados-container">
-                    {jogo.numeros_sorteados.map((numero, idx) => (
-                      <div key={idx} className="numero-sorteado">
-                        {numero}
-                      </div>
-                    ))}
-                  </div>
-                </td>
-                <td>{jogo.premios.v1a}</td>
+            <div className="numeros-sorteados-container">
+                {jogo.numeros_sorteados.map((numero, idx) => (
+            <div key={idx} className="numero-sorteado">
+                {numero}
+               </div>
+       ))}
+               </div>  
+                 </td>
                 <td>
-                  {jogo.cidades.length > 0
-                    ? jogo.cidades.map((cidade, idx) => (
-                        <div key={idx}>
-                          {cidade.cidade} - {cidade.estado}
-                        </div>
-                      ))
-                    : "ACUMULOU"}
+                  <table className="premio-detalhes">
+                    <thead>
+                      <tr>
+                        <th>Acertos</th>
+                        <th>Prêmio</th>
+                        <th>Ganhadores</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>SENA</td>
+                        <td>{jogo.premios.v1a}</td>
+                        <td>{jogo.premios.w1a}</td>
+                      </tr>
+                      <tr>
+                        <td>QUINA</td>
+                        <td>{jogo.premios.v2a}</td>
+                        <td>{jogo.premios.w2a}</td>
+                      </tr>
+                      <tr>
+                        <td>QUADRA</td>
+                        <td>{jogo.premios.v3a}</td>
+                        <td>{jogo.premios.w3a}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </td>
+                <td>{renderCidadesOuAcumulacao(jogo)}</td>
               </tr>
             ))}
           </tbody>
