@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import firebaseApp from "../../Config/firebase";
 import { toast, ToastContainer } from "react-toastify";
@@ -125,6 +127,11 @@ const GenerateFromData = () => {
           </div>
         </div>
       )}
+            <div className="mt-3">
+                <Link to="/app/megasenahome" className="btn btn-secondary">
+                  Voltar
+                </Link>
+            </div>
     </div>
   );
 };
