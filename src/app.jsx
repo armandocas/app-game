@@ -31,6 +31,8 @@ import QuinaHome from './pages/QuinaHome/QuinaHome.jsx';
 import GeradorJogoQuina from './pages/GeradorJogoQuina/GeradorJogoQuina.jsx';
 import LotoManiaHome from './pages/LotoManiaHome/LotoManiaHome.jsx';
 import GeradorLotoMania from './pages/GeradorLotoMania/GeradorLotoMania.jsx';
+import DuplaSenaHome from './pages/DuplaSenaHome/DuplaSenaHome.jsx';
+import GeradorDuplaSena from './pages/GeradorDuplaSena/GeradorDuplaSena.jsx';
 
 
 function App() {
@@ -68,6 +70,8 @@ function App() {
         <Route path="/app/quina/gerador-jogo-quina" element={<GeradorJogoQuina />} />
         <Route path="/app/lotomaniahome" element={<LotoManiaHome />} />
         <Route path="/app/lotomania/gerador-jogo-lotomania" element={<GeradorLotoMania />} />
+        <Route path="/app/duplasenahome" element={<DuplaSenaHome />} />
+        <Route path="/app/duplasena/gerador-jogo-duplasena" element={<GeradorDuplaSena />} />
 
 
 
