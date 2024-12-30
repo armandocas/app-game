@@ -33,6 +33,8 @@ import LotoManiaHome from './pages/LotoManiaHome/LotoManiaHome.jsx';
 import GeradorLotoMania from './pages/GeradorLotoMania/GeradorLotoMania.jsx';
 import DuplaSenaHome from './pages/DuplaSenaHome/DuplaSenaHome.jsx';
 import GeradorDuplaSena from './pages/GeradorDuplaSena/GeradorDuplaSena.jsx';
+import TimeManiaHome from './pages/TimeManiaHome/TimeManiaHome.jsx';
+import GeradorTimeMania from './pages/GeradorTimeMania/GeradorTimeMania.jsx';
 
 
 function App() {
@@ -72,6 +74,8 @@ function App() {
         <Route path="/app/lotomania/gerador-jogo-lotomania" element={<GeradorLotoMania />} />
         <Route path="/app/duplasenahome" element={<DuplaSenaHome />} />
         <Route path="/app/duplasena/gerador-jogo-duplasena" element={<GeradorDuplaSena />} />
+        <Route path="/app/timemaniahome" element={<TimeManiaHome />} />
+        <Route path="/app/timemania/gerador-jogo-timemania" element={<GeradorTimeMania />} />
 
 
 
