@@ -81,24 +81,31 @@
 
 .numeros-sorteados-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: center; /* Centraliza horizontalmente os números */
+  gap: 8px; /* Espaçamento entre os números */
 }
 
 .numero-sorteado {
-  width: 40px;
-  height: 40px;
-  background-color: #f0f0f0; /* Cor de fundo das bolinhas */
-  color: #333; /* Cor do número */
-  border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  justify-content: center; /* Centraliza o número dentro do círculo */
+  align-items: center; /* Alinha verticalmente o número dentro do círculo */
+  width: 30px;
+  height: 30px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
   font-size: 14px;
-  border: 1px solid #ccc; /* Borda das bolinhas */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
-  
-
+  text-align: center;
 }
 
+
+.premio-detalhes {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.premio-detalhes th, 
+.premio-detalhes td {
+  text-align: center;
+  vertical-align: middle;
+}
