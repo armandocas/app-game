@@ -1,0 +1,31 @@
+.titulo {
+    margin-top: 80px;
+  }
+  
+  .lead {
+    color: #6c757d;
+    font-size: 1.2rem;
+  }
+  
+  .row {
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .btn-primary-lotomania {
+    background-color: #e2934a;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 15px 20px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    width: 200px;
+  }
+  
+  .btn-primary-lotomania:hover {
+    background-color: #dfb288;
+    transform: scale(1.05);
+  }
+  

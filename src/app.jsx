@@ -29,6 +29,8 @@ import GenerateSurprise from './pages/GenerateSurprise/GenerateSurprise.jsx';
 import GenerateZodiac from './pages/GenerateZodiac/GenerateZodiac.jsx';
 import QuinaHome from './pages/QuinaHome/QuinaHome.jsx';
 import GeradorJogoQuina from './pages/GeradorJogoQuina/GeradorJogoQuina.jsx';
+import LotoManiaHome from './pages/LotoManiaHome/LotoManiaHome.jsx';
+import GeradorLotoMania from './pages/GeradorLotoMania/GeradorLotoMania.jsx';
 
 
 function App() {
@@ -64,6 +66,8 @@ function App() {
         <Route path="/app/megasena/zodiaco" element={<GenerateZodiac />} />
         <Route path="/app/quinahome" element={<QuinaHome />} />
         <Route path="/app/quina/gerador-jogo-quina" element={<GeradorJogoQuina />} />
+        <Route path="/app/lotomaniahome" element={<LotoManiaHome />} />
+        <Route path="/app/lotomania/gerador-jogo-lotomania" element={<GeradorLotoMania />} />
 
 
 
