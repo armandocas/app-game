@@ -12,8 +12,8 @@
     gap: 15px;
   }
   
-  .btn-primary-lotofacil {
-    background-color: #e24ad5;
+  .btn-primary-quina {
+    background-color: #64066d;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -24,8 +24,8 @@
     width: 200px;
   }
   
-  .btn-primary-lotofacil:hover {
-    background-color: #dd85d6;
+  .btn-primary-quina:hover {
+    background-color: #a485aa;
     transform: scale(1.05);
   }
   

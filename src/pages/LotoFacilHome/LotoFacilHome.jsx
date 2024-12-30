@@ -13,22 +13,22 @@ function LotoFacilHome() {
 
         <div className="row mt-4">
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotofacil/gerador-jogo-lotofacil" className="btn btn-primary w-100">
+            <Link to="/app/lotofacil/gerador-jogo-lotofacil" className="btn btn-primary-lotofacil w-100">
               Gerar Jogos
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotofacil-estatistica" className="btn btn-primary w-100">
+            <Link to="/app/lotofacil-estatistica" className="btn btn-primary-lotofacil w-100">
               Estatísticas
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotofacil/historico-de-jogos-lotofacil" className="btn btn-primary w-100">
+            <Link to="/app/lotofacil/historico-de-jogos-lotofacil" className="btn btn-primary-lotofacil w-100">
               Histórico de Jogos
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary w-100">
+            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
               Gerar via arquivo
             </Link>
           </div>

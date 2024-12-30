@@ -27,6 +27,8 @@ import GenerateFromData from './pages/BaseadoDados/BaseadoDados.jsx';
 import GenerateFromNumerology from './pages/GenerateFromNumerologia/GenerateFromNumerologia.jsx';
 import GenerateSurprise from './pages/GenerateSurprise/GenerateSurprise.jsx';
 import GenerateZodiac from './pages/GenerateZodiac/GenerateZodiac.jsx';
+import QuinaHome from './pages/QuinaHome/QuinaHome.jsx';
+import GeradorJogoQuina from './pages/GeradorJogoQuina/GeradorJogoQuina.jsx';
 
 
 function App() {
@@ -60,6 +62,8 @@ function App() {
         <Route path="/app/megasena/gerar-via-arquivo-numerologia" element={<GenerateFromNumerology />} />
         <Route path="/app/megasena/modo-surpresa" element={<GenerateSurprise />} />
         <Route path="/app/megasena/zodiaco" element={<GenerateZodiac />} />
+        <Route path="/app/quinahome" element={<QuinaHome />} />
+        <Route path="/app/quina/gerador-jogo-quina" element={<GeradorJogoQuina />} />
 
 
 

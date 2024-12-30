@@ -12,8 +12,8 @@
     gap: 15px;
   }
   
-  .btn-primary {
-    background-color: #4a90e2;
+  .btn-primary-megasena {
+    background-color: #0aad33;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -24,8 +24,8 @@
     width: 200px;
   }
   
-  .btn-primary:hover {
-    background-color: #357abd;
+  .btn-primary-megasena:hover {
+    background-color: #80af8b;
     transform: scale(1.05);
   }
   
