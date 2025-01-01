@@ -1,0 +1,98 @@
+.generate-numbers-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: #f4f7f6;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 10px;
+  }
+  
+  input {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+  }
+  
+  .info {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+  }
+  
+  .generate-button {
+    background: #16a085;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .generate-button:hover {
+    background: #138d75;
+  }
+  
+  .generated-numbers {
+    margin-top: 20px;
+  }
+  
+  .numbers-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .number {
+    width: 40px;
+    height: 40px;
+    background: #27ae60;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .number:hover {
+    background: #219150;
+    cursor: pointer;
+  }
+  
+  .btn-secondary {
+    background: #7f8c8d;
+    color: white;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    background: #707b7c;
+    color: white;
+  }
+
+  .mt-3 {
+    margin-top: 20px;
+  }

@@ -41,6 +41,7 @@ import SuperSeteHome from './pages/SuperSeteHome/SuperSeteHome.jsx';
 import GeradorSuperSete from './pages/GeradorSuperSete/GeradorSuperSete.jsx';
 import MilionariaHome from './pages/MilionariaHome/MilionariaHome.jsx';
 import GeradorMilionaria from './pages/GeradorMilionaria/GeradorMilionaria.jsx';
+import GenerateLotoFacilFavorito from './pages/GenerateLotoFacilFavorito/GenerateLotoFacilFavorito.jsx';
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         <Route path="/app/megasena/megasena-estatistica" element={<MegaSenaEstatistica />} />
         <Route path="/app/megasena/gerar-via-arquivo" element={<MegaSenaUpload />} />
         <Route path="/app/megasena/gerar-via-arquivo-favorito" element={<GenerateFavorito />} />
+        <Route path="/app/lotofacil/gerar-via-arquivo-favorito" element={<GenerateLotoFacilFavorito />} />
         <Route path="/app/megasena/gerar-via-arquivo-balanceados" element={<GerarBalanceados />} />
         <Route path="/app/megasena/gerar-via-arquivo-dados" element={<GenerateFromData />} />
         <Route path="/app/megasena/gerar-via-arquivo-numerologia" element={<GenerateFromNumerology />} />
