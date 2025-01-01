@@ -31,13 +31,13 @@
   
     /* Container para a imagem do logo */
 .logo-container {
-  margin-top: -40px;
-  margin-bottom: -35px;
+  margin-top: -50px;
+  margin-bottom: -45px;
 }
 
 /* Estilo da imagem do logo */
 .loto-facil-logo {
-  width: 150px;
+  width: 250px;
   height: auto;
   display: block;
   margin: 0 auto;

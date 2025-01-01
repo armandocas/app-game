@@ -10,7 +10,7 @@ function LotoFacilHome() {
       <div className="container-fluid titulo text-center">
         {/* Imagem da LotoFacil */}
         <div className="logo-container">
-          <img src="/Images/loto_facil.png" alt="Loto Facil" className="loto-facil-logo" />
+          <img src="/Images/loto_facil.png" alt="Loto_Facil" className="loto-facil-logo" />
         </div>
 
         <h1>Bem-vindo à Lotofácil</h1>
