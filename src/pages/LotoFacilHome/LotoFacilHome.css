@@ -13,7 +13,7 @@
   }
   
   .btn-primary-lotofacil {
-    background-color: #e24ad5;
+    background-color: #5D34AE;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -25,7 +25,20 @@
   }
   
   .btn-primary-lotofacil:hover {
-    background-color: #dd85d6;
+    background-color: #C648A2;
     transform: scale(1.05);
   }
   
+    /* Container para a imagem do logo */
+.logo-container {
+  margin-top: -60px;
+  margin-bottom: -45px;
+}
+
+/* Estilo da imagem do logo */
+.loto-facil-logo {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

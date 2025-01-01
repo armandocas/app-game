@@ -13,7 +13,7 @@
   }
   
   .btn-primary-milionaria {
-    background-color: #5d28da;
+    background-color: #582E56;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -25,7 +25,20 @@
   }
   
   .btn-primary-milionaria:hover {
-    background-color: #a994da;
+    background-color: #6846B6;
     transform: scale(1.05);
   }
-  
+
+/* Container para a imagem do logo */
+  .logo-container {
+     margin-top: -80px;
+     margin-bottom: -65px;
+}
+             
+/* Estilo da imagem do logo */
+  .milionaria-logo {
+     width: 200px;
+     height: auto;
+     display: block;
+     margin: 0 auto;
+}

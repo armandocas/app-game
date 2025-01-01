@@ -8,6 +8,11 @@ function MilionariaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
+          {/* Imagem da Milionária */}
+        <div className="logo-container">
+          <img src="/Images/milionaria.png" alt="milionaria" className="milionaria-logo" />
+        </div>
+
         <h1>Bem-vindo à +Milionária</h1>
         <p className="lead">Escolha uma das opções abaixo para gerenciar ou criar jogos da +Milionária.</p>
 

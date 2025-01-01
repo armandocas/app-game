@@ -8,6 +8,11 @@ function TimeManiaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
+          {/* Imagem da Timemania */}
+          <div className="logo-container">
+          <img src="/Images/timemania.png" alt="timemania" className="timemania-logo" />
+        </div>
+
         <h1>Bem-vindo à Timemania</h1>
         <p className="lead">Escolha uma das opções abaixo para gerenciar ou criar jogos da Timemania.</p>
 

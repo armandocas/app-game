@@ -8,6 +8,11 @@ function MegaSenaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
+        {/* Imagem da Mega Sena */}
+        <div className="logo-container">
+          <img src="/Images/mega_sena.png" alt="Mega Sena" className="mega-sena-logo" />
+        </div>
+
         <h1>Bem-vindo à Mega Sena</h1>
         <p className="lead">Escolha uma das opções abaixo para gerenciar ou criar jogos da Mega Sena.</p>
 
@@ -62,11 +67,11 @@ function MegaSenaHome() {
               Zodíaco
             </Link>
           </div>
-          <div className="mt-3">
+          <div className="col-md-4 col-sm-6 mb-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home
             </Link>
-            </div>
+          </div>
         </div>
       </div>
     </div>

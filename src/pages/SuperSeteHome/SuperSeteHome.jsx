@@ -8,6 +8,11 @@ function SuperSeteHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
+          {/* Imagem da Super Sete */}
+            <div className="logo-container">
+          <img src="/Images/super_sete.png" alt="Super Sete" className="supersete-logo" />
+        </div>
+
         <h1>Bem-vindo à Super Sete</h1>
         <p className="lead">Escolha uma das opções abaixo para gerenciar ou criar jogos do Super Sete.</p>
 

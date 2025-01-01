@@ -13,7 +13,7 @@
   }
   
   .btn-primary-lotomania {
-    background-color: #e2934a;
+    background-color: #AC1B2E;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -25,7 +25,20 @@
   }
   
   .btn-primary-lotomania:hover {
-    background-color: #dfb288;
+    background-color: #FCCC88;
     transform: scale(1.05);
   }
   
+    /* Container para a imagem do logo */
+.logo-container {
+  margin-top: -80px;
+  margin-bottom: -65px;
+}
+
+/* Estilo da imagem do logo */
+.lotomania-logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

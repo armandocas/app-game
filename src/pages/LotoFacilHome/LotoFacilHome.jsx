@@ -8,6 +8,11 @@ function LotoFacilHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
+        {/* Imagem da LotoFacil */}
+        <div className="logo-container">
+          <img src="/Images/loto_facil.png" alt="Loto Facil" className="loto-facil-logo" />
+        </div>
+
         <h1>Bem-vindo à Lotofácil</h1>
         <p className="lead">Escolha uma das opções abaixo para gerenciar ou criar jogos da Lotofácil.</p>
 
@@ -32,7 +37,37 @@ function LotoFacilHome() {
               Gerar via arquivo
             </Link>
           </div>
-          <div className="mt-3">
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
+              Gerar via arquivo
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
+              Gerar via arquivo
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
+              Gerar via arquivo
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
+              Gerar via arquivo
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
+              Gerar via arquivo
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
+              Gerar via arquivo
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home
             </Link>

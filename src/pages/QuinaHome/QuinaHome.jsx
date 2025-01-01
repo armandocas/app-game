@@ -8,6 +8,11 @@ function QuinaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
+         {/* Imagem da Quina */}
+        <div className="logo-container">
+          <img src="/Images/quina.png" alt="quina" className="quina-logo" />
+        </div>
+
         <h1>Bem-vindo à Quina</h1>
         <p className="lead">Escolha uma das opções abaixo para gerenciar ou criar jogos da Quina.</p>
 

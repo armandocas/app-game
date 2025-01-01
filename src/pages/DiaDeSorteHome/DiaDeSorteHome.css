@@ -13,7 +13,7 @@
   }
   
   .btn-primary-diadesorte {
-    background-color: #ac5a0d;
+    background-color: #703F26;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -25,7 +25,20 @@
   }
   
   .btn-primary-diadesorte:hover {
-    background-color: #d3ab87;
+    background-color: #B1927C;
     transform: scale(1.05);
   }
-  
+
+      /* Container para a imagem do logo */
+      .logo-container {
+        margin-top: -80px;
+        margin-bottom: -65px;
+         }
+         
+         /* Estilo da imagem do logo */
+   .diadesorte-logo {
+         width: 200px;
+         height: auto;
+         display: block;
+         margin: 0 auto;
+   }

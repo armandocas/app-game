@@ -13,7 +13,7 @@
   }
   
   .btn-primary-megasena {
-    background-color: #0aad33;
+    background-color: #014130;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -25,7 +25,22 @@
   }
   
   .btn-primary-megasena:hover {
-    background-color: #80af8b;
+    background-color: #2AC961;
     transform: scale(1.05);
   }
+
+  /* Container para a imagem do logo */
+.logo-container {
+  margin-top: -80px;
+  margin-bottom: -65px;
+}
+
+/* Estilo da imagem do logo */
+.mega-sena-logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
   

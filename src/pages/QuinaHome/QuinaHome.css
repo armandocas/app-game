@@ -13,7 +13,7 @@
   }
   
   .btn-primary-quina {
-    background-color: #64066d;
+    background-color: #0B2E7F;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -25,7 +25,20 @@
   }
   
   .btn-primary-quina:hover {
-    background-color: #a485aa;
+    background-color: #0BAFE4;
     transform: scale(1.05);
   }
-  
+
+  /* Container para a imagem do logo */
+.logo-container {
+  margin-top: -80px;
+  margin-bottom: -65px;
+}
+
+/* Estilo da imagem do logo */
+.quina-logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

@@ -13,7 +13,7 @@
   }
   
   .btn-primary-timemania {
-    background-color: #078505;
+    background-color: #00BC00;
     border: none;
     font-size: 1rem;
     font-weight: bold;
@@ -25,7 +25,20 @@
   }
   
   .btn-primary-timemania:hover {
-    background-color: #8cd88c;
+    background-color: #D3E7C2;
     transform: scale(1.05);
   }
-  
+
+      /* Container para a imagem do logo */
+.logo-container {
+     margin-top: -80px;
+     margin-bottom: -65px;
+      }
+      
+      /* Estilo da imagem do logo */
+.timemania-logo {
+      width: 200px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+}

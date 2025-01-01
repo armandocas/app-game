@@ -8,6 +8,11 @@ function LotoManiaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
+         {/* Imagem da Lotomania */}
+         <div className="logo-container">
+          <img src="/Images/lotomania.png" alt="lotomania" className="lotomania-logo" />
+        </div>
+
         <h1>Bem-vindo à LotoMania</h1>
         <p className="lead">Escolha uma das opções abaixo para gerenciar ou criar jogos da LotoMania.</p>
 
