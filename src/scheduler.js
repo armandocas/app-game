@@ -4,7 +4,7 @@ import coletarDadosMegaSena from "./Config/historicoMegaSenaService";
 
 function agendarAtualizacaoHistorico() {
   // Agenda a execução para todos os dias às 03:00 AM para LotoFácil
-  schedule.scheduleJob("22 16 * * *", async () => {
+  schedule.scheduleJob("10 19 * * *", async () => {
     console.log("Executando a tarefa da LotoFácil às 20:15...");
     try {
       await coletarDadosLotoFacil();
@@ -15,7 +15,7 @@ function agendarAtualizacaoHistorico() {
   });
 
   // Agenda a execução para todos os dias às 04:00 AM para Mega-Sena
-  schedule.scheduleJob("21 16 * * *", async () => {
+  schedule.scheduleJob("09 19 * * *", async () => {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
     try {
       await coletarDadosMegaSena();
