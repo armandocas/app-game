@@ -43,6 +43,7 @@ import MilionariaHome from './pages/MilionariaHome/MilionariaHome.jsx';
 import GeradorMilionaria from './pages/GeradorMilionaria/GeradorMilionaria.jsx';
 import GenerateLotoFacilFavorito from './pages/GenerateLotoFacilFavorito/GenerateLotoFacilFavorito.jsx';
 import GerarBalanceadosLotoFacil from './pages/GerarBalanceadosLotoFacil/GerarBalanceadosLotoFacil.jsx';
+import GenerateFromDataLotoFacil from './pages/GenerateFromDataLotoFacil/GenerateFromDataLotoFacil.jsx';
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
         <Route path="/app/megasena/gerar-via-arquivo-balanceados" element={<GerarBalanceados />} />
         <Route path="/app/lotofacil/gerar-via-arquivo-balanceado" element={<GerarBalanceadosLotoFacil />} />
         <Route path="/app/megasena/gerar-via-arquivo-dados" element={<GenerateFromData />} />
+        <Route path="/app/lotofacil/gerar-via-arquivo-dados" element={<GenerateFromDataLotoFacil />} />
         <Route path="/app/megasena/gerar-via-arquivo-numerologia" element={<GenerateFromNumerology />} />
         <Route path="/app/megasena/modo-surpresa" element={<GenerateSurprise />} />
         <Route path="/app/megasena/zodiaco" element={<GenerateZodiac />} />
