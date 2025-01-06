@@ -58,13 +58,13 @@ function LotoFacilHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
-              Gerar via arquivo
+            <Link to="/app/lotofacil/modo-surpresa" className="btn btn-primary-lotofacil w-100">
+              Modo Surpresa
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotofacil/gerar-via-arquivo" className="btn btn-primary-lotofacil w-100">
-              Gerar via arquivo
+            <Link to="/app/lotofacil/zodiaco" className="btn btn-primary-lotofacil w-100">
+              Zodíaco
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">

@@ -26,7 +26,9 @@ import GerarBalanceados from './pages/GerarBalanceados/GerarBalanceados.jsx';
 import GenerateFromData from './pages/BaseadoDados/BaseadoDados.jsx';
 import GenerateFromNumerology from './pages/GenerateFromNumerologia/GenerateFromNumerologia.jsx';
 import GenerateSurprise from './pages/GenerateSurprise/GenerateSurprise.jsx';
+import GenerateSurpriseLotoFacil from './pages/GenerateSurpriseLotoFacil/GenerateSurpriseLotoFacil.jsx';
 import GenerateZodiac from './pages/GenerateZodiac/GenerateZodiac.jsx';
+import GenerateZodiacLotoFacil from './pages/GenerateZodiacLotoFacil/GenerateZodiacLotoFacil.jsx'
 import QuinaHome from './pages/QuinaHome/QuinaHome.jsx';
 import GeradorJogoQuina from './pages/GeradorJogoQuina/GeradorJogoQuina.jsx';
 import LotoManiaHome from './pages/LotoManiaHome/LotoManiaHome.jsx';
@@ -81,7 +83,9 @@ function App() {
         <Route path="/app/megasena/gerar-via-arquivo-numerologia" element={<GenerateFromNumerology />} />
         <Route path="/app/lotofacil/gerar-via-arquivo-numerologia" element={<GenerateFromNumerologyLotoFacil />} />
         <Route path="/app/megasena/modo-surpresa" element={<GenerateSurprise />} />
+        <Route path="/app/lotofacil/modo-surpresa" element={<GenerateSurpriseLotoFacil />} />
         <Route path="/app/megasena/zodiaco" element={<GenerateZodiac />} />
+        <Route path="/app/lotofacil/zodiaco" element={<GenerateZodiacLotoFacil />} />
         <Route path="/app/quinahome" element={<QuinaHome />} />
         <Route path="/app/quina/gerador-jogo-quina" element={<GeradorJogoQuina />} />
         <Route path="/app/lotomaniahome" element={<LotoManiaHome />} />
