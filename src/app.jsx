@@ -47,6 +47,8 @@ import GenerateLotoFacilFavorito from './pages/GenerateLotoFacilFavorito/Generat
 import GerarBalanceadosLotoFacil from './pages/GerarBalanceadosLotoFacil/GerarBalanceadosLotoFacil.jsx';
 import GenerateFromDataLotoFacil from './pages/GenerateFromDataLotoFacil/GenerateFromDataLotoFacil.jsx';
 import GenerateFromNumerologyLotoFacil from './pages/GenerateFromNumerologyLotoFacil/GenerateFromNumerologyLotoFacil.jsx';
+import ConferirJogos from './pages/ConferirJogos/ConferirJogos.jsx';
+import ConferirJogosLotoFacil from './pages/ConferirJogosLotoFacil/ConferirJogosLotoFacil.jsx';
 
 
 function App() {
@@ -85,6 +87,8 @@ function App() {
         <Route path="/app/megasena/modo-surpresa" element={<GenerateSurprise />} />
         <Route path="/app/lotofacil/modo-surpresa" element={<GenerateSurpriseLotoFacil />} />
         <Route path="/app/megasena/zodiaco" element={<GenerateZodiac />} />
+        <Route path="/app/megasena/conferir-jogos" element={<ConferirJogos />} />
+        <Route path="/app/lotofacil/conferir-jogos" element={<ConferirJogosLotoFacil />} />
         <Route path="/app/lotofacil/zodiaco" element={<GenerateZodiacLotoFacil />} />
         <Route path="/app/quinahome" element={<QuinaHome />} />
         <Route path="/app/quina/gerador-jogo-quina" element={<GeradorJogoQuina />} />

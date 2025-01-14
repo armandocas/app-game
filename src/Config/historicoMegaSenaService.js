@@ -34,7 +34,7 @@ async function coletarDadosMegaSena() {
     const ultimoId = await obterUltimoId();
     console.log("Último ID encontrado:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 10; id++) {
       console.log(`Coletando dados do sorteio ${id}...`);
 
       try {

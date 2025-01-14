@@ -35,7 +35,7 @@ async function coletarDadosLotoFacil() {
     console.log("Último ID encontrado:", ultimoId);
 
     // Inicia o loop a partir do próximo ID
-    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 10; id++) {
       console.log("Coletando dados do sorteio", id);
 
       try {

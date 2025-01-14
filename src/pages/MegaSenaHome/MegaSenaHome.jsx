@@ -68,6 +68,11 @@ function MegaSenaHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/megasena/conferir-jogos" className="btn btn-primary-megasena w-100">
+              Conferir jogos
+            </Link>
+          </div>
+          <div className="mb-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home
             </Link>
