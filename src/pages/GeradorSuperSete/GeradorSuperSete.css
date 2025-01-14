@@ -1,10 +1,8 @@
-/* Container principal */
 .super-sete-container {
     text-align: center;
     padding: 20px;
   }
   
-  /* Título e descrição */
   .super-sete-container h1 {
     font-size: 2rem;
     margin-bottom: 10px;
@@ -15,7 +13,6 @@
     margin-bottom: 20px;
   }
   
-  /* Colunas */
   .colunas-container {
     display: flex;
     flex-wrap: wrap;
@@ -33,7 +30,6 @@
     font-size: 1.2rem;
   }
   
-  /* Números */
   .numeros-container {
     display: flex;
     flex-wrap: wrap;
@@ -64,7 +60,6 @@
     background-color: #388e3c;
   }
   
-  /* Botões */
   .botoes-container {
     margin-top: 20px;
   }
@@ -106,7 +101,6 @@
     background-color: #218838;
   }
   
-  /* Responsividade */
   @media (max-width: 768px) {
     .numero {
       width: 40px;

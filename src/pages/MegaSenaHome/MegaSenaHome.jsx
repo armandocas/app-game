@@ -8,7 +8,6 @@ function MegaSenaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
-        {/* Imagem da Mega Sena */}
         <div className="logo-container">
           <img src="/Images/mega_sena.png" alt="Mega Sena" className="mega-sena-logo" />
         </div>

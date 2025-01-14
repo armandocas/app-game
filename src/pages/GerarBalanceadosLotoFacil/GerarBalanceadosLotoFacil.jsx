@@ -10,7 +10,6 @@ const GerarBalanceadosLotoFacil = () => {
 
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios ao montar o componente
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -24,7 +23,7 @@ const GerarBalanceadosLotoFacil = () => {
               ? data.numeros_sorteados.map(Number)
               : null;
           })
-          .filter((sorteio) => sorteio !== null); // Remove entradas inválidas
+          .filter((sorteio) => sorteio !== null);
         setHistory(historicalNumbers);
       } catch (error) {
         console.error("Erro ao carregar o histórico:", error.message);
@@ -34,7 +33,6 @@ const GerarBalanceadosLotoFacil = () => {
     fetchHistory();
   }, [db]);
 
-  // Função para obter números aleatórios de uma região
   const getRandomFromRegion = (region, count) => {
     const selected = [];
     while (selected.length < count) {
@@ -44,13 +42,12 @@ const GerarBalanceadosLotoFacil = () => {
     return selected;
   };
 
-  // Gera números balanceados e verifica exclusividade
   const generateBalancedNumbers = () => {
-    const region1 = Array.from({ length: 5 }, (_, i) => i + 1); // 1-5
-    const region2 = Array.from({ length: 5 }, (_, i) => i + 6); // 6-10
-    const region3 = Array.from({ length: 5 }, (_, i) => i + 11); // 11-15
-    const region4 = Array.from({ length: 5 }, (_, i) => i + 16); // 16-20
-    const region5 = Array.from({ length: 5 }, (_, i) => i + 21); // 21-25
+    const region1 = Array.from({ length: 5 }, (_, i) => i + 1);
+    const region2 = Array.from({ length: 5 }, (_, i) => i + 6);
+    const region3 = Array.from({ length: 5 }, (_, i) => i + 11);
+    const region4 = Array.from({ length: 5 }, (_, i) => i + 16);
+    const region5 = Array.from({ length: 5 }, (_, i) => i + 21);
 
     let selectedNumbers;
 
@@ -67,23 +64,20 @@ const GerarBalanceadosLotoFacil = () => {
     setGeneratedNumbers(selectedNumbers);
   };
 
-  // Função para gerar números únicos
   const generateUniqueNumbers = (region1, region2, region3, region4, region5) => {
     return [
-      ...getRandomFromRegion(region1, 3), // 3 números da região 1
-      ...getRandomFromRegion(region2, 3), // 3 números da região 2
-      ...getRandomFromRegion(region3, 3), // 3 números da região 3
-      ...getRandomFromRegion(region4, 3), // 3 números da região 4
-      ...getRandomFromRegion(region5, 3), // 3 números da região 5
+      ...getRandomFromRegion(region1, 3),
+      ...getRandomFromRegion(region2, 3),
+      ...getRandomFromRegion(region3, 3),
+      ...getRandomFromRegion(region4, 3),
+      ...getRandomFromRegion(region5, 3),
     ].sort((a, b) => a - b);
   };
 
-  // Função para verificar se os números são únicos no histórico
   const isUnique = (numbers) => {
     return !history.some((sorteio) => arraysEqual(sorteio, numbers));
   };
 
-  // Função para comparar arrays
   const arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
@@ -92,7 +86,6 @@ const GerarBalanceadosLotoFacil = () => {
     <div className="generate-numbers-container">
       <h1>Gerar Números Balanceados - LotoFácil</h1>
 
-      {/* Explicação de como os números são gerados */}
       <div className="explanation">
         <h3>Como os Números São Gerados?</h3>
         <p>
@@ -128,12 +121,10 @@ const GerarBalanceadosLotoFacil = () => {
         </p>
       </div>
 
-      {/* Botão de Gerar */}
       <button className="generate-button" onClick={generateBalancedNumbers}>
         Gerar Números Balanceados
       </button>
 
-      {/* Exibição dos Números Gerados */}
       {generatedNumbers.length > 0 && (
         <div className="generated-numbers">
           <h3>Números Gerados</h3>

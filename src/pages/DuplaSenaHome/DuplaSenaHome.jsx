@@ -8,7 +8,6 @@ function DuplaSenaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
-         {/* Imagem da Dupla Sena */}
           <div className="logo-container">
           <img src="/Images/dupla_sena.png" alt="Dupla Sena" className="duplasena-logo" />
         </div>

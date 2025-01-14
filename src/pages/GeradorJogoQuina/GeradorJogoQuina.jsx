@@ -9,15 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 function Quina() {
   const [numerosSelecionados, setNumerosSelecionados] = useState([]);
 
-  // Obtendo a instância do Firestore
   const db = getFirestore(firebaseApp);
 
   function selecionarNumero(numero) {
     if (numerosSelecionados.includes(numero)) {
-      // Remove o número se já estiver selecionado
       setNumerosSelecionados(numerosSelecionados.filter((n) => n !== numero));
     } else {
-      // Adiciona o número se não estiver selecionado (máximo de 5 números)
       if (numerosSelecionados.length < 5) {
         setNumerosSelecionados([...numerosSelecionados, numero]);
       }
@@ -34,8 +31,8 @@ function Quina() {
   
     try {
       const jogo = {
-        numeros: [...numerosSelecionados], // Garante que `numeros` seja um array de números
-        data: new Date().toLocaleString(), // Data em string
+        numeros: [...numerosSelecionados],
+        data: new Date().toLocaleString(),
       };
   
       console.log("Dados do jogo que serão enviados:", jogo);
@@ -109,7 +106,6 @@ function Quina() {
         </Link>
       </div>
 
-      {/* Componente ToastContainer para exibir as notificações */}
       <ToastContainer />
     </div>
   );

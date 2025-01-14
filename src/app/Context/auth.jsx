@@ -5,7 +5,7 @@ const AuthContext = React.createContext({});
 function AuthProvider({ children }) {
   const isLogado = localStorage.getItem("logado") === "S";
   const [logado, setLogado] = useState(isLogado);
-  const [user, setUser] = useState(null); // Novo estado para armazenar o usuário logado
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("logado", logado ? "S" : "N");

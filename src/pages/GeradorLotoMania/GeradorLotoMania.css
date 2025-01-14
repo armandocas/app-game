@@ -1,10 +1,8 @@
-/* Container principal */
 .loto-mania-container {
     text-align: center;
     padding: 20px;
   }
   
-  /* Título e descrição */
   .loto-mania-container h1 {
     font-size: 2rem;
     margin-bottom: 10px;
@@ -15,7 +13,6 @@
     margin-bottom: 20px;
   }
   
-  /* Números */
   .numeros-container {
     display: flex;
     flex-wrap: wrap;
@@ -47,7 +44,6 @@
     background-color: #388e3c;
   }
   
-  /* Responsividade: ajusta os números em telas menores */
   @media (max-width: 768px) {
     .numero {
       width: 40px;
@@ -64,13 +60,11 @@
     }
   }
   
-  /* Números selecionados */
   .selecionados {
     margin: 20px 0;
     font-size: 1.2rem;
   }
   
-  /* Botões */
   .botoes-container {
     margin-top: 20px;
   }
@@ -112,7 +106,6 @@
     background-color: #218838;
   }
   
-  /* Responsividade: ajuste dos botões em telas menores */
   @media (max-width: 768px) {
     .botoes-container .btn {
       font-size: 0.9rem;
@@ -127,7 +120,6 @@
     }
   }
   
-  /* Botão "Voltar" */
   .mt-3 {
     margin-top: 20px;
   }
@@ -136,7 +128,6 @@
     padding: 10px 20px;
   }
   
-  /* Toast notification */
   .Toastify__toast-container {
     font-size: 1rem;
   }

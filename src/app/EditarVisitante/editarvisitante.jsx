@@ -3,13 +3,12 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import Navbar from '../Components/Navbar/navbar';
 import './editarvisitante.css';
 
-// Importando métodos específicos do Firebase v9
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import firebaseApp from '../../Config/firebase';
 import axios from 'axios';
 
 function EditarVisitante() {
-  const { id } = useParams(); // Utilizando o hook useParams para obter o ID do visitante
+  const { id } = useParams();
 
   const [nomeCompleto, setNomeCompleto] = useState('');
   const [telefone, setTelefone] = useState('');
@@ -23,7 +22,6 @@ function EditarVisitante() {
   const [mensagem, setMensagem] = useState('');
   const [sucesso, setSucesso] = useState('N');
 
-  // Obtendo a instância do Firestore
   const db = getFirestore(firebaseApp);
 
   function buscarCep() {

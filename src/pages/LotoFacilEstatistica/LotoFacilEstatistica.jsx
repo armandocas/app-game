@@ -3,12 +3,11 @@ import './LotoFacilEstatistica.css';
 import { Link } from 'react-router-dom';
 
 function LotoFacilEstatistica() {
-  const [linhas, setLinhas] = useState([]); // Armazena os números do arquivo .txt
+  const [linhas, setLinhas] = useState([]);
   const [probabilidades, setProbabilidades] = useState({});
   const [erro, setErro] = useState(null);
-  const fileInputRef = useRef(null); // Referência para o campo de upload
+  const fileInputRef = useRef(null);
 
-  // Função para ler o arquivo .txt e atualizar "linhas"
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -24,11 +23,11 @@ function LotoFacilEstatistica() {
               .split(";")
               .map((numero) => {
                 const valor = parseInt(numero, 10);
-                return !isNaN(valor) && valor >= 1 && valor <= 25 ? valor : null; // Validação
+                return !isNaN(valor) && valor >= 1 && valor <= 25 ? valor : null;
               })
-              .filter((numero) => numero !== null) // Remove entradas inválidas
+              .filter((numero) => numero !== null)
           )
-          .filter((linha) => linha.length > 0); // Remove linhas vazias
+          .filter((linha) => linha.length > 0);
 
         if (novasLinhas.length === 0) {
           setErro("O arquivo não contém números válidos.");
@@ -47,7 +46,6 @@ function LotoFacilEstatistica() {
     }
   };
 
-  // Função para calcular probabilidade de cada número
   const calcularProbabilidade = () => {
     if (linhas.length === 0) {
       setErro("Nenhuma linha carregada. Por favor, faça o upload de um arquivo válido.");
@@ -65,19 +63,18 @@ function LotoFacilEstatistica() {
 
     const resultado = {};
     for (const numero in contador) {
-      resultado[numero] = ((contador[numero] / totalNumeros) * 100).toFixed(2); // Em %
+      resultado[numero] = ((contador[numero] / totalNumeros) * 100).toFixed(2);
     }
 
     setProbabilidades(resultado);
   };
 
-  // Função para limpar as probabilidades e o campo de upload
   const limparProbabilidades = () => {
     setProbabilidades({});
     setErro(null);
     setLinhas([]);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // Limpa o campo de upload
+      fileInputRef.current.value = "";
     }
   };
 
@@ -86,24 +83,20 @@ function LotoFacilEstatistica() {
       <h1>📊 Estatísticas - LotoFácil</h1>
       <p>Faça o upload de um arquivo <strong>.txt</strong> para calcular as probabilidades de cada número.</p>
 
-      {/* Input para upload do arquivo */}
       <input
         type="file"
         accept=".txt"
         className="upload-btn"
         onChange={handleFileUpload}
-        ref={fileInputRef} // Conecta o campo ao ref
+        ref={fileInputRef}
       />
 
-      {/* Botão para calcular as probabilidades */}
       <button className="btn btn-primary" onClick={calcularProbabilidade}>
         Calcular Probabilidade
       </button>
 
-      {/* Exibição de erros */}
       {erro && <p className="erro">{erro}</p>}
 
-      {/* Exibindo os resultados */}
       {Object.keys(probabilidades).length > 0 && (
         <div className="resultado">
           <h2>Probabilidade de Aparição:</h2>
@@ -116,7 +109,7 @@ function LotoFacilEstatistica() {
             </thead>
             <tbody>
               {Object.entries(probabilidades)
-                .sort(([, probA], [, probB]) => probB - probA) // Ordena pela probabilidade em ordem decrescente
+                .sort(([, probA], [, probB]) => probB - probA)
                 .map(([numero, prob]) => (
                   <tr key={numero}>
                     <td>{numero}</td>
@@ -128,14 +121,12 @@ function LotoFacilEstatistica() {
         </div>
       )}
 
-      {/* Botão para limpar as probabilidades */}
       <div className="mt-3">
         <button className="btn btn-danger" onClick={limparProbabilidades}>
           Limpar Probabilidades
         </button>
       </div>
 
-      {/* Botão de voltar */}
       <div className="mt-3">
         <Link to="/app/lotofacilhome" className="btn btn-secondary">
           Voltar

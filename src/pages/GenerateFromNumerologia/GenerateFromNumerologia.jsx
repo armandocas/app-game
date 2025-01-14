@@ -8,13 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 import "./GenerateFromNumerologia.css";
 
 const GenerateFromNumerology = () => {
-  const [inputName, setInputName] = useState(""); // Entrada do usuário
+  const [inputName, setInputName] = useState("");
   const [generatedNumbers, setGeneratedNumbers] = useState([]);
   const [history, setHistory] = useState([]);
 
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios ao montar o componente
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -26,7 +25,7 @@ const GenerateFromNumerology = () => {
               ? data.numeros_sorteados.map(Number)
               : null;
           })
-          .filter((sorteio) => sorteio !== null); // Remove entradas inválidas
+          .filter((sorteio) => sorteio !== null);
         setHistory(historicalNumbers);
       } catch (error) {
         console.error("Erro ao carregar o histórico:", error.message);
@@ -36,7 +35,6 @@ const GenerateFromNumerology = () => {
     fetchHistory();
   }, [db]);
 
-  // Gera os números com base na numerologia
   const generateNumbersFromName = () => {
     if (!inputName.trim()) {
       toast.error("Por favor, insira um nome ou dado válido para a numerologia!", {
@@ -46,10 +44,9 @@ const GenerateFromNumerology = () => {
       return;
     }
 
-    const numerologyNumbers = convertNameToNumerology(inputName); // Converte nome/dados em números
-    const uniqueNumbers = Array.from(new Set(numerologyNumbers)); // Remove números duplicados
+    const numerologyNumbers = convertNameToNumerology(inputName);
+    const uniqueNumbers = Array.from(new Set(numerologyNumbers));
 
-    // Preenche os números restantes de forma aleatória para garantir 6 números únicos
     while (uniqueNumbers.length < 6) {
       const randomNum = Math.floor(Math.random() * 60) + 1;
       if (!uniqueNumbers.includes(randomNum)) {
@@ -57,9 +54,8 @@ const GenerateFromNumerology = () => {
       }
     }
 
-    uniqueNumbers.sort((a, b) => a - b); // Ordena os números
+    uniqueNumbers.sort((a, b) => a - b);
 
-    // Verifica se o jogo já foi sorteado
     if (history.some((sorteio) => arraysEqual(sorteio, uniqueNumbers))) {
       toast.warning("Este jogo já foi sorteado no passado. Gerando novamente...", {
         position: "top-center",
@@ -72,7 +68,6 @@ const GenerateFromNumerology = () => {
     setGeneratedNumbers(uniqueNumbers.slice(0, 6));
   };
 
-  // Converte um nome ou dado em números usando a tabela de numerologia
   const convertNameToNumerology = (name) => {
     const numerologyTable = {
       a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9,
@@ -82,18 +77,16 @@ const GenerateFromNumerology = () => {
 
     return name
       .toLowerCase()
-      .replace(/[^a-z]/g, "") // Remove caracteres não alfabéticos
+      .replace(/[^a-z]/g, "")
       .split("")
-      .map((char) => numerologyTable[char]) // Mapeia cada letra para seu valor na numerologia
-      .filter((num) => num >= 1 && num <= 60); // Filtra números válidos
+      .map((char) => numerologyTable[char])
+      .filter((num) => num >= 1 && num <= 60);
   };
 
-  // Função para comparar arrays
   const arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
 
-  // Função para limpar campos
   const clearFields = () => {
         setInputName("");
         setGeneratedNumbers([]);
@@ -104,7 +97,6 @@ const GenerateFromNumerology = () => {
       <ToastContainer />
       <h1>Gerar Números com Base em Numerologia</h1>
 
-      {/* Entrada de Nome/Dados */}
       <div>
         <h3>Insira um Nome ou Dados Especiais</h3>
         <input
@@ -119,13 +111,10 @@ const GenerateFromNumerology = () => {
         </p>
       </div>
 
-      {/* Botão de Gerar */}
       <button className="generate-button" onClick={generateNumbersFromName}>
         Gerar Números
       </button>
 
-
-      {/* Exibição dos Números Gerados */}
       {generatedNumbers.length > 0 && (
         <div className="generated-numbers">
           <h3>Números Gerados</h3>

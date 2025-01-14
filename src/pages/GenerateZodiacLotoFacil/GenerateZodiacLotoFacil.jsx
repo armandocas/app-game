@@ -23,12 +23,11 @@ const zodiacNumbersMap = {
 };
 
 const GenerateZodiacLotoFacil = () => {
-  const [selectedSign, setSelectedSign] = useState(""); // Signo selecionado pelo usuário
+  const [selectedSign, setSelectedSign] = useState("");
   const [generatedNumbers, setGeneratedNumbers] = useState([]);
   const [history, setHistory] = useState([]);
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios ao montar o componente
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -40,7 +39,7 @@ const GenerateZodiacLotoFacil = () => {
               ? data.numeros_sorteados.map(Number)
               : null;
           })
-          .filter((sorteio) => sorteio !== null); // Remove entradas inválidas
+          .filter((sorteio) => sorteio !== null);
         setHistory(historicalNumbers);
       } catch (error) {
         console.error("Erro ao carregar o histórico:", error.message);
@@ -50,7 +49,6 @@ const GenerateZodiacLotoFacil = () => {
     fetchHistory();
   }, [db]);
 
-  // Gera números com base no signo
   const generateNumbersByZodiac = () => {
     if (!selectedSign) {
       toast.error("Por favor, selecione um signo do zodíaco!", {
@@ -65,7 +63,6 @@ const GenerateZodiacLotoFacil = () => {
       (num) => !baseNumbers.includes(num)
     );
 
-    // Preenche com números aleatórios para garantir 15 números únicos
     while (baseNumbers.length < 15) {
       const randomNum = remainingNumbers[Math.floor(Math.random() * remainingNumbers.length)];
       if (!baseNumbers.includes(randomNum)) {
@@ -75,7 +72,6 @@ const GenerateZodiacLotoFacil = () => {
 
     baseNumbers.sort((a, b) => a - b);
 
-    // Verifica se o jogo já foi sorteado
     if (history.some((sorteio) => arraysEqual(sorteio, baseNumbers))) {
       toast.warning("Este jogo já foi sorteado no passado. Gerando novamente...", {
         position: "top-center",
@@ -88,7 +84,6 @@ const GenerateZodiacLotoFacil = () => {
     setGeneratedNumbers(baseNumbers);
   };
 
-  // Função para comparar arrays
   const arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };

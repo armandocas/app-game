@@ -8,21 +8,18 @@ import "react-toastify/dist/ReactToastify.css";
 
 function GeradorTimeMania() {
   const [numerosSelecionados, setNumerosSelecionados] = useState([]);
-  const [timeDoCoracao, setTimeDoCoracao] = useState(""); // Time do Coração
+  const [timeDoCoracao, setTimeDoCoracao] = useState("");
   const db = getFirestore(firebaseApp);
 
   const times = [
     "Corinthians", "Flamengo", "São Paulo", "Palmeiras", "Vasco", 
     "Grêmio", "Cruzeiro", "Atlético-MG", "Internacional", "Santos",
-    // Adicionar mais times conforme necessário...
   ];
 
   function selecionarNumero(numero) {
     if (numerosSelecionados.includes(numero)) {
-      // Remove o número se já estiver selecionado
       setNumerosSelecionados(numerosSelecionados.filter((n) => n !== numero));
     } else {
-      // Adiciona o número se não estiver selecionado (máximo de 10 números)
       if (numerosSelecionados.length < 10) {
         setNumerosSelecionados([...numerosSelecionados, numero]);
       }

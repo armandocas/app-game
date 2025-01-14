@@ -1,10 +1,8 @@
-/* Container principal */
 .dia-de-sorte-container {
     text-align: center;
     padding: 20px;
   }
   
-  /* Título e descrição */
   .dia-de-sorte-container h1 {
     font-size: 2rem;
     margin-bottom: 10px;
@@ -15,7 +13,6 @@
     margin-bottom: 20px;
   }
   
-  /* Números */
   .numeros-container {
     display: flex;
     flex-wrap: wrap;
@@ -47,7 +44,6 @@
     background-color: #388e3c;
   }
   
-  /* Mês da Sorte */
   .mes-da-sorte {
     margin: 20px 0;
     font-size: 1.2rem;
@@ -59,7 +55,6 @@
     margin-top: 10px;
   }
   
-  /* Botões */
   .botoes-container {
     margin-top: 20px;
   }
@@ -105,7 +100,6 @@
     padding: 10px 20px;
   }
   
-  /* Responsividade */
   @media (max-width: 768px) {
     .numero {
       width: 40px;

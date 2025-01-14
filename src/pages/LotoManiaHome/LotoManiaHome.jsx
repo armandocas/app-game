@@ -8,7 +8,6 @@ function LotoManiaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
-         {/* Imagem da Lotomania */}
          <div className="logo-container">
           <img src="/Images/lotomania.png" alt="lotomania" className="lotomania-logo" />
         </div>

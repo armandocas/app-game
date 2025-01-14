@@ -10,17 +10,17 @@ function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [sucesso, setSucesso] = useState('');
-  const { setLogado, setUser } = useContext(AuthContext); // Captura o `setUser` do contexto
+  const { setLogado, setUser } = useContext(AuthContext);
 
   const auth = getAuth(firebaseApp);
 
   function LoginUsuario() {
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
-        const user = userCredential.user; // Captura o usuário autenticado
+        const user = userCredential.user;
         localStorage.setItem("logado", "S");
         setLogado(true);
-        setUser(user); // Armazena o usuário no contexto
+        setUser(user);
         setSucesso('S');
       })
       .catch((error) => {

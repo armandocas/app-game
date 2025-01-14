@@ -5,10 +5,8 @@ const cors = require("cors");
 const app = express();
 const PORT = 4000;
 
-// Middleware para habilitar CORS (se necessário)
 app.use(cors());
 
-// Rota para proxy da Lotofacil
 app.get("/api/lotofacil/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -19,7 +17,6 @@ app.get("/api/lotofacil/:id", async (req, res) => {
   }
 });
 
-// **Nova rota para proxy da Megasena**
 app.get("/api/megasena/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -30,5 +27,4 @@ app.get("/api/megasena/:id", async (req, res) => {
   }
 });
 
-// Inicializa o servidor
 app.listen(PORT, () => console.log(`Proxy rodando em http://localhost:${PORT}`));

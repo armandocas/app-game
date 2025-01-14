@@ -9,7 +9,6 @@ import Modal from "../../components/Modal/Modal";
 import "../../components/Modal/Modal.css";
 import { AuthContext } from "../../../src/app/Context/auth";
 
-// Componente para exibir números em bolinhas
 const BolaNumero = ({ numero }) => {
   return <div className="bola-numero">{numero}</div>;
 };
@@ -140,8 +139,8 @@ function MegaSenaUpload() {
         await addDoc(collection(db, "megasena-jogo-salvo"), {
           numeros: jogo,
           data: new Date().toLocaleString(),
-          userId: user.uid, // Garante que o userId é definido
-          email: user.email, // Salva o email associado ao usuário logado
+          userId: user.uid,
+          email: user.email,
         });
       }
       toast.success("Jogos salvos com sucesso!", {
@@ -194,7 +193,7 @@ function MegaSenaUpload() {
         <div className="frequencias mt-4">
           <h2>Frequências dos Padrões</h2>
           {Object.entries(frequencias)
-            .sort(([, a], [, b]) => b - a) // Ordena do maior para o menor com base na frequência
+            .sort(([, a], [, b]) => b - a)
             .map(([chave, frequencia], index) => (
          <div key={index} className="frequencia-item">
           <span>

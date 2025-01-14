@@ -9,15 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 function GeradorLotoMania() {
   const [numerosSelecionados, setNumerosSelecionados] = useState([]);
 
-  // Obtendo a instância do Firestore
   const db = getFirestore(firebaseApp);
 
   function selecionarNumero(numero) {
     if (numerosSelecionados.includes(numero)) {
-      // Remove o número se já estiver selecionado
       setNumerosSelecionados(numerosSelecionados.filter((n) => n !== numero));
     } else {
-      // Adiciona o número se não estiver selecionado (máximo de 50 números)
       if (numerosSelecionados.length < 50) {
         setNumerosSelecionados([...numerosSelecionados, numero]);
       }
@@ -111,7 +108,6 @@ function GeradorLotoMania() {
         </Link>
       </div>
 
-      {/* Componente ToastContainer para exibir as notificações */}
       <ToastContainer />
     </div>
   );

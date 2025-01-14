@@ -8,13 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 import "./GenerateSurpriseLotoFacil.css";
 
 const GenerateSurpriseLotoFacil = () => {
-  const [displayedNumbers, setDisplayedNumbers] = useState([]); // Números exibidos gradativamente
-  const [isGenerating, setIsGenerating] = useState(false); // Controle do estado de geração
+  const [displayedNumbers, setDisplayedNumbers] = useState([]);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [history, setHistory] = useState([]);
 
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios ao montar o componente
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -26,7 +25,7 @@ const GenerateSurpriseLotoFacil = () => {
               ? data.numeros_sorteados.map(Number)
               : null;
           })
-          .filter((sorteio) => sorteio !== null); // Remove entradas inválidas
+          .filter((sorteio) => sorteio !== null);
         setHistory(historicalNumbers);
       } catch (error) {
         console.error("Erro ao carregar o histórico:", error.message);
@@ -36,13 +35,12 @@ const GenerateSurpriseLotoFacil = () => {
     fetchHistory();
   }, [db]);
 
-  // Gera números completamente aleatórios
   const generateSurpriseNumbers = () => {
     setDisplayedNumbers([]);
     setIsGenerating(true);
 
     const numbers = [];
-    while (numbers.length < 15) { // Loto Fácil precisa de 15 números
+    while (numbers.length < 15) {
       const randomNumber = Math.floor(Math.random() * 25) + 1;
       if (!numbers.includes(randomNumber)) {
         numbers.push(randomNumber);
@@ -50,32 +48,30 @@ const GenerateSurpriseLotoFacil = () => {
     }
     numbers.sort((a, b) => a - b);
 
-    // Verifica se o jogo já foi sorteado
+
     if (history.some((sorteio) => arraysEqual(sorteio, numbers))) {
       toast.warning("Este jogo já foi sorteado no passado. Gerando novamente...", {
         position: "top-center",
         autoClose: 3000,
       });
-      generateSurpriseNumbers(); // Regenera números
+      generateSurpriseNumbers();
       return;
     }
 
-    // Exibe os números gradativamente
     let index = 0;
     const interval = setInterval(() => {
       setDisplayedNumbers((prev) => [...prev, numbers[index]]);
       index++;
       if (index === numbers.length) {
-        clearInterval(interval); // Encerra o intervalo após o último número ser exibido
+        clearInterval(interval);
         setTimeout(() => {
-          setDisplayedNumbers(numbers); // Garante que o último número seja exibido
+          setDisplayedNumbers(numbers);
           setIsGenerating(false);
-        }, 100); // Timeout para garantir atualização
+        }, 100);
       }
-    }, 600); // Exibe um número a cada 600ms
+    }, 600);
   };
 
-  // Função para comparar arrays
   const arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
@@ -87,7 +83,6 @@ const GenerateSurpriseLotoFacil = () => {
       <p>Pressione o botão abaixo para gerar números aleatórios de forma interativa.</p>
       <p>Antes de gerar os números, o sistema verifica um histórico de sorteios já realizados para garantir que os números gerados sejam únicos e nunca se repitam.</p>
 
-      {/* Botão de Gerar */}
       <button
         className="generate-button"
         onClick={generateSurpriseNumbers}
@@ -96,7 +91,6 @@ const GenerateSurpriseLotoFacil = () => {
         {isGenerating ? "Gerando..." : "Gerar Números"}
       </button>
 
-      {/* Exibição dos Números Gerados */}
       <div className="generated-numbers">
         <h3>Números Gerados</h3>
         <div className="numbers-container">

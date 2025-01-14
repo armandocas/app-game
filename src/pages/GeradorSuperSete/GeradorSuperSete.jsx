@@ -8,13 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 function GeradorSuperSete() {
   const [numerosSelecionados, setNumerosSelecionados] = useState(
-    Array(7).fill(null) // Cada índice representa uma coluna (1 a 7)
+    Array(7).fill(null)
   );
   const db = getFirestore(firebaseApp);
 
   function selecionarNumero(coluna, numero) {
     const novosNumeros = [...numerosSelecionados];
-    novosNumeros[coluna] = numero; // Substitui o número da coluna
+    novosNumeros[coluna] = numero;
     setNumerosSelecionados(novosNumeros);
   }
 
@@ -38,7 +38,7 @@ function GeradorSuperSete() {
         position: "top-center",
       });
 
-      setNumerosSelecionados(Array(7).fill(null)); // Reseta as colunas
+      setNumerosSelecionados(Array(7).fill(null));
     } catch (error) {
       toast.error("Erro ao salvar o jogo: " + error.message, {
         position: "top-center",

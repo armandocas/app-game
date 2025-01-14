@@ -11,14 +11,12 @@ p{
 }
 
 
-/* NAVBAR */
 
 .navbar{
     background-color: #0d6efd;
 }
 
 
-/* BANNER */
 
 #banner{
     background-color: #0d6efd;
@@ -34,7 +32,6 @@ p{
     margin: 8% 3% 5% 0;
 }
 
-/* FEATURES */
 
 #features{
     padding: 7% 5%;
@@ -51,7 +48,6 @@ p{
 }
 
 
-/* TESTEMUNHOS */
 
 #testemunho{
     background-color: #f3f3f3;
@@ -67,7 +63,6 @@ p{
 }
 
 
-/* PRECOS */
 
 #preco .titulo{
     margin-top: 5%;
@@ -79,7 +74,6 @@ p{
 }
 
 
-/* FOOTER */
 
 #footer{
     padding: 3% 15%;

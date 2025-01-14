@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import './novaconta.css';
 
-// Importando métodos específicos do Firebase v9
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from '../../Config/firebase';
 
@@ -14,7 +13,6 @@ function NovaConta() {
   const [mensagem, setMensagem] = useState('');
   const [sucesso, setSucesso] = useState('');
 
-  // Obtendo a instância de autenticação do Firebase
   const auth = getAuth(firebaseApp);
 
   function cadastrarUsuario() {

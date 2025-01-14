@@ -29,13 +29,11 @@
     transform: scale(1.05);
   }
 
-      /* Container para a imagem do logo */
       .logo-container {
         margin-top: -80px;
         margin-bottom: -65px;
          }
          
-         /* Estilo da imagem do logo */
    .diadesorte-logo {
          width: 200px;
          height: auto;

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-// import Navbar from '../Components/Navbar/navbar';
 import './novovisitante.css';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import firebaseApp from '../../Config/firebase';
@@ -52,7 +51,6 @@ function NovoVisitante() {
         uf: uf
       };
 
-      // Log dos dados que você está tentando enviar
       console.log("Dados do visitante:", visitorData);
 
       try {
@@ -68,7 +66,6 @@ function NovoVisitante() {
 
   return (
     <div>
-      {/* <Navbar /> */}
       <div className="container-fluid titulo">
         <div className="offset-lg-3 col-lg-6">
           <h1>Cadastrar Novo Visitante</h1>

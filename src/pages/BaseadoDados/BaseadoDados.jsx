@@ -8,13 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 import "./BaseadoDados.css";
 
 const GenerateFromData = () => {
-  const [inputData, setInputData] = useState(""); // Entrada do usuário
+  const [inputData, setInputData] = useState("");
   const [generatedNumbers, setGeneratedNumbers] = useState([]);
   const [history, setHistory] = useState([]);
 
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios ao montar o componente
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -26,7 +25,7 @@ const GenerateFromData = () => {
               ? data.numeros_sorteados.map(Number)
               : null;
           })
-          .filter((sorteio) => sorteio !== null); // Remove entradas inválidas
+          .filter((sorteio) => sorteio !== null);
         setHistory(historicalNumbers);
       } catch (error) {
         console.error("Erro ao carregar o histórico:", error.message);
@@ -36,7 +35,6 @@ const GenerateFromData = () => {
     fetchHistory();
   }, [db]);
 
-  // Gera os números com base nos dados fornecidos
   const generateNumbersFromData = () => {
     if (!inputData.trim()) {
       toast.error("Por favor, insira uma data ou um conjunto de dados válido!", {
@@ -46,12 +44,11 @@ const GenerateFromData = () => {
       return;
     }
 
-    const dataNumbers = extractNumbersFromData(inputData); // Extrai números da entrada
+    const dataNumbers = extractNumbersFromData(inputData);
     const remainingNumbers = Array.from({ length: 60 }, (_, i) => i + 1).filter(
       (num) => !dataNumbers.includes(num)
     );
 
-    // Preenche os números restantes de forma aleatória
     while (dataNumbers.length < 6) {
       const randomIndex = Math.floor(Math.random() * remainingNumbers.length);
       const randomNumber = remainingNumbers[randomIndex];
@@ -60,9 +57,8 @@ const GenerateFromData = () => {
       }
     }
 
-    dataNumbers.sort((a, b) => a - b); // Ordena os números
+    dataNumbers.sort((a, b) => a - b);
 
-    // Verifica se o jogo já foi sorteado
     if (history.some((sorteio) => arraysEqual(sorteio, dataNumbers))) {
       toast.warning("Este jogo já foi sorteado no passado. Gerando novamente...", {
         position: "top-center",
@@ -75,17 +71,15 @@ const GenerateFromData = () => {
     setGeneratedNumbers(dataNumbers);
   };
 
-  // Extrai números da entrada de dados (exemplo: data "25/12/2023")
   const extractNumbersFromData = (data) => {
     const numbers = data
-      .replace(/[^\d]/g, " ") // Remove caracteres não numéricos
-      .split(" ") // Divide os números
+      .replace(/[^\d]/g, " ")
+      .split(" ")
       .map((num) => parseInt(num, 10))
-      .filter((num) => num >= 1 && num <= 60); // Filtra números válidos
-    return [...new Set(numbers)]; // Remove duplicatas
+      .filter((num) => num >= 1 && num <= 60);
+    return [...new Set(numbers)];
   };
 
-  // Função para comparar arrays
   const arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
@@ -95,7 +89,6 @@ const GenerateFromData = () => {
       <ToastContainer />
       <h1>Gerar Números com Base em Dados</h1>
 
-      {/* Entrada de Dados */}
       <div>
         <h3>Insira uma Data ou Dados Especiais</h3>
         <input
@@ -109,12 +102,10 @@ const GenerateFromData = () => {
         </p>
       </div>
 
-      {/* Botão de Gerar */}
       <button className="generate-button" onClick={generateNumbersFromData}>
         Gerar Números
       </button>
 
-      {/* Exibição dos Números Gerados */}
       {generatedNumbers.length > 0 && (
         <div className="generated-numbers">
           <h3>Números Gerados</h3>

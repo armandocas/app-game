@@ -9,15 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 function GeradorJogoLotoFacil() {
   const [numerosSelecionados, setNumerosSelecionados] = useState([]);
 
-  // Obtendo a instância do Firestore
   const db = getFirestore(firebaseApp);
 
   function selecionarNumero(numero) {
     if (numerosSelecionados.includes(numero)) {
-      // Remove o número se já estiver selecionado
       setNumerosSelecionados(numerosSelecionados.filter((n) => n !== numero));
     } else {
-      // Adiciona o número se não estiver selecionado (mínimo de 15 números)
       if (numerosSelecionados.length < 15) {
         setNumerosSelecionados([...numerosSelecionados, numero]);
       }
@@ -109,7 +106,6 @@ function GeradorJogoLotoFacil() {
         </Link>
       </div>
 
-      {/* Componente ToastContainer para exibir as notificações */}
       <ToastContainer />
     </div>
   );

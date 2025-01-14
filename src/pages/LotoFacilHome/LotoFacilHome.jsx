@@ -8,7 +8,6 @@ function LotoFacilHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
-        {/* Imagem da LotoFacil */}
         <div className="logo-container">
           <img src="/Images/loto_facil.png" alt="Loto_Facil" className="loto-facil-logo" />
         </div>

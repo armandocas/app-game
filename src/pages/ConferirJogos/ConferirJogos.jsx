@@ -16,7 +16,6 @@ const ConferirJogos = () => {
 
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -34,12 +33,10 @@ const ConferirJogos = () => {
     fetchHistory();
   }, [db]);
 
-  // Atualiza os números sorteados com base no jogo selecionado
   useEffect(() => {
     if (selectedGame) {
       const game = history.find((item) => item.id === selectedGame);
       if (game) {
-        // Garante que sortedNumbers sejam inteiros
         setSortedNumbers((game.numeros_sorteados || []).map((n) => parseInt(n, 10)));
         setSelectedNumbers([]);
         setMatchCount(0);
@@ -47,27 +44,21 @@ const ConferirJogos = () => {
     }
   }, [selectedGame, history]);
 
-  // Lida com a seleção de números
   const toggleNumberSelection = (number) => {
-    const num = parseInt(number, 10); // Converte para inteiro
+    const num = parseInt(number, 10); 
     if (selectedNumbers.includes(num)) {
-      // Remove o número selecionado
       const newSelection = selectedNumbers.filter((n) => n !== num);
       setSelectedNumbers(newSelection);
   
-      // Atualiza o contador de acertos
       const matches = newSelection.filter((n) => sortedNumbers.includes(n));
       setMatchCount(matches.length);
     } else if (selectedNumbers.length < 6) {
-      // Adiciona o número, se ainda houver espaço
       const newSelection = [...selectedNumbers, num];
       setSelectedNumbers(newSelection);
   
-      // Atualiza o contador de acertos
       const matches = newSelection.filter((n) => sortedNumbers.includes(n));
       setMatchCount(matches.length);
     } else {
-      // Exibe um aviso se o limite for atingido
       toast.error("Você só pode selecionar 6 números!", {
         position: "top-center",
         autoClose: 2000,
@@ -81,7 +72,6 @@ const ConferirJogos = () => {
       <ToastContainer />
       <h1>Conferir Jogos da Mega Sena</h1>
 
-      {/* Seleção do Jogo */}
       <div className="game-selection">
         <label htmlFor="game-select">Selecione o sorteio:</label>
         <select
@@ -98,7 +88,6 @@ const ConferirJogos = () => {
         </select>
       </div>
 
-      {/* Exibição dos Números Sorteados */}
       {sortedNumbers.length > 0 && (
         <div className="sorted-numbers">
           <h3>Números Sorteados:</h3>
@@ -112,7 +101,6 @@ const ConferirJogos = () => {
         </div>
       )}
 
-      {/* Grade de Seleção de Números */}
       <div className="user-selection">
         <h3>Selecione seus números:</h3>
         <div className="numbers-grid">
@@ -130,7 +118,6 @@ const ConferirJogos = () => {
         </div>
       </div>
 
-      {/* Contador de Acertos */}
       <div className="result-container">
         <h3>Resultado:</h3>
         <p>Números Acertados: {matchCount}</p>

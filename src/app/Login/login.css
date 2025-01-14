@@ -17,7 +17,6 @@
     width: 100%;
 }
 
-/* Especificamente para dispositivos como iPhone (landscape e portrait) */
 @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
@@ -28,7 +27,6 @@
         padding: 10px;
     }
 
-    /* Aumenta o tamanho da fonte para melhor legibilidade em dispositivos móveis */
     .form-signin label,
     .login-links a {
         font-size: 12pt;
@@ -43,7 +41,7 @@
 }
 
 .logo-small {
-    width: 200px; /* Ajuste para o tamanho desejado */
+    width: 200px; 
     max-width: 100%;
-    height: auto; /* Mantém a proporção da imagem */
+    height: auto; 
 }

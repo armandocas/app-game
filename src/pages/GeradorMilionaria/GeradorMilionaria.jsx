@@ -11,7 +11,6 @@ function GeradorMilionaria() {
   const [trevosSelecionados, setTrevosSelecionados] = useState([]);
   const db = getFirestore(firebaseApp);
 
-  // Seleção de números principais
   function selecionarNumero(numero) {
     if (numerosSelecionados.includes(numero)) {
       setNumerosSelecionados(numerosSelecionados.filter((n) => n !== numero));
@@ -22,7 +21,6 @@ function GeradorMilionaria() {
     }
   }
 
-  // Seleção dos trevos da sorte
   function selecionarTrevo(numero) {
     if (trevosSelecionados.includes(numero)) {
       setTrevosSelecionados(trevosSelecionados.filter((n) => n !== numero));
@@ -98,7 +96,6 @@ function GeradorMilionaria() {
       <h1>+Milionária - Inserir Jogo</h1>
       <p>Escolha 6 números de 1 a 50 e 2 "trevos da sorte" de 1 a 6.</p>
 
-      {/* Números principais */}
       <div className="numeros-container">
         <h2>Números (1 a 50)</h2>
         {[...Array(50)].map((_, index) => {
@@ -117,7 +114,6 @@ function GeradorMilionaria() {
         })}
       </div>
 
-      {/* Trevos da sorte */}
       <div className="trevos-container">
         <h2>Trevos da Sorte (1 a 6)</h2>
         {[...Array(6)].map((_, index) => {

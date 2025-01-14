@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './resetsenha.css';
 
-// Importando métodos específicos do Firebase v9
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import firebaseApp from '../../Config/firebase';
 
@@ -13,7 +12,6 @@ function ResetSenha() {
   const [mensagem, setMensagem] = useState({ text: '', type: '' });
   const spam = 'Obs: Caso não encontre o e-mail, verifique seu Spam.';
 
-  // Obtendo a instância de autenticação do Firebase
   const auth = getAuth(firebaseApp);
 
   async function recuperarSenha() {

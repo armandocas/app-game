@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './app/Context/auth.jsx';
 
-/* Páginas */
 import Login from './app/Login/login';
 import NovaConta from './app/NovaConta/novaconta';
 import ResetSenha from './app/ResetSenha/resetsenha';

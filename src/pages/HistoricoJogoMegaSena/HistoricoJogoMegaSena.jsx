@@ -14,16 +14,14 @@ import {
 import firebaseApp from "../../Config/firebase";
 import "./HistoricoJogoMegaSena.css";
 
-// Instância do Firestore
 const db = getFirestore(firebaseApp);
 
 function HistoricoJogoMegaSena() {
   const [dados, setDados] = useState([]);
   const [carregando, setCarregando] = useState(false);
-  const [lastVisible, setLastVisible] = useState(null); // Último documento visível
-  const [finalDaLista, setFinalDaLista] = useState(false); // Indica se chegamos ao final da coleção
+  const [lastVisible, setLastVisible] = useState(null);
+  const [finalDaLista, setFinalDaLista] = useState(false);
 
-  // Função para carregar a primeira página de dados
   async function carregarDados() {
     setCarregando(true);
     try {
@@ -37,7 +35,6 @@ function HistoricoJogoMegaSena() {
       const novosDados = querySnapshot.docs.map((doc) => doc.data());
       setDados(novosDados);
 
-      // Armazena o último documento visível para paginação
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
       setFinalDaLista(querySnapshot.empty);
     } catch (error) {
@@ -47,7 +44,6 @@ function HistoricoJogoMegaSena() {
     }
   }
 
-  // Função para carregar mais dados
   async function carregarMaisDados() {
     if (finalDaLista || !lastVisible) return;
 
@@ -73,26 +69,25 @@ function HistoricoJogoMegaSena() {
     }
   }
 
-  // Função para carregar todos os dados da base
   async function carregarTodosDados() {
   const todosDados = [];
-  let lastVisible = null; // Variável para paginação manual
+  let lastVisible = null;
   try {
     while (true) {
       const q = query(
         collection(db, "historico_megasena"),
         orderBy("sorteio", "desc"),
-        ...(lastVisible ? [startAfter(lastVisible)] : []), // Continua de onde parou
-        limit(500) // Limite de 500 por requisição (limite do Firestore)
+        ...(lastVisible ? [startAfter(lastVisible)] : []),
+        limit(500)
       );
 
       const querySnapshot = await getDocs(q);
-      if (querySnapshot.empty) break; // Sai do loop se não houver mais documentos
+      if (querySnapshot.empty) break;
 
       const novosDados = querySnapshot.docs.map((doc) => doc.data());
       todosDados.push(...novosDados);
 
-      lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1]; // Atualiza último documento visível
+      lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
     }
     return todosDados;
   } catch (error) {
@@ -101,11 +96,8 @@ function HistoricoJogoMegaSena() {
   }
 }
 
-
-// Função para baixar todos os dados em um arquivo .txt
   async function baixarTodosJogos() {
 
-     // Exibe o Toast de carregamento
   toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000,
     position: "top-center"
    });
@@ -116,21 +108,19 @@ function HistoricoJogoMegaSena() {
     return `${jogo.numeros_sorteados.join("; ")}\n`;
   });
 
-  const conteudo = linhas.join("\n"); // Junta tudo
+  const conteudo = linhas.join("\n");
   const blob = new Blob([conteudo], { type: "text/plain" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   link.download = "historico_megasena.txt";
   link.click();
 
-   // Exibe o Toast de sucesso
    toast.success("Arquivo gerado com sucesso!", { autoClose: 3000,
     position: "top-center"
     });
   
 }
 
-  // Função para exibir cidades ou mensagem de acumulação
   function renderCidadesOuAcumulacao(jogo) {
     if (jogo.cidades.length > 0) {
       return jogo.cidades.map((cidade, idx) => (

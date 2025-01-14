@@ -15,9 +15,9 @@ async function obterUltimoId() {
     const querySnapshot = await getDocs(q);
     if (!querySnapshot.empty) {
       const ultimoDocumento = querySnapshot.docs[0].data();
-      return ultimoDocumento.sorteio; // Retorna o maior número de sorteio
+      return ultimoDocumento.sorteio; 
     } else {
-      return 0; // Caso não tenha nenhum registro
+      return 0;
     }
   } catch (error) {
     console.error("Erro ao obter o último ID:", error.message);
@@ -26,16 +26,14 @@ async function obterUltimoId() {
 }
 
 async function coletarDadosLotoFacil() {
-  const baseUrl = "http://localhost:4000/api/lotofacil"; // Atualizado para usar o proxy
+  const baseUrl = "http://localhost:4000/api/lotofacil";
   const dadosColetados = [];
 
   try {
-    // Obtém o último ID
     const ultimoId = await obterUltimoId();
     console.log("Último ID encontrado:", ultimoId);
 
-    // Inicia o loop a partir do próximo ID
-    for (let id = ultimoId + 1; id <= ultimoId + 10; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
       console.log("Coletando dados do sorteio", id);
 
       try {

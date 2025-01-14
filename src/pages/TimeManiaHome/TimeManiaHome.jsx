@@ -8,7 +8,6 @@ function TimeManiaHome() {
     <div>
       <Navbar />
       <div className="container-fluid titulo text-center">
-          {/* Imagem da Timemania */}
           <div className="logo-container">
           <img src="/Images/timemania.png" alt="timemania" className="timemania-logo" />
         </div>
@@ -42,31 +41,6 @@ function TimeManiaHome() {
               Gerar favoritos
             </Link>
           </div>
-          {/* <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/quina/gerar-via-arquivo-balanceados" className="btn btn-primary-timemania w-100">
-              Gerar balanceados
-            </Link>
-          </div>
-          <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/quina/gerar-via-arquivo-dados" className="btn btn-primary-timemania w-100">
-              Gerar baseado em dados
-            </Link>
-          </div>
-          <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/quina/gerar-via-arquivo-numerologia" className="btn btn-primary-timemania w-100">
-              Gerar baseado em Numerologia
-            </Link>
-          </div>
-          <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/quina/modo-surpresa" className="btn btn-primary-timemania w-100">
-              Modo Surpresa
-            </Link>
-          </div>
-          <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/quina/zodiaco" className="btn btn-primary-timemania w-100">
-              Zodíaco
-            </Link>
-          </div> */}
           <div className="mt-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home

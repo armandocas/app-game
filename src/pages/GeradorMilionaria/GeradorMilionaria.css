@@ -1,10 +1,8 @@
-/* Container principal */
 .mais-milionaria-container {
     text-align: center;
     padding: 20px;
   }
   
-  /* Números principais */
   .numeros-container,
   .trevos-container {
     margin: 20px 0;
@@ -42,7 +40,6 @@
     background-color: #388e3c;
   }
   
-  /* Botões */
   .botoes-container {
     margin-top: 20px;
   }
@@ -84,7 +81,6 @@
     background-color: #218838;
   }
   
-  /* Responsividade */
   @media (max-width: 768px) {
     .numero,
     .trevo {

@@ -12,13 +12,12 @@ const GenerateFavorito = () => {
 
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios ao montar o componente
   useEffect(() => {
     const fetchHistory = async () => {
       const querySnapshot = await getDocs(collection(db, "historico_megasena"));
       const historicalNumbers = querySnapshot.docs.map((doc) => {
         const data = doc.data();
-        return data.numeros_sorteados.map(Number); // Converte os números para inteiros
+        return data.numeros_sorteados.map(Number);
       });
       setHistory(historicalNumbers);
     };
@@ -26,22 +25,19 @@ const GenerateFavorito = () => {
     fetchHistory();
   }, [db]);
 
-  // Gera os números com base nos favoritos e exclusões
   const generateNumbers = () => {
     const availableNumbers = Array.from({ length: 60 }, (_, i) => i + 1)
-      .filter((num) => !favorites.includes(num)) // Remove os favoritos para reincluir manualmente
-      .filter((num) => !exclusions.includes(num)); // Remove números excluídos
+      .filter((num) => !favorites.includes(num))
+      .filter((num) => !exclusions.includes(num));
 
     const newNumbers = [];
 
-    // Inclui os favoritos no sorteio
     favorites.forEach((num) => {
       if (!newNumbers.includes(num)) {
         newNumbers.push(num);
       }
     });
 
-    // Completa com números aleatórios sem repetir
     while (newNumbers.length < 6) {
       const randomIndex = Math.floor(Math.random() * availableNumbers.length);
       const randomNumber = availableNumbers[randomIndex];
@@ -51,9 +47,8 @@ const GenerateFavorito = () => {
       }
     }
 
-    newNumbers.sort((a, b) => a - b); // Ordena os números gerados
+    newNumbers.sort((a, b) => a - b);
 
-    // Verifica se o jogo já foi sorteado
     if (history.some((sorteio) => arraysEqual(sorteio, newNumbers))) {
       alert("Este jogo já foi sorteado no passado. Gerando novamente...");
       generateNumbers();
@@ -62,8 +57,6 @@ const GenerateFavorito = () => {
 
     setGeneratedNumbers(newNumbers);
   };
-
-  // Função para comparar arrays
   const arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   };
@@ -72,7 +65,6 @@ const GenerateFavorito = () => {
     <div className="generate-numbers-container">
       <h1>Gerar Números com Preferências</h1>
 
-      {/* Números Favoritos */}
       <div>
         <h3>Números Favoritos</h3>
         <input
@@ -92,7 +84,6 @@ const GenerateFavorito = () => {
         </p>
       </div>
 
-      {/* Números a Excluir */}
       <div>
         <h3>Números a Excluir</h3>
         <input
@@ -112,12 +103,10 @@ const GenerateFavorito = () => {
         </p>
       </div>
 
-      {/* Botão de Gerar */}
       <button className="generate-button" onClick={generateNumbers}>
         Gerar Números
       </button>
 
-      {/* Exibição dos Números Gerados */}
       {generatedNumbers.length > 0 && (
         <div className="generated-numbers">
           <h3>Números Gerados</h3>

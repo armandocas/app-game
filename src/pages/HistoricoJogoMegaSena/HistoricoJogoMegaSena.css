@@ -6,8 +6,8 @@
   
   .filtros {
     display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 20px;
@@ -38,7 +38,7 @@
   
   .tabela-container {
     margin-top: 20px;
-    overflow-x: auto; /* Adds horizontal scrolling for large tables */
+    overflow-x: auto;
   }
   
   .table {
@@ -67,28 +67,28 @@
   }
   
   .table tr {
-    line-height: 1.5; /* Ajusta o espaçamento vertical */
+    line-height: 1.5;
   }
   
   
   .table .numeros {
-    white-space: pre-wrap; /* Wrap long text */
+    white-space: pre-wrap;
   }
   
   .table .cidades {
-    white-space: pre-wrap; /* Wrap long text */
+    white-space: pre-wrap;
   }
   
   .numeros-sorteados-container {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente os números */
-    gap: 8px; /* Espaçamento entre os números */
+    justify-content: center;
+    gap: 8px;
   }
   
   .numero-sorteado {
     display: flex;
-    justify-content: center; /* Centraliza o número dentro do círculo */
-    align-items: center; /* Alinha verticalmente o número dentro do círculo */
+    justify-content: center;
+    align-items: center;
     width: 30px;
     height: 30px;
     background-color: #06b122;

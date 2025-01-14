@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function GeradorDiaDeSorte() {
   const [numerosSelecionados, setNumerosSelecionados] = useState([]);
-  const [mesDaSorte, setMesDaSorte] = useState(""); // Mês da Sorte
+  const [mesDaSorte, setMesDaSorte] = useState(""); 
   const db = getFirestore(firebaseApp);
 
   const meses = [
@@ -18,10 +18,8 @@ function GeradorDiaDeSorte() {
 
   function selecionarNumero(numero) {
     if (numerosSelecionados.includes(numero)) {
-      // Remove o número se já estiver selecionado
       setNumerosSelecionados(numerosSelecionados.filter((n) => n !== numero));
     } else {
-      // Adiciona o número se não estiver selecionado (máximo de 7 números)
       if (numerosSelecionados.length < 7) {
         setNumerosSelecionados([...numerosSelecionados, numero]);
       }

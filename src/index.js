@@ -2,18 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app.jsx';
 import { AuthProvider } from './app/Context/auth';
-import agendarAtualizacaoHistorico from './scheduler'; // Importe o agendador
+import agendarAtualizacaoHistorico from './scheduler';
 
-// Inicializar o agendador
+
 agendarAtualizacaoHistorico();
 
-// Obtendo a referência ao elemento root
 const rootElement = document.getElementById('root');
 
-// Criando a raiz usando a nova API do React 18
 const root = ReactDOM.createRoot(rootElement);
 
-// Renderizando o componente App dentro do AuthProvider
 root.render(
     <React.StrictMode>
         <AuthProvider>

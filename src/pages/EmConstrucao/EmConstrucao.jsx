@@ -9,7 +9,7 @@ function EmConstrucao() {
       <p>Estamos trabalhando para trazer essa funcionalidade o mais rápido possível!</p>
       <div className="imagem-construcao">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/1024/1024716.png" // Ícone exemplo
+          src="https://cdn-icons-png.flaticon.com/512/1024/1024716.png"
           alt="Em Construção"
           className="imagem"
         />

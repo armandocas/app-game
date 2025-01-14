@@ -28,18 +28,6 @@ function Navbar() {
           <li className="nav-item">
             <Link to="/app/home" className="nav-link" aria-current="page" >Home</Link>
           </li>
-          {/* <li className="nav-item">
-            <Link to="/app/saboreslista" className="nav-link" aria-current="page" >Lista de Sabores</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/app/delivery" className="nav-link" aria-current="page" >Delivery</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/app/borda" className="nav-link" aria-current="page" >Borda</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/app/bebidas" className="nav-link" aria-current="page" >Bebidas</Link>
-          </li> */}
           <li className="nav-item">
             <a href="/" onClick={Logout} className="nav-link logout" aria-current="page" >Sair</a>
           </li>

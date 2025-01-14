@@ -12,10 +12,8 @@ function GeradorDuplaSena() {
 
   function selecionarNumero(numero) {
     if (numerosSelecionados.includes(numero)) {
-      // Remove o número se já estiver selecionado
       setNumerosSelecionados(numerosSelecionados.filter((n) => n !== numero));
     } else {
-      // Adiciona o número se não estiver selecionado (máximo de 6 números)
       if (numerosSelecionados.length < 6) {
         setNumerosSelecionados([...numerosSelecionados, numero]);
       }
@@ -109,7 +107,6 @@ function GeradorDuplaSena() {
         </Link>
       </div>
 
-      {/* Componente ToastContainer para exibir as notificações */}
       <ToastContainer />
     </div>
   );

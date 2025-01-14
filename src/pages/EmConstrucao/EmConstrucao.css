@@ -27,7 +27,7 @@
   .imagem {
     width: 150px;
     height: auto;
-    animation: bounce 2s infinite; /* Adiciona uma leve animação */
+    animation: bounce 2s infinite;
   }
   
   .botoes-container {
@@ -45,8 +45,6 @@
     transition: background-color 0.3s;
   }
 
-  
-  /* Animação para o ícone */
   @keyframes bounce {
     0%, 100% {
       transform: translateY(0);

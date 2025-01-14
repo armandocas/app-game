@@ -42,7 +42,7 @@ input[type="file"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* Espaço entre o texto e o ícone */
+  gap: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -94,11 +94,11 @@ input[type="file"] {
 .btn-success {
   background-color: #28a745;
   border: none;
-  width: 90%; /* Reduz a largura em relação ao total */
-  max-width: 250px; /* Limita a largura máxima */
-  font-size: 0.9rem; /* Diminui um pouco o tamanho da fonte */
-  padding: 8px 12px; /* Ajusta o espaçamento interno */
-  margin-top: 10px; /* Adiciona um pequeno espaçamento superior */
+  width: 90%;
+  max-width: 250px;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  margin-top: 10px;
 }
 
 .btn-success:hover {
@@ -156,17 +156,17 @@ input[type="file"] {
   border: 1px solid #ced4da;
   padding: 5px;
   border-radius: 5px;
-  width: 100%; /* Input ocupa largura total em mobile */
+  width: 100%;
 }
 
 @media (max-width: 768px) {
   .loto-facil-container {
       padding: 15px;
-      max-width: 100%; /* Ocupa toda a largura em dispositivos menores */
+      max-width: 100%;
   }
 
   h1 {
-      font-size: 1.5rem; /* Tamanho menor do título */
+      font-size: 1.5rem;
   }
 
   p {
@@ -174,19 +174,19 @@ input[type="file"] {
   }
 
   .btn {
-      font-size: 0.9rem; /* Botões com fontes menores */
-      padding: 8px 15px; /* Ajusta o espaçamento */
+      font-size: 0.9rem;
+      padding: 8px 15px;
   }
 
   .botoes-container {
-      flex-direction: column; /* Botões ficam em coluna */
-      gap: 10px; /* Espaçamento entre os botões */
+      flex-direction: column;
+      gap: 10px;
   }
 
   .contagens p,
   .frequencias p {
-      margin-left: 10px; /* Reduz a margem */
-      font-size: 0.9rem; /* Texto menor */
+      margin-left: 10px;
+      font-size: 0.9rem;
   }
 }
 

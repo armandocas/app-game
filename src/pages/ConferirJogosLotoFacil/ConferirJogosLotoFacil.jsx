@@ -16,7 +16,6 @@ const ConferirJogosLotoFacil = () => {
 
   const db = getFirestore(firebaseApp);
 
-  // Carrega o histórico de sorteios
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -34,7 +33,6 @@ const ConferirJogosLotoFacil = () => {
     fetchHistory();
   }, [db]);
 
-  // Atualiza os números sorteados com base no jogo selecionado
   useEffect(() => {
     if (selectedGame) {
       const game = history.find((item) => item.id === selectedGame);
@@ -46,7 +44,6 @@ const ConferirJogosLotoFacil = () => {
     }
   }, [selectedGame, history]);
 
-  // Lida com a seleção de números
   const toggleNumberSelection = (number) => {
     const num = parseInt(number, 10);
     if (selectedNumbers.includes(num)) {
@@ -72,7 +69,6 @@ const ConferirJogosLotoFacil = () => {
       <ToastContainer />
       <h1>Conferir Jogos da Loto Fácil</h1>
 
-      {/* Seleção do Jogo */}
       <div className="game-selection">
         <label htmlFor="game-select">Selecione o sorteio:</label>
         <select
@@ -89,7 +85,6 @@ const ConferirJogosLotoFacil = () => {
         </select>
       </div>
 
-      {/* Exibição dos Números Sorteados */}
       {sortedNumbers.length > 0 && (
         <div className="sorted-numbers">
           <h3>Números Sorteados:</h3>
@@ -103,7 +98,6 @@ const ConferirJogosLotoFacil = () => {
         </div>
       )}
 
-      {/* Grade de Seleção de Números */}
       <div className="user-selection">
         <h3>Selecione seus números:</h3>
         <div className="numbers-grid">
@@ -121,7 +115,6 @@ const ConferirJogosLotoFacil = () => {
         </div>
       </div>
 
-      {/* Contador de Acertos */}
       <div className="result-container">
         <h3>Resultado:</h3>
         <p>Números Acertados: {matchCount}</p>

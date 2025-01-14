@@ -9,7 +9,7 @@ function visitantesPDF(visitantes) {
             text: 'Relatório de Visitantes',
             fontSize: 15,
             bold: true,
-            margin: [15, 20, 0, 45] // left, top, right, bottom
+            margin: [15, 20, 0, 45]
         }
     ];
 
@@ -50,7 +50,7 @@ function visitantesPDF(visitantes) {
                 text: currentPage + ' / ' + pageCount,
                 alignment: 'right',
                 fontSize: 9,
-                margin: [0, 10, 20, 0] // left, top, right, bottom
+                margin: [0, 10, 20, 0]
             }
         ]
     }

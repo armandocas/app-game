@@ -26,21 +26,21 @@
 
 .modal-footer {
   display: flex;
-  justify-content: center; /* Centraliza o botão horizontalmente */
+  justify-content: center;
   margin-bottom: 20px;
 }
 
 .btn-danger {
   background-color: #dc3545;
   border: none;
-  width: auto; /* Permite que o botão se ajuste ao conteúdo */
+  width: auto;
   font-size: 0.9rem;
   padding: 8px 12px;
   cursor: pointer;
 }
 
 .btn-danger:hover {
-  background-color: #c82333; /* Efeito de hover */
+  background-color: #c82333; 
 }
 
 @media (max-width: 576px) {
@@ -59,15 +59,15 @@
   .btn-danger {
     background-color: #dc3545;
     border: none;
-    width: 90%; /* Reduz a largura em relação ao total */
-    max-width: 250px; /* Limita a largura máxima */
-    font-size: 0.9rem; /* Ajusta o tamanho da fonte */
-    padding: 8px 12px; /* Ajusta o espaçamento interno */
+    width: 90%;
+    max-width: 250px;
+    font-size: 0.9rem; 
+    padding: 8px 12px; 
    
   }
 
   .bola-numero {
-    width: 25px; /* Dimensão menor */
+    width: 25px;
     height: 25px;
     font-size: 10px;
   }
