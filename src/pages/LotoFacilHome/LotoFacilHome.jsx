@@ -72,7 +72,7 @@ function LotoFacilHome() {
             Conferir jogos
             </Link>
           </div>
-          <div className=" mb-3">
+          <div className="mb-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home
             </Link>
