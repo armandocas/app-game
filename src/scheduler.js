@@ -2,6 +2,7 @@ import schedule from "node-schedule";
 import coletarDadosLotoFacil from "./Config/historicoLotoFacilService";
 import coletarDadosMegaSena from "./Config/historicoMegaSenaService";
 import coletarDadosQuina from "./Config/historicoQuinaService";
+import coletarDadosLotomania from "./Config/historicoLotomaniaService";
 
 function agendarAtualizacaoHistorico() {
   schedule.scheduleJob("33 21 * * *", async () => {
@@ -31,6 +32,16 @@ function agendarAtualizacaoHistorico() {
       console.log("Atualização do histórico da Quina concluida com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Quina:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("34 23 * * *", async () => {
+    console.log("Executando a tarefa da Lotomania às 20:18...");
+    try {
+      await coletarDadosLotomania();
+      console.log("Atualização do histórico da Lotomania concluida com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Lotomania:", error.message);
     }
   });
 }

@@ -50,6 +50,8 @@ import ConferirJogos from './pages/ConferirJogos/ConferirJogos.jsx';
 import ConferirJogosLotoFacil from './pages/ConferirJogosLotoFacil/ConferirJogosLotoFacil.jsx';
 import QuinaEstatistica from './pages/QuinaEstatistica/QuinaEstatistica.jsx';
 import HistoricoJogoQuina from './pages/HistoricoJogoQuina/HistoricoJogoQuina.jsx';
+import HistoricoLotomania from './pages/HistoricoLotomania/HistoricoLotomania.jsx';
+import LotomaniaEstatistica from './pages/LotomaniaEstatistica/LotomaniaEstatistica.jsx';
 
 
 function App() {
@@ -69,6 +71,7 @@ function App() {
         <Route path="/app/lotofacil/gerar-via-arquivo" element={<LotoFacil />} />
         <Route path="/app/lotofacil/gerador-jogo-lotofacil" element={<GeradorJogoLotoFacil />} />
         <Route path="/app/lotofacil/historico-de-jogos-lotofacil" element={<HistoricoJogoLotoFacil />} />
+        <Route path="/app/lotomania/historico-de-jogos-lotomania" element={<HistoricoLotomania />} />
         <Route path="/app/megasena/historico-de-jogos-megasena" element={<HistoricoJogoMegaSena />} />
         <Route path="/app/quina/historico-de-jogos-quina" element={<HistoricoJogoQuina />} />
         <Route path="/app/lotofacilhome" element={<LotoFacilHome />} />
@@ -78,6 +81,7 @@ function App() {
         <Route path="/app/lotofacil-estatistica" element={<LotoFacilEstatistica />} />
         <Route path="/app/quina/estatistica" element={<QuinaEstatistica />} />
         <Route path="/app/megasena/megasena-estatistica" element={<MegaSenaEstatistica />} />
+        <Route path="/app/lotomania/estatistica" element={<LotomaniaEstatistica />} />
         <Route path="/app/megasena/gerar-via-arquivo" element={<MegaSenaUpload />} />
         <Route path="/app/megasena/gerar-via-arquivo-favorito" element={<GenerateFavorito />} />
         <Route path="/app/lotofacil/gerar-via-arquivo-favorito" element={<GenerateLotoFacilFavorito />} />

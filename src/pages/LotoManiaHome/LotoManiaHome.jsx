@@ -22,7 +22,7 @@ function LotoManiaHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotomania-estatistica" className="btn btn-primary-lotomania w-100">
+            <Link to="/app/lotomania/estatistica" className="btn btn-primary-lotomania w-100">
               Estatísticas
             </Link>
           </div>
