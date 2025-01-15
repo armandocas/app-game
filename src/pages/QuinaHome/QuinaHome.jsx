@@ -22,12 +22,12 @@ function QuinaHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/quina/megasena-estatistica" className="btn btn-primary-quina w-100">
+            <Link to="/app/quina/estatistica" className="btn btn-primary-quina w-100">
               Estatísticas
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/quina/historico-de-jogos-megasena" className="btn btn-primary-quina w-100">
+            <Link to="/app/quina/historico-de-jogos-quina" className="btn btn-primary-quina w-100">
               Histórico de Jogos
             </Link>
           </div>
