@@ -15,7 +15,7 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("38 19 * * *", async () => {
+  schedule.scheduleJob("38 21 * * *", async () => {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
     try {
       await coletarDadosMegaSena();
