@@ -64,6 +64,8 @@ import ConferirJogosQuina from './pages/ConferirJogosQuina/ConferirJogosQuina.js
 import GenerateFavoritoLotoMania from './pages/GenerateFavoritoLotoMania/GenerateFavoritoLotoMania.jsx';
 import GerarBalanceadosLotoMania from './pages/GerarBalanceadosLotoMania/GerarBalanceadosLotoMania.jsx';
 import GenerateFromDataLotoMania from './pages/GenerateFromDataLotoMania/GenerateFromDataLotoMania.jsx';
+import GenerateFromNumerologyLotoMania from './pages/GenerateFromNumerologyLotoMania/GenerateFromNumerologyLotoMania.jsx';
+
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -134,7 +136,9 @@ function App() {
         <Route path="/app/lotomania/gerar-via-arquivo-favorito" element={<GenerateFavoritoLotoMania />} />
         <Route path="/app/lotomania/gerar-via-arquivo-balanceado" element={<GerarBalanceadosLotoMania />} />
         <Route path="/app/lotomania/gerar-via-arquivo-dados" element={<GenerateFromDataLotoMania />} />
+        <Route path="/app/lotomania/gerar-via-numerologia" element={<GenerateFromNumerologyLotoMania />} />
 
+        
         <Route
           path="/app/home"
           element={
