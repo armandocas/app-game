@@ -59,6 +59,7 @@ import GerarBalanceadosQuina from './pages/GerarBalanceadosQuina/GerarBalanceado
 import GenerateFromDataQuina from './pages/GenerateFromDataQuina/GenerateFromDataQuina.jsx';
 import GenerateFromNumerologyQuina from './pages/GenerateFromNumerologyQuina/GenerateFromNumerologyQuina.jsx';
 import GenerateSurpriseQuina from './pages/GenerateSurpriseQuina/GenerateSurpriseQuina.jsx';
+import GenerateZodiacQuina from './pages/GenerateZodiacQuina/GenerateZodiacQuina.jsx';
 
 
 function App() {
@@ -101,6 +102,7 @@ function App() {
         <Route path="/app/megasena/modo-surpresa" element={<GenerateSurprise />} />
         <Route path="/app/lotofacil/modo-surpresa" element={<GenerateSurpriseLotoFacil />} />
         <Route path="/app/megasena/zodiaco" element={<GenerateZodiac />} />
+        <Route path="/app/quina/zodiaco" element={<GenerateZodiacQuina />} />
         <Route path="/app/megasena/conferir-jogos" element={<ConferirJogos />} />
         <Route path="/app/lotofacil/conferir-jogos" element={<ConferirJogosLotoFacil />} />
         <Route path="/app/lotofacil/zodiaco" element={<GenerateZodiacLotoFacil />} />
