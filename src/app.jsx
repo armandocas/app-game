@@ -60,7 +60,7 @@ import GenerateFromDataQuina from './pages/GenerateFromDataQuina/GenerateFromDat
 import GenerateFromNumerologyQuina from './pages/GenerateFromNumerologyQuina/GenerateFromNumerologyQuina.jsx';
 import GenerateSurpriseQuina from './pages/GenerateSurpriseQuina/GenerateSurpriseQuina.jsx';
 import GenerateZodiacQuina from './pages/GenerateZodiacQuina/GenerateZodiacQuina.jsx';
-
+import ConferirJogosQuina from './pages/ConferirJogosQuina/ConferirJogosQuina.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -127,6 +127,7 @@ function App() {
         <Route path="/app/quina/gerar-via-arquivo-dados" element={<GenerateFromDataQuina />} />
         <Route path="/app/quina/gerar-via-arquivo-numerologia" element={<GenerateFromNumerologyQuina />} />
         <Route path="/app/quina/modo-surpresa" element={<GenerateSurpriseQuina />} />
+        <Route path="/app/quina/conferir-jogos" element={<ConferirJogosQuina />} />
 
         <Route
           path="/app/home"
