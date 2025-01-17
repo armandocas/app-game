@@ -36,6 +36,41 @@ function DiaDeSorteHome() {
               Gerar via arquivo
             </Link>
           </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte/gerar-via-arquivo-favorito" className="btn btn-primary-diadesorte w-100">
+              Gerar favoritos
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte/gerar-via-arquivo-balanceado" className="btn btn-primary-diadesorte w-100">
+              Gerar balanceados
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte/gerar-via-arquivo-dados" className="btn btn-primary-diadesorte w-100">
+              Gerar baseados em dados
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte/gerar-via-arquivo-numerologia" className="btn btn-primary-diadesorte w-100">
+              Gerar baseados em numerologia
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte/modo-surpresa" className="btn btn-primary-diadesorte w-100">
+              Modo surpresa
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte/zodiaco" className="btn btn-primary-diadesorte w-100">
+              Zodíaco
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/diadesorte/conferir-jogos" className="btn btn-primary-diadesorte w-100">
+              Conferir jogos
+            </Link>
+          </div>
           <div className="mt-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home

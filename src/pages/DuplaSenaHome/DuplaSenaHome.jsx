@@ -36,6 +36,41 @@ function DuplaSenaHome() {
               Gerar via arquivo
             </Link>
           </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena/gerar-via-arquivo-favorito" className="btn btn-primary-duplasena w-100">
+              Gerar favoritos
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena/gerar-via-arquivo-balanceado" className="btn btn-primary-duplasena w-100">
+              Gerar balanceados
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena/gerar-via-arquivo-dados" className="btn btn-primary-duplasena w-100">
+              Gerar baseados em dados
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena/gerar-via-arquivo-numerologia" className="btn btn-primary-duplasena w-100">
+              Gerar baseados em numerologia
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena/modo-surpresa" className="btn btn-primary-duplasena w-100">
+              Modo surpresa
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena/zodiaco" className="btn btn-primary-duplasena w-100">
+              Zodiaco
+            </Link>
+          </div>
+          <div className="col-md-4 col-sm-6 mb-3">
+            <Link to="/app/duplasena/conferir-jogos" className="btn btn-primary-duplasena w-100">
+              Conferir jogos
+            </Link>
+          </div>
           <div className="mt-3">
             <Link to="/app/home" className="btn btn-secondary">
               Voltar para Home

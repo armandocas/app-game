@@ -52,6 +52,7 @@ import QuinaEstatistica from './pages/QuinaEstatistica/QuinaEstatistica.jsx';
 import HistoricoJogoQuina from './pages/HistoricoJogoQuina/HistoricoJogoQuina.jsx';
 import HistoricoLotomania from './pages/HistoricoLotomania/HistoricoLotomania.jsx';
 import LotomaniaEstatistica from './pages/LotomaniaEstatistica/LotomaniaEstatistica.jsx';
+import LotoManiaUpload from './pages/LotoManiaUpload/LotoManiaUpload.jsx';
 
 
 function App() {
@@ -111,6 +112,7 @@ function App() {
         <Route path="/app/supersete/gerador-jogo-supersete" element={<GeradorSuperSete />} />
         <Route path="/app/milionariahome" element={<MilionariaHome />} />
         <Route path="/app/milionaria/gerador-jogo-milionaria" element={<GeradorMilionaria />} />
+        <Route path="/app/lotomania/gerar-via-arquivo" element={<LotoManiaUpload />} />
 
         <Route
           path="/app/home"
