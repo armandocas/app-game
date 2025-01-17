@@ -1,0 +1,64 @@
+.generate-numbers-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h3 {
+  text-align: center;
+}
+
+.explanation {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+}
+
+.generate-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.generate-button:hover {
+  background-color: #0056b3;
+}
+
+.generated-numbers {
+  margin-top: 20px;
+}
+
+.numbers-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.number {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 5px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+}
