@@ -54,6 +54,7 @@ import HistoricoLotomania from './pages/HistoricoLotomania/HistoricoLotomania.js
 import LotomaniaEstatistica from './pages/LotomaniaEstatistica/LotomaniaEstatistica.jsx';
 import LotoManiaUpload from './pages/LotoManiaUpload/LotoManiaUpload.jsx';
 import QuinaUpload from './pages/QuinaUpload/QuinaUpload.jsx';
+import GenerateFavoritoQuina from './pages/GenerateFavoritoQuina/GenerateFavoritoQuina.jsx';
 
 
 function App() {
@@ -115,6 +116,7 @@ function App() {
         <Route path="/app/milionaria/gerador-jogo-milionaria" element={<GeradorMilionaria />} />
         <Route path="/app/lotomania/gerar-via-arquivo" element={<LotoManiaUpload />} />
         <Route path="/app/quina/gerar-via-arquivo" element={<QuinaUpload />} />
+        <Route path="/app/quina/gerar-via-arquivo-favorito" element={<GenerateFavoritoQuina />} />
 
         <Route
           path="/app/home"
