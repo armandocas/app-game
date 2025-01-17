@@ -56,6 +56,7 @@ import LotoManiaUpload from './pages/LotoManiaUpload/LotoManiaUpload.jsx';
 import QuinaUpload from './pages/QuinaUpload/QuinaUpload.jsx';
 import GenerateFavoritoQuina from './pages/GenerateFavoritoQuina/GenerateFavoritoQuina.jsx';
 import GerarBalanceadosQuina from './pages/GerarBalanceadosQuina/GerarBalanceadosQuina.jsx';
+import GenerateFromDataQuina from './pages/GenerateFromDataQuina/GenerateFromDataQuina.jsx';
 
 
 function App() {
@@ -119,6 +120,7 @@ function App() {
         <Route path="/app/quina/gerar-via-arquivo" element={<QuinaUpload />} />
         <Route path="/app/quina/gerar-via-arquivo-favorito" element={<GenerateFavoritoQuina />} />
         <Route path="/app/quina/gerar-via-arquivo-balanceado" element={<GerarBalanceadosQuina />} />
+        <Route path="/app/quina/gerar-via-arquivo-dados" element={<GenerateFromDataQuina />} />
 
         <Route
           path="/app/home"
