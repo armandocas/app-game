@@ -65,6 +65,7 @@ import GenerateFavoritoLotoMania from './pages/GenerateFavoritoLotoMania/Generat
 import GerarBalanceadosLotoMania from './pages/GerarBalanceadosLotoMania/GerarBalanceadosLotoMania.jsx';
 import GenerateFromDataLotoMania from './pages/GenerateFromDataLotoMania/GenerateFromDataLotoMania.jsx';
 import GenerateFromNumerologyLotoMania from './pages/GenerateFromNumerologyLotoMania/GenerateFromNumerologyLotoMania.jsx';
+import GenerateSurpriseLotoMania from './pages/GenerateSurpriseLotoMania/GenerateSurpriseLotoMania.jsx';
 
 
 function App() {
@@ -137,7 +138,7 @@ function App() {
         <Route path="/app/lotomania/gerar-via-arquivo-balanceado" element={<GerarBalanceadosLotoMania />} />
         <Route path="/app/lotomania/gerar-via-arquivo-dados" element={<GenerateFromDataLotoMania />} />
         <Route path="/app/lotomania/gerar-via-numerologia" element={<GenerateFromNumerologyLotoMania />} />
-
+        <Route path="/app/lotomania/modo-surpresa" element={<GenerateSurpriseLotoMania />} />
         
         <Route
           path="/app/home"
