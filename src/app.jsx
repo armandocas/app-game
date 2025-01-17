@@ -58,6 +58,7 @@ import GenerateFavoritoQuina from './pages/GenerateFavoritoQuina/GenerateFavorit
 import GerarBalanceadosQuina from './pages/GerarBalanceadosQuina/GerarBalanceadosQuina.jsx';
 import GenerateFromDataQuina from './pages/GenerateFromDataQuina/GenerateFromDataQuina.jsx';
 import GenerateFromNumerologyQuina from './pages/GenerateFromNumerologyQuina/GenerateFromNumerologyQuina.jsx';
+import GenerateSurpriseQuina from './pages/GenerateSurpriseQuina/GenerateSurpriseQuina.jsx';
 
 
 function App() {
@@ -123,6 +124,7 @@ function App() {
         <Route path="/app/quina/gerar-via-arquivo-balanceado" element={<GerarBalanceadosQuina />} />
         <Route path="/app/quina/gerar-via-arquivo-dados" element={<GenerateFromDataQuina />} />
         <Route path="/app/quina/gerar-via-arquivo-numerologia" element={<GenerateFromNumerologyQuina />} />
+        <Route path="/app/quina/modo-surpresa" element={<GenerateSurpriseQuina />} />
 
         <Route
           path="/app/home"
