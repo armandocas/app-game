@@ -62,6 +62,8 @@ import GenerateSurpriseQuina from './pages/GenerateSurpriseQuina/GenerateSurpris
 import GenerateZodiacQuina from './pages/GenerateZodiacQuina/GenerateZodiacQuina.jsx';
 import ConferirJogosQuina from './pages/ConferirJogosQuina/ConferirJogosQuina.jsx';
 import GenerateFavoritoLotoMania from './pages/GenerateFavoritoLotoMania/GenerateFavoritoLotoMania.jsx';
+import GerarBalanceadosLotoMania from './pages/GerarBalanceadosLotoMania/GerarBalanceadosLotoMania.jsx';
+
 function App() {
   const { logado } = useContext(AuthContext);
 
@@ -129,6 +131,7 @@ function App() {
         <Route path="/app/quina/modo-surpresa" element={<GenerateSurpriseQuina />} />
         <Route path="/app/quina/conferir-jogos" element={<ConferirJogosQuina />} />
         <Route path="/app/lotomania/gerar-via-arquivo-favorito" element={<GenerateFavoritoLotoMania />} />
+        <Route path="/app/lotomania/gerar-via-arquivo-balanceado" element={<GerarBalanceadosLotoMania />} />
 
         <Route
           path="/app/home"
