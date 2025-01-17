@@ -67,6 +67,7 @@ import GenerateFromDataLotoMania from './pages/GenerateFromDataLotoMania/Generat
 import GenerateFromNumerologyLotoMania from './pages/GenerateFromNumerologyLotoMania/GenerateFromNumerologyLotoMania.jsx';
 import GenerateSurpriseLotoMania from './pages/GenerateSurpriseLotoMania/GenerateSurpriseLotoMania.jsx';
 import GenerateZodiacLotoMania from './pages/GenerateZodiacLotoMania/GenerateZodiacLotoMania.jsx';
+import ConferirJogosLotoMania from './pages/ConferirJogosLotoMania/ConferirJogosLotoMania.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -140,6 +141,7 @@ function App() {
         <Route path="/app/lotomania/gerar-via-numerologia" element={<GenerateFromNumerologyLotoMania />} />
         <Route path="/app/lotomania/modo-surpresa" element={<GenerateSurpriseLotoMania />} />
         <Route path="/app/lotomania/zodiaco" element={<GenerateZodiacLotoMania />} />
+        <Route path="/app/lotomania/conferir-jogos" element={<ConferirJogosLotoMania />} />
         
         <Route
           path="/app/home"
