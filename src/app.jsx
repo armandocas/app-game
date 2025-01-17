@@ -63,6 +63,7 @@ import GenerateZodiacQuina from './pages/GenerateZodiacQuina/GenerateZodiacQuina
 import ConferirJogosQuina from './pages/ConferirJogosQuina/ConferirJogosQuina.jsx';
 import GenerateFavoritoLotoMania from './pages/GenerateFavoritoLotoMania/GenerateFavoritoLotoMania.jsx';
 import GerarBalanceadosLotoMania from './pages/GerarBalanceadosLotoMania/GerarBalanceadosLotoMania.jsx';
+import GenerateFromDataLotoMania from './pages/GenerateFromDataLotoMania/GenerateFromDataLotoMania.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -132,6 +133,7 @@ function App() {
         <Route path="/app/quina/conferir-jogos" element={<ConferirJogosQuina />} />
         <Route path="/app/lotomania/gerar-via-arquivo-favorito" element={<GenerateFavoritoLotoMania />} />
         <Route path="/app/lotomania/gerar-via-arquivo-balanceado" element={<GerarBalanceadosLotoMania />} />
+        <Route path="/app/lotomania/gerar-via-arquivo-dados" element={<GenerateFromDataLotoMania />} />
 
         <Route
           path="/app/home"

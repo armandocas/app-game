@@ -47,7 +47,7 @@ function LotoManiaHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/lotomania/gerar-via-arquivo-balanceado" className="btn btn-primary-lotomania w-100">
+            <Link to="/app/lotomania/gerar-via-arquivo-dados" className="btn btn-primary-lotomania w-100">
               Gerar baseados em dados
             </Link>
           </div>
