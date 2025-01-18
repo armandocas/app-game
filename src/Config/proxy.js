@@ -71,4 +71,14 @@ app.get("/api/timemania/:id", async (req, res) => {
   }
 });
 
+app.get("/api/diadesorte/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await axios.get(`https://www.gigasena.com.br/data/diadesorte/${id}.json`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(error.response?.status || 500).json({ error: "Erro ao obter os dados do Dia de Sorte" });
+  }
+});
+
 app.listen(PORT, () => console.log(`Proxy rodando em http://localhost:${PORT}`));
