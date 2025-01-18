@@ -8,6 +8,8 @@ import coletarDadosTimemania from "./Config/historicoTimemaniaService";
 import coletarDadosDiaDeSorte from "./Config/historicoDiaDeSorteService";
 import coletarDadosSuperSete from "./Config/historicoSuperSete";
 import coletarDadosMaisMilionaria from "./Config/historicoMaisMilionaria";
+import deletarRegistrosTimemania from "./Config/deleteTimemaniaRecords";
+
 function agendarAtualizacaoHistorico() {
   schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da LotoFácil às 20:15...");
@@ -96,6 +98,16 @@ function agendarAtualizacaoHistorico() {
       console.log("Atualização do histórico da Mais Milionária concluida com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Mais Milionária:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("15 19 * * *", async () => {
+    console.log("Executando a tarefa de deletar registros da Timemania às 20:18...");
+    try {
+      await deletarRegistrosTimemania();
+      console.log("Deletar registros da Timemania concluida com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Timemania:", error.message);
     }
   });
 }

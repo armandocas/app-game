@@ -70,6 +70,7 @@ import GenerateZodiacLotoMania from './pages/GenerateZodiacLotoMania/GenerateZod
 import ConferirJogosLotoMania from './pages/ConferirJogosLotoMania/ConferirJogosLotoMania.jsx';
 import DuplaSenaEstatistica from './pages/DuplaSenaEstatistica/DuplaSenaEstatistica.jsx';
 import HistoricoDeJogosDuplaSena from './pages/HistoricoDeJogosDuplaSena/HistoricoDeJogosDuplaSena.jsx';
+import HistoricoDeJogosTimeMania from './pages/HistoricoDeJogosTimeMania/HistoricoDeJogosTimeMania.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -146,6 +147,7 @@ function App() {
         <Route path="/app/lotomania/conferir-jogos" element={<ConferirJogosLotoMania />} />
         <Route path="/app/duplasena-estatistica" element={<DuplaSenaEstatistica />} />
         <Route path="/app/duplasena/historico-de-jogos-duplasena" element={<HistoricoDeJogosDuplaSena />} />
+        <Route path="/app/timemania/historico-de-jogos-timemania" element={<HistoricoDeJogosTimeMania />} />
         
         <Route
           path="/app/home"
