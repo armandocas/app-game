@@ -61,4 +61,14 @@ app.get("/api/duplasena/:id", async (req, res) => {
   }
 });
 
+app.get("/api/timemania/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await axios.get(`https://www.gigasena.com.br/data/timemania/${id}.json`);
+    res.json(response.data);
+  } catch (error) {
+    res.status(error.response?.status || 500).json({ error: "Erro ao obter os dados da Timemania" });
+  }
+});
+
 app.listen(PORT, () => console.log(`Proxy rodando em http://localhost:${PORT}`));

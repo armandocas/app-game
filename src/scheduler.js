@@ -4,6 +4,7 @@ import coletarDadosMegaSena from "./Config/historicoMegaSenaService";
 import coletarDadosQuina from "./Config/historicoQuinaService";
 import coletarDadosLotomania from "./Config/historicoLotomaniaService";
 import coletarDadosDuplaSena from "./Config/historicoDuplaSenaService";
+import coletarDadosTimemania from "./Config/historicoTimemaniaService";
 
 function agendarAtualizacaoHistorico() {
   schedule.scheduleJob("05 14 * * *", async () => {
@@ -53,6 +54,16 @@ function agendarAtualizacaoHistorico() {
       console.log("Atualização do histórico da Dupla Sena concluida com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Dupla Sena:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("54 16 * * *", async () => {
+    console.log("Executando a tarefa da Timemania às 20:18...");
+    try {
+      await coletarDadosTimemania();
+      console.log("Atualização do histórico da Timemania concluida com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Timemania:", error.message);
     }
   });
 }
