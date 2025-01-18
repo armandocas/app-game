@@ -13,10 +13,10 @@ import {
   
   const db = getFirestore(firebaseApp);
   
-  async function obterUltimoIdQuina() {
+  async function obterUltimoIdDuplaSena() {
     try {
       const q = query(
-        collection(db, "historico_quina"),
+        collection(db, "historico_duplasena"),
         orderBy("sorteio", "desc"),
         limit(1)
       );
@@ -26,21 +26,21 @@ import {
         const ultimoDocumento = querySnapshot.docs[0].data();
         return ultimoDocumento.sorteio;
       } else {
-        return 0;
+        return 0; // Caso não existam registros
       }
     } catch (error) {
-      console.error("Erro ao obter o último ID da Quina:", error.message);
+      console.error("Erro ao obter o último ID da Dupla Sena:", error.message);
       throw new Error("Erro ao obter o último ID");
     }
   }
   
-  async function coletarDadosQuina() {
-    const baseUrl = "http://localhost:4000/api/quina";
+  async function coletarDadosDuplaSena() {
+    const baseUrl = "http://localhost:4000/api/duplasena";
     const dadosColetados = [];
   
     try {
-      const ultimoId = await obterUltimoIdQuina();
-      console.log("Último ID encontrado da Quina:", ultimoId);
+      const ultimoId = await obterUltimoIdDuplaSena();
+      console.log("Último ID encontrado da Dupla Sena:", ultimoId);
   
       for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
         console.log("Coletando dados do sorteio", id);
@@ -53,18 +53,31 @@ import {
             const documento = {
               sorteio: dados.s,
               data_do_sorteio: dados.d,
-              numeros_sorteados: typeof dados.na === "string"
+              numeros_sorteados_primeiro: typeof dados.na === "string"
                 ? dados.na.split("-").map(Number)
                 : [],
-              premios: {
-                v1a: dados.v1a || 0,
+              numeros_sorteados_segundo: typeof dados.nb === "string"
+                ? dados.nb.split("-").map(Number)
+                : [],
+              premios_primeiro: {
+                v1a: dados.v1a || "0,00",
                 w1a: dados.w1a || 0,
-                v2a: dados.v2a || 0,
+                v2a: dados.v2a || "0,00",
                 w2a: dados.w2a || 0,
-                v3a: dados.v3a || 0,
+                v3a: dados.v3a || "0,00",
                 w3a: dados.w3a || 0,
-                v4a: dados.v4a || 0,
+                v4a: dados.v4a || "0,00",
                 w4a: dados.w4a || 0,
+              },
+              premios_segundo: {
+                v1b: dados.v1b || "0,00",
+                w1b: dados.w1b || 0,
+                v2b: dados.v2b || "0,00",
+                w2b: dados.w2b || 0,
+                v3b: dados.v3b || "0,00",
+                w3b: dados.w3b || 0,
+                v4b: dados.v4b || "0,00",
+                w4b: dados.w4b || 0,
               },
               data_de_fechamento: dados.nxd || "",
               valor_do_proximo_premio: dados.nxv || "",
@@ -81,7 +94,7 @@ import {
             console.log("Salvando documento:", documento);
   
             await setDoc(
-              doc(collection(db, "historico_quina"), String(dados.s)),
+              doc(collection(db, "historico_duplasena"), String(dados.s)),
               documento
             );
             dadosColetados.push(documento);
@@ -91,11 +104,11 @@ import {
         }
       }
     } catch (error) {
-      console.error("Erro geral ao coletar dados da Quina:", error.message);
+      console.error("Erro geral ao coletar dados da Dupla Sena:", error.message);
     }
   
     return dadosColetados;
   }
   
-  export default coletarDadosQuina;
+  export default coletarDadosDuplaSena;
   

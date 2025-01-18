@@ -3,9 +3,10 @@ import coletarDadosLotoFacil from "./Config/historicoLotoFacilService";
 import coletarDadosMegaSena from "./Config/historicoMegaSenaService";
 import coletarDadosQuina from "./Config/historicoQuinaService";
 import coletarDadosLotomania from "./Config/historicoLotomaniaService";
+import coletarDadosDuplaSena from "./Config/historicoDuplaSenaService";
 
 function agendarAtualizacaoHistorico() {
-  schedule.scheduleJob("33 21 * * *", async () => {
+  schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da LotoFácil às 20:15...");
     try {
       await coletarDadosLotoFacil();
@@ -15,7 +16,7 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("38 21 * * *", async () => {
+  schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
     try {
       await coletarDadosMegaSena();
@@ -25,7 +26,7 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("21 21 * * *", async () => {
+  schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da Quina às 20:17...");
     try {
       await coletarDadosQuina();
@@ -35,13 +36,23 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("34 23 * * *", async () => {
+  schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da Lotomania às 20:18...");
     try {
       await coletarDadosLotomania();
       console.log("Atualização do histórico da Lotomania concluida com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Lotomania:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("05 14 * * *", async () => {
+    console.log("Executando a tarefa da Dupla Sena às 20:18...");
+    try {
+      await coletarDadosDuplaSena();
+      console.log("Atualização do histórico da Dupla Sena concluida com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Dupla Sena:", error.message);
     }
   });
 }

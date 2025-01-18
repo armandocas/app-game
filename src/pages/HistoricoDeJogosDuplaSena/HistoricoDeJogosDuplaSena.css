@@ -1,0 +1,117 @@
+.historico-container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.tabela-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.tabela-historico {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-historico th,
+.tabela-historico td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.tabela-historico th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.tabela-historico td {
+  background-color: #f9f9f9;
+}
+
+.tabela-historico tr:nth-child(even) td {
+  background-color: #e9e9e9;
+}
+
+.tabela-historico tr {
+  line-height: 1.5;
+}
+
+.numeros-sorteados-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.numero-sorteado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #06b122;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  text-align: center;
+}
+
+.premio-detalhes {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.premio-detalhes th,
+.premio-detalhes td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.premio-detalhes th {
+  background-color: #4caf50;
+  color: white;
+  font-size: 14px;
+}
+
+.premio-detalhes td {
+  background-color: #f9f9f9;
+}
+
+.premio-detalhes tr:nth-child(even) td {
+  background-color: #e9e9e9;
+}
+
+.mt-3 {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}

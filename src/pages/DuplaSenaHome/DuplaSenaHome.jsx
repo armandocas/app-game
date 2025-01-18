@@ -27,7 +27,7 @@ function DuplaSenaHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/duplasena/historico-de-jogos-lotofacil" className="btn btn-primary-duplasena w-100">
+            <Link to="/app/duplasena/historico-de-jogos-duplasena" className="btn btn-primary-duplasena w-100">
               Histórico de Jogos
             </Link>
           </div>

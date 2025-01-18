@@ -17,7 +17,7 @@ async function obterUltimoId() {
         const ultimoDocumento = querySnapshot.docs[0].data();
         return ultimoDocumento.sorteio;
       } else {
-        return 1660;
+        return 0;
       }
     } catch (error) {
       console.error("Erro ao obter o último ID:", error.message);

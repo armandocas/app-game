@@ -68,6 +68,8 @@ import GenerateFromNumerologyLotoMania from './pages/GenerateFromNumerologyLotoM
 import GenerateSurpriseLotoMania from './pages/GenerateSurpriseLotoMania/GenerateSurpriseLotoMania.jsx';
 import GenerateZodiacLotoMania from './pages/GenerateZodiacLotoMania/GenerateZodiacLotoMania.jsx';
 import ConferirJogosLotoMania from './pages/ConferirJogosLotoMania/ConferirJogosLotoMania.jsx';
+import DuplaSenaEstatistica from './pages/DuplaSenaEstatistica/DuplaSenaEstatistica.jsx';
+import HistoricoDeJogosDuplaSena from './pages/HistoricoDeJogosDuplaSena/HistoricoDeJogosDuplaSena.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -142,6 +144,8 @@ function App() {
         <Route path="/app/lotomania/modo-surpresa" element={<GenerateSurpriseLotoMania />} />
         <Route path="/app/lotomania/zodiaco" element={<GenerateZodiacLotoMania />} />
         <Route path="/app/lotomania/conferir-jogos" element={<ConferirJogosLotoMania />} />
+        <Route path="/app/duplasena-estatistica" element={<DuplaSenaEstatistica />} />
+        <Route path="/app/duplasena/historico-de-jogos-duplasena" element={<HistoricoDeJogosDuplaSena />} />
         
         <Route
           path="/app/home"
