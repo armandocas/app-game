@@ -13,10 +13,10 @@ import {
   
   const db = getFirestore(firebaseApp);
   
-  async function obterUltimoIdDiaDeSorte() {
+  async function obterUltimoIdSuperSete() {
     try {
       const q = query(
-        collection(db, "historico_diadesorte"),
+        collection(db, "historico_supersete"),
         orderBy("sorteio", "desc"),
         limit(1)
       );
@@ -29,20 +29,20 @@ import {
         return 0;
       }
     } catch (error) {
-      console.error("Erro ao obter o último ID do Dia de Sorte:", error.message);
+      console.error("Erro ao obter o último ID do Super Sete:", error.message);
       throw new Error("Erro ao obter o último ID");
     }
   }
   
-  async function coletarDadosDiaDeSorte() {
-    const baseUrl = "http://localhost:4000/api/diadesorte";
+  async function coletarDadosSuperSete() {
+    const baseUrl = "http://localhost:4000/api/supersete";
     const dadosColetados = [];
   
     try {
-      const ultimoId = await obterUltimoIdDiaDeSorte();
-      console.log("Último ID encontrado do Dia de Sorte:", ultimoId);
+      const ultimoId = await obterUltimoIdSuperSete();
+      console.log("Último ID encontrado do Super Sete:", ultimoId);
   
-      for (let id = ultimoId + 1; id <= ultimoId + 1015; id++) {
+      for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
         console.log("Coletando dados do sorteio", id);
   
         try {
@@ -65,11 +65,8 @@ import {
                 w3a: dados.w3a || "0",
                 v4a: dados.v4a || "0,00",
                 w4a: dados.w4a || "0",
-              },
-              mes_da_sorte: {
-                nome: dados.msn || "",
-                valor: dados.msv || "0,00",
-                ganhadores: dados.msw || "0",
+                v5a: dados.v5a || "0,00",
+                w5a: dados.w5a || "0",
               },
               data_de_fechamento: dados.nxd || "",
               valor_do_proximo_premio: dados.nxv || "",
@@ -86,7 +83,7 @@ import {
             console.log("Salvando documento:", documento);
   
             await setDoc(
-              doc(collection(db, "historico_diadesorte"), String(dados.s)),
+              doc(collection(db, "historico_supersete"), String(dados.s)),
               documento
             );
             dadosColetados.push(documento);
@@ -96,10 +93,10 @@ import {
         }
       }
     } catch (error) {
-      console.error("Erro geral ao coletar dados do Dia de Sorte:", error.message);
+      console.error("Erro geral ao coletar dados do Super Sete:", error.message);
     }
   
     return dadosColetados;
   }
   
-  export default coletarDadosDiaDeSorte;
+  export default coletarDadosSuperSete;

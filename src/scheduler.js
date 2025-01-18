@@ -6,6 +6,8 @@ import coletarDadosLotomania from "./Config/historicoLotomaniaService";
 import coletarDadosDuplaSena from "./Config/historicoDuplaSenaService";
 import coletarDadosTimemania from "./Config/historicoTimemaniaService";
 import coletarDadosDiaDeSorte from "./Config/historicoDiaDeSorteService";
+import coletarDadosSuperSete from "./Config/historicoSuperSete";
+
 function agendarAtualizacaoHistorico() {
   schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da LotoFácil às 20:15...");
@@ -74,6 +76,16 @@ function agendarAtualizacaoHistorico() {
       console.log("Atualização do histórico do Dia de Sorte concluida com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico do Dia de Sorte:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("48 17 * * *", async () => {
+    console.log("Executando a tarefa do Super Sete às 20:18...");
+    try {
+      await coletarDadosSuperSete();
+      console.log("Atualização do histórico do Super Sete concluida com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico do Super Sete:", error.message);
     }
   });
 }
