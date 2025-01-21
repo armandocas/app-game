@@ -14,11 +14,13 @@
     "axios": "^1.7.9",
     "babel-preset-react-app": "^10.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "5.0.1",
     "firebase": "^11.1.0",
     "mdb-react-ui-kit": "^9.0.0",
     "node-schedule": "^2.1.1",
     "pdfmake": "^0.2.2",
+    "pg": "^8.13.1",
     "react": "19.0.0",
     "react-bootstrap": "^2.6.0",
     "react-bootstrap-dropdown": "^0.3.0",
@@ -30,12 +32,10 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "concurrently \"yarn run client\" \"yarn run proxy\"",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "client": "react-scripts start",
-    "proxy": "node src/Config/proxy.js"
+    "start": "react-scripts start",
+    "server": "node src/Config/proxy.js",
+    "pgserver": "node src/server/pgServer.js",
+    "dev": "concurrently \"yarn start\" \"yarn server\" \"yarn pgserver\""
   },
   "eslintConfig": {
     "extends": [

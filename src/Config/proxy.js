@@ -1,16 +1,20 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 const PORT = 4000;
 
 app.use(cors());
+app.use(express.json());
 
 app.get("/api/lotofacil/:id", async (req, res) => {
+  console.log('aqui: ',req.params);
   const { id } = req.params;
   try {
     const response = await axios.get(`https://www.gigasena.com.br/data/lotofacil/${id}.json`);
+    console.log('aqui: ',response.data);
     res.json(response.data);
   } catch (error) {
     res.status(error.response?.status || 500).json({ error: "Erro ao obter os dados da Lotofácil" });

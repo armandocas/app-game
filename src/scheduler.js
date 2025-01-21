@@ -1,5 +1,5 @@
 import schedule from "node-schedule";
-import coletarDadosLotoFacil from "./Config/historicoLotoFacilService";
+// import coletarDadosLotoFacil from "./Config/historicoLotoFacilService";
 import coletarDadosMegaSena from "./Config/historicoMegaSenaService";
 import coletarDadosQuina from "./Config/historicoQuinaService";
 import coletarDadosLotomania from "./Config/historicoLotomaniaService";
@@ -9,17 +9,18 @@ import coletarDadosDiaDeSorte from "./Config/historicoDiaDeSorteService";
 import coletarDadosSuperSete from "./Config/historicoSuperSete";
 import coletarDadosMaisMilionaria from "./Config/historicoMaisMilionaria";
 import deletarRegistrosTimemania from "./Config/deleteTimemaniaRecords";
+import coletarDadosLotofacilPG from "./Config/historicoLotoFacilService";
 
 function agendarAtualizacaoHistorico() {
-  schedule.scheduleJob("05 14 * * *", async () => {
-    console.log("Executando a tarefa da LotoFácil às 20:15...");
-    try {
-      await coletarDadosLotoFacil();
-      console.log("Atualização do histórico da LotoFácil concluída com sucesso!");
-    } catch (error) {
-      console.error("Erro durante a atualização do histórico da LotoFácil:", error.message);
-    }
-  });
+  // schedule.scheduleJob("05 14 * * *", async () => {
+  //   console.log("Executando a tarefa da LotoFácil às 20:15...");
+  //   try {
+  //     await coletarDadosLotoFacil();
+  //     console.log("Atualização do histórico da LotoFácil concluída com sucesso!");
+  //   } catch (error) {
+  //     console.error("Erro durante a atualização do histórico da LotoFácil:", error.message);
+  //   }
+  // });
 
   schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
@@ -108,6 +109,16 @@ function agendarAtualizacaoHistorico() {
       console.log("Deletar registros da Timemania concluida com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Timemania:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("46 01 * * *", async () => {
+    console.log("Executando a tarefa da Mega-Sena às 20:16...");
+    try {
+      await coletarDadosLotofacilPG();
+      console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
     }
   });
 }
