@@ -25,7 +25,7 @@ async function coletarDadosLotofacilPG() {
     const ultimoId = await obterUltimoIdPG();
     console.log("Último ID encontrado:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 10; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
       console.log(`Coletando dados do sorteio ${id}...`);
 
       try {
@@ -37,18 +37,18 @@ async function coletarDadosLotofacilPG() {
             sorteio: parseInt(dados.s),
             data_do_sorteio: dados.d,
             numeros_sorteados: dados.na.split("-"),
-            premios_v1a: parseFloat(dados.v1a.replace('.', '').replace(',', '.')), 
-            premios_w1a: parseFloat(dados.w1a.replace('.', '').replace(',', '.')), 
-            premios_v2a: parseFloat(dados.v2a.replace('.', '').replace(',', '.')), 
-            premios_w2a: parseFloat(dados.w2a.replace('.', '').replace(',', '.')), 
-            premios_v3a: parseFloat(dados.v3a.replace('.', '').replace(',', '.')), 
-            premios_w3a: parseFloat(dados.w3a.replace('.', '').replace(',', '.')), 
-            premios_v4a: parseFloat(dados.v4a.replace('.', '').replace(',', '.')),
-            premios_w4a: parseFloat(dados.w4a.replace('.', '').replace(',', '.')), 
-            premios_v5a: parseFloat(dados.v5a.replace('.', '').replace(',', '.')), 
-            premios_w5a: parseFloat(dados.w5a.replace('.', '').replace(',', '.')), 
+            premios_v1a: dados.v1a, 
+            premios_w1a: dados.w1a, 
+            premios_v2a: dados.v2a, 
+            premios_w2a: dados.w2a, 
+            premios_v3a: dados.v3a, 
+            premios_w3a: dados.w3a, 
+            premios_v4a: dados.v4a,
+            premios_w4a: dados.w4a, 
+            premios_v5a: dados.v5a, 
+            premios_w5a: dados.w5a, 
             data_de_fechamento: dados.nxd,
-            valor_do_proximo_premio: dados.nxv.replace('.', '').replace(',', '.'), // Mantém como string
+            valor_do_proximo_premio: dados.nxv, // Mantém como string
             atualizado_em: new Date().toISOString()
           };
 
@@ -134,5 +134,16 @@ async function coletarDadosLotofacilPG() {
 
   return dadosColetados;
 }
+
+
+export const obterHistoricoLotoFacil = async () => {
+  try {
+    const result = await query('SELECT * FROM historico_lotofacil ORDER BY sorteio DESC'); // Ajuste a consulta conforme necessário
+    return result.rows; // Retorna os dados do histórico
+  } catch (error) {
+    console.error("Erro ao obter histórico do LotoFácil:", error);
+    throw error; // Repassa o erro para ser tratado na função chamadora
+  }
+};
 
 export default coletarDadosLotofacilPG; 

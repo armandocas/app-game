@@ -35,7 +35,8 @@
     "start": "react-scripts start",
     "server": "node src/Config/proxy.js",
     "pgserver": "node src/server/pgServer.js",
-    "dev": "concurrently \"yarn start\" \"yarn server\" \"yarn pgserver\""
+    "dev": "concurrently \"yarn start\" \"yarn server\" \"yarn pgserver\"",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [

@@ -10,7 +10,6 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/api/lotofacil/:id", async (req, res) => {
-  console.log('aqui: ',req.params);
   const { id } = req.params;
   try {
     const response = await axios.get(`https://www.gigasena.com.br/data/lotofacil/${id}.json`);

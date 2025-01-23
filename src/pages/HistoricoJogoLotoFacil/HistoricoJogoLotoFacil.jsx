@@ -2,41 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  getFirestore,
-  collection,
-  query,
-  orderBy,
-  limit,
-  startAfter,
-  getDocs,
-} from "firebase/firestore";
-import firebaseApp from "../../Config/firebase";
+import { obterHistoricoLotoFacil } from "../../Config/historicoLotoFacilService";
 import "./HistoricoJogoLotoFacil.css";
-
-const db = getFirestore(firebaseApp);
 
 function HistoricoJogoLotoFacil() {
   const [dados, setDados] = useState([]);
   const [carregando, setCarregando] = useState(false);
-  const [lastVisible, setLastVisible] = useState(null);
   const [finalDaLista, setFinalDaLista] = useState(false);
 
   async function carregarDados() {
     setCarregando(true);
     try {
-      const q = query(
-        collection(db, "historico_lotofacil"),
-        orderBy("sorteio", "desc"),
-        limit(10)
-      );
-
-      const querySnapshot = await getDocs(q);
-      const novosDados = querySnapshot.docs.map((doc) => doc.data());
-      setDados(novosDados);
-
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-      setFinalDaLista(querySnapshot.empty);
+      const novosDados = await obterHistoricoLotoFacil();
+      setDados(novosDados.slice(0, 5));
+      setFinalDaLista(novosDados.length <= 5);
     } catch (error) {
       console.error("Erro ao carregar dados:", error.message);
     } finally {
@@ -45,23 +24,14 @@ function HistoricoJogoLotoFacil() {
   }
 
   async function carregarMaisDados() {
-    if (finalDaLista || !lastVisible) return;
+    if (finalDaLista) return;
 
     setCarregando(true);
     try {
-      const q = query(
-        collection(db, "historico_lotofacil"),
-        orderBy("sorteio", "desc"),
-        startAfter(lastVisible),
-        limit(10)
-      );
-
-      const querySnapshot = await getDocs(q);
-      const novosDados = querySnapshot.docs.map((doc) => doc.data());
-      setDados((prevDados) => [...prevDados, ...novosDados]);
-
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-      setFinalDaLista(querySnapshot.empty);
+      const novosDados = await obterHistoricoLotoFacil();
+      const novosJogos = novosDados.slice(dados.length, dados.length + 5);
+      setDados((prevDados) => [...prevDados, ...novosJogos]);
+      setFinalDaLista(novosJogos.length < 5);
     } catch (error) {
       console.error("Erro ao carregar mais dados:", error.message);
     } finally {
@@ -69,61 +39,31 @@ function HistoricoJogoLotoFacil() {
     }
   }
 
-  async function carregarTodosDados() {
-  const todosDados = [];
-  let lastVisible = null;
-  try {
-    while (true) {
-      const q = query(
-        collection(db, "historico_lotofacil"),
-        orderBy("sorteio", "desc"),
-        ...(lastVisible ? [startAfter(lastVisible)] : []),
-        limit(500)
-      );
-
-      const querySnapshot = await getDocs(q);
-      if (querySnapshot.empty) break;
-
-      const novosDados = querySnapshot.docs.map((doc) => doc.data());
-      todosDados.push(...novosDados);
-
-      lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-    }
-    return todosDados;
-  } catch (error) {
-    console.error("Erro ao carregar todos os dados:", error.message);
-    return [];
-  }
-}
-
-
   async function baixarTodosJogos() {
+    toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000, 
+      position: "top-center"
+     });
 
-  toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000, 
-    position: "top-center"
-   });
+    const todosOsDados = await obterHistoricoLotoFacil(); // Carregar todos os dados
 
-  const todosOsDados = await carregarTodosDados();
-
-  const linhas = todosOsDados.map((jogo) => {
-    return `${jogo.numeros_sorteados.join("; ")}\n`;
-  });
-
-  const conteudo = linhas.join("\n");
-  const blob = new Blob([conteudo], { type: "text/plain" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "historico_lotofacil.txt";
-  link.click();
-
-   toast.success("Arquivo gerado com sucesso!", { autoClose: 3000,
-    position: "top-center"
+    const linhas = todosOsDados.map((jogo) => {
+      return `${jogo.numeros_sorteados.join("; ")}\n`;
     });
-  
-}
+
+    const conteudo = linhas.join("\n");
+    const blob = new Blob([conteudo], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "historico_lotofacil.txt";
+    link.click();
+
+    toast.success("Arquivo gerado com sucesso!", { autoClose: 3000,
+      position: "top-center"
+      });
+  }
 
   function renderCidadesOuAcumulacao(jogo) {
-    if (jogo.cidades.length > 0) {
+    if (jogo.cidades && Array.isArray(jogo.cidades) && jogo.cidades.length > 0) {
       return jogo.cidades.map((cidade, idx) => (
         <div key={idx}>
           {cidade.cidade} - {cidade.estado}
@@ -166,14 +106,14 @@ function HistoricoJogoLotoFacil() {
                 <td>{jogo.sorteio}</td>
                 <td>{jogo.data_do_sorteio}</td>
                 <td>
-            <div className="numeros-sorteados-container">
-                {jogo.numeros_sorteados.map((numero, idx) => (
-            <div key={idx} className="numero-sorteado">
-                {numero}
-               </div>
-       ))}
-               </div>  
-                 </td>
+                  <div className="numeros-sorteados-container">
+                    {jogo.numeros_sorteados.map((numero, idx) => (
+                      <div key={idx} className="numero-sorteado">
+                        {numero}
+                      </div>
+                    ))}
+                  </div>
+                </td>
                 <td>
                   <table className="premio-detalhes">
                     <thead>
@@ -186,28 +126,28 @@ function HistoricoJogoLotoFacil() {
                     <tbody>
                       <tr>
                         <td>15</td>
-                        <td>{jogo.premios.v1a}</td>
-                        <td>{jogo.premios.w1a}</td>
+                        <td>{jogo.premios_v1a}</td>
+                        <td>{jogo.premios_w1a}</td>
                       </tr>
                       <tr>
                         <td>14</td>
-                        <td>{jogo.premios.v2a}</td>
-                        <td>{jogo.premios.w2a}</td>
+                        <td>{jogo.premios_v2a}</td>
+                        <td>{jogo.premios_w2a}</td>
                       </tr>
                       <tr>
                         <td>13</td>
-                        <td>{jogo.premios.v3a}</td>
-                        <td>{jogo.premios.w3a}</td>
+                        <td>{jogo.premios_v3a}</td>
+                        <td>{jogo.premios_w3a}</td>
                       </tr>
                       <tr>
                         <td>12</td>
-                        <td>{jogo.premios.v4a}</td>
-                        <td>{jogo.premios.w4a}</td>
+                        <td>{jogo.premios_v4a}</td>
+                        <td>{jogo.premios_w4a}</td>
                       </tr>
                       <tr>
                         <td>11</td>
-                        <td>{jogo.premios.v5a}</td>
-                        <td>{jogo.premios.w5a}</td>
+                        <td>{jogo.premios_v5a}</td>
+                        <td>{jogo.premios_w5a}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -224,9 +164,9 @@ function HistoricoJogoLotoFacil() {
         </Link>
       </div>
       <div className="mt-3">
-      <button className="btn btn-success ml-2" onClick={baixarTodosJogos}>
-      <ToastContainer />
-           Baixar Todos os Jogos (.txt)
+        <button className="btn btn-success ml-2" onClick={baixarTodosJogos}>
+          <ToastContainer />
+          Baixar Todos os Jogos (.txt)
         </button>
       </div>
       {!finalDaLista && (
