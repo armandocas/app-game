@@ -22,13 +22,13 @@ function MegaSenaHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/megasena/megasena-estatistica" className="btn btn-primary-megasena w-100">
-              Estatísticas
+            <Link to="/app/megasena/historico-de-jogos-megasena" className="btn btn-primary-megasena w-100">
+              Histórico de Jogos
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/megasena/historico-de-jogos-megasena" className="btn btn-primary-megasena w-100">
-              Histórico de Jogos
+            <Link to="/app/megasena/megasena-estatistica" className="btn btn-primary-megasena w-100">
+              Estatísticas
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">

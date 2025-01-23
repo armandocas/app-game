@@ -40,7 +40,7 @@ function HistoricoJogoLotoFacil() {
   }
 
   async function baixarTodosJogos() {
-    toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000, 
+    toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 3000, 
       position: "top-center"
      });
 
@@ -57,7 +57,7 @@ function HistoricoJogoLotoFacil() {
     link.download = "historico_lotofacil.txt";
     link.click();
 
-    toast.success("Arquivo gerado com sucesso!", { autoClose: 3000,
+    toast.success("Arquivo gerado com sucesso!", { autoClose: 5000,
       position: "top-center"
       });
   }
