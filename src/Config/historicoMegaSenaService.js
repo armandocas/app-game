@@ -25,7 +25,7 @@ async function coletarDadosMegaSenaPG() {
     const ultimoId = await obterUltimoIdPG();
     console.log("Último ID encontrado:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 1149; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 2; id++) {
       console.log(`Coletando dados do sorteio ${id}...`);
 
       try {
@@ -125,9 +125,16 @@ async function coletarDadosMegaSenaPG() {
 
 export const obterHistoricoMegaSena = async () => {
   try {
-    const result = await query(
-      'SELECT * FROM historico_megasena ORDER BY sorteio DESC'
-    );
+    const result = await query(`
+      SELECT 
+          hm.*,
+          COALESCE(json_agg(cm) FILTER (WHERE cm.id IS NOT NULL), '[]') AS cidades
+      FROM historico_megasena hm
+      LEFT JOIN cidades_megasena cm ON cm.sorteio = hm.sorteio
+      GROUP BY hm.id
+      ORDER BY hm.sorteio DESC
+    `);
+    
     return result.rows;
   } catch (error) {
     console.error("Erro ao obter histórico da Mega Sena:", error);

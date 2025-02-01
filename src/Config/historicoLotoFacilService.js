@@ -25,7 +25,7 @@ async function coletarDadosLotofacilPG() {
     const ultimoId = await obterUltimoIdPG();
     console.log("Último ID encontrado:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 4; id++) {
       console.log(`Coletando dados do sorteio ${id}...`);
 
       try {
@@ -138,7 +138,16 @@ async function coletarDadosLotofacilPG() {
 
 export const obterHistoricoLotoFacil = async () => {
   try {
-    const result = await query('SELECT * FROM historico_lotofacil ORDER BY sorteio DESC'); // Ajuste a consulta conforme necessário
+    const result = await query(`
+      SELECT 
+          hl.*,
+          COALESCE(json_agg(cl) FILTER (WHERE cl.id IS NOT NULL), '[]') AS cidades
+      FROM historico_lotofacil hl
+      LEFT JOIN cidades_lotofacil cl ON cl.sorteio = hl.sorteio
+      GROUP BY hl.id
+      ORDER BY hl.sorteio DESC
+    `);
+
     return result.rows; // Retorna os dados do histórico
   } catch (error) {
     console.error("Erro ao obter histórico do LotoFácil:", error);

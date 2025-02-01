@@ -10,6 +10,7 @@ import coletarDadosMaisMilionaria from "./Config/historicoMaisMilionaria";
 import deletarRegistrosTimemania from "./Config/deleteTimemaniaRecords";
 import coletarDadosLotofacilPG from "./Config/historicoLotoFacilService";
 import coletarDadosMegaSenaPG from "./Config/historicoMegaSenaService";
+import coletarDadosQuinaPG from "./Config/historicoQuinaService";
 
 function agendarAtualizacaoHistorico() {
 
@@ -103,7 +104,7 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("16 22 * * *", async () => {
+  schedule.scheduleJob("00 21 * * *", async () => {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
     try {
       await coletarDadosLotofacilPG();
@@ -113,7 +114,7 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("37 23 * * *", async () => {
+  schedule.scheduleJob("00 21 * * *", async () => {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
     try {
       await coletarDadosMegaSenaPG();
@@ -122,6 +123,17 @@ function agendarAtualizacaoHistorico() {
       console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
     }
   });
+
+  schedule.scheduleJob("28 22 * * *", async () => {
+    console.log("Executando a tarefa da Mega-Sena às 20:16...");
+    try {
+      await coletarDadosQuinaPG();
+      console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
+    }
+  });
+
 }
 
 export default agendarAtualizacaoHistorico;

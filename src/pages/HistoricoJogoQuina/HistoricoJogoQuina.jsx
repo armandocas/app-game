@@ -2,41 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  getFirestore,
-  collection,
-  query,
-  orderBy,
-  limit,
-  startAfter,
-  getDocs,
-} from "firebase/firestore";
-import firebaseApp from "../../Config/firebase";
+import { obterHistoricoQuina } from "../../Config/historicoQuinaService";
 import "./HistoricoJogoQuina.css";
-
-const db = getFirestore(firebaseApp);
 
 function HistoricoJogoQuina() {
   const [dados, setDados] = useState([]);
   const [carregando, setCarregando] = useState(false);
-  const [lastVisible, setLastVisible] = useState(null);
   const [finalDaLista, setFinalDaLista] = useState(false);
 
   async function carregarDados() {
     setCarregando(true);
     try {
-      const q = query(
-        collection(db, "historico_quina"),
-        orderBy("sorteio", "desc"),
-        limit(10)
-      );
-
-      const querySnapshot = await getDocs(q);
-      const novosDados = querySnapshot.docs.map((doc) => doc.data());
-      setDados(novosDados);
-
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-      setFinalDaLista(querySnapshot.empty);
+      const novosDados = await obterHistoricoQuina();
+      setDados(novosDados.slice(0, 5));
+      setFinalDaLista(novosDados.length <= 5);
     } catch (error) {
       console.error("Erro ao carregar dados:", error.message);
     } finally {
@@ -45,23 +24,14 @@ function HistoricoJogoQuina() {
   }
 
   async function carregarMaisDados() {
-    if (finalDaLista || !lastVisible) return;
+    if (finalDaLista) return;
 
     setCarregando(true);
     try {
-      const q = query(
-        collection(db, "historico_quina"),
-        orderBy("sorteio", "desc"),
-        startAfter(lastVisible),
-        limit(10)
-      );
-
-      const querySnapshot = await getDocs(q);
-      const novosDados = querySnapshot.docs.map((doc) => doc.data());
-      setDados((prevDados) => [...prevDados, ...novosDados]);
-
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-      setFinalDaLista(querySnapshot.empty);
+      const novosDados = await obterHistoricoQuina();
+      const novosJogos = novosDados.slice(dados.length, dados.length + 5);
+      setDados((prevDados) => [...prevDados, ...novosJogos]);
+      setFinalDaLista(novosJogos.length < 5);
     } catch (error) {
       console.error("Erro ao carregar mais dados:", error.message);
     } finally {
@@ -69,37 +39,13 @@ function HistoricoJogoQuina() {
     }
   }
 
-  async function carregarTodosDados() {
-    const todosDados = [];
-    let lastVisible = null;
-    try {
-      while (true) {
-        const q = query(
-          collection(db, "historico_quina"),
-          orderBy("sorteio", "desc"),
-          ...(lastVisible ? [startAfter(lastVisible)] : []),
-          limit(500)
-        );
-
-        const querySnapshot = await getDocs(q);
-        if (querySnapshot.empty) break;
-
-        const novosDados = querySnapshot.docs.map((doc) => doc.data());
-        todosDados.push(...novosDados);
-
-        lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-      }
-      return todosDados;
-    } catch (error) {
-      console.error("Erro ao carregar todos os dados:", error.message);
-      return [];
-    }
-  }
-
   async function baixarTodosJogos() {
-    toast.info("Aguarde, estamos gerando seu arquivo...", { autoClose: 1000, position: "top-center" });
+    toast.info("Aguarde, estamos gerando seu arquivo...", {
+      autoClose: 3000,
+      position: "top-center",
+    });
 
-    const todosOsDados = await carregarTodosDados();
+    const todosOsDados = await obterHistoricoQuina();
 
     const linhas = todosOsDados.map((jogo) => {
       return `${jogo.numeros_sorteados.join("; ")}\n`;
@@ -112,8 +58,35 @@ function HistoricoJogoQuina() {
     link.download = "historico_quina.txt";
     link.click();
 
-    toast.success("Arquivo gerado com sucesso!", { autoClose: 3000, position: "top-center" });
+    toast.success("Arquivo gerado com sucesso!", {
+      autoClose: 5000,
+      position: "top-center",
+    });
   }
+
+  function renderCidadesOuAcumulacao(jogo) {
+
+    console.log("🚀 ~ file: HistoricoJogoQuina.jsx:69 ~ renderCidadesOuAcumulacao ~ jogo:", jogo);
+
+    if (parseInt(jogo.premios_w1a) > 0 && Array.isArray(jogo.cidades) && jogo.cidades.length > 0) {
+      // Exibe as cidades dos ganhadores do prêmio principal
+      return jogo.cidades.map((cidade, idx) => (
+        <div key={idx}>
+          {cidade.cidade} - {cidade.estado}
+        </div>
+      ));
+    }
+  
+    // Se não houver ganhadores, exibe o alerta de acumulação
+    return (
+      <div>
+        <strong>🚨 ACUMULOU! 🚨</strong> <br />
+        💰 Próximo prêmio: <strong>{jogo.valor_do_proximo_premio || "N/A"}</strong> <br />
+        📍 Data do próximo sorteio: <strong>{jogo.data_de_fechamento || "N/A"}</strong>
+      </div>
+    );
+  }
+   
 
   useEffect(() => {
     carregarDados();
@@ -161,42 +134,28 @@ function HistoricoJogoQuina() {
                     <tbody>
                       <tr>
                         <td>Quina</td>
-                        <td>{jogo.premios.v1a || "0,00"}</td>
-                        <td>{jogo.premios.w1a || "0"}</td>
+                        <td>{jogo.premios_v1a || "0,00"}</td>
+                        <td>{jogo.premios_w1a || "0"}</td>
                       </tr>
                       <tr>
                         <td>Quadra</td>
-                        <td>{jogo.premios.v2a || "0,00"}</td>
-                        <td>{jogo.premios.w2a || "0"}</td>
+                        <td>{jogo.premios_v2a || "0,00"}</td>
+                        <td>{jogo.premios_w2a || "0"}</td>
                       </tr>
                       <tr>
                         <td>Terno</td>
-                        <td>{jogo.premios.v3a || "0,00"}</td>
-                        <td>{jogo.premios.w3a || "0"}</td>
+                        <td>{jogo.premios_v3a || "0,00"}</td>
+                        <td>{jogo.premios_w3a || "0"}</td>
                       </tr>
                       <tr>
                         <td>Duque</td>
-                        <td>{jogo.premios.v4a || "0,00"}</td>
-                        <td>{jogo.premios.w4a || "0"}</td>
+                        <td>{jogo.premios_v4a || "0,00"}</td>
+                        <td>{jogo.premios_w4a || "0"}</td>
                       </tr>
                     </tbody>
                   </table>
                 </td>
-                <td>
-                  {jogo.premios.w1a > 0 && jogo.cidades.length > 0 ? (
-                    jogo.cidades.map((cidade, idx) => (
-                      <div key={idx}>
-                        {cidade.cidade} - {cidade.estado}
-                      </div>
-                    ))
-                  ) : (
-                    <div>
-                      🚨 ACUMULOU! 🚨 <br />
-                      💰 Próximo prêmio: {jogo.valor_do_proximo_premio || "N/A"} <br />
-                      📍 Data do próximo sorteio: {jogo.data_de_fechamento || "N/A"}
-                    </div>
-                  )}
-                </td>
+                <td>{renderCidadesOuAcumulacao(jogo)}</td>
               </tr>
             ))}
           </tbody>
