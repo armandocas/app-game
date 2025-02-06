@@ -25,7 +25,7 @@ async function coletarDadosDuplaSenaPG() {
     const ultimoId = await obterUltimoIdDuplaSena();
     console.log("Último ID encontrado da Dupla Sena:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 1430; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
       console.log("Coletando dados do sorteio", id);
 
       try {

@@ -2,41 +2,31 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  getFirestore,
-  collection,
-  query,
-  orderBy,
-  limit,
-  startAfter,
-  getDocs,
-} from "firebase/firestore";
-import firebaseApp from "../../Config/firebase";
+import { query } from "../../Config/postgresConfig"; // Função para realizar queries no PostgreSQL
 import "./HistoricoDeJogosTimeMania.css";
-
-const db = getFirestore(firebaseApp);
 
 function HistoricoDeJogosTimeMania() {
   const [dados, setDados] = useState([]);
   const [carregando, setCarregando] = useState(false);
-  const [lastVisible, setLastVisible] = useState(null);
   const [finalDaLista, setFinalDaLista] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const limit = 10; // Número de registros por página
 
   async function carregarDados() {
     setCarregando(true);
     try {
-      const q = query(
-        collection(db, "historico_timemania"),
-        orderBy("sorteio", "desc"),
-        limit(10)
+      const result = await query(
+        `SELECT *
+         FROM historico_timemania
+         ORDER BY sorteio DESC
+         LIMIT $1 OFFSET $2`,
+        [limit, offset]
       );
 
-      const querySnapshot = await getDocs(q);
-      const novosDados = querySnapshot.docs.map((doc) => doc.data());
-      setDados(novosDados);
-
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-      setFinalDaLista(querySnapshot.empty);
+      const novosDados = result.rows;
+      setDados((prevDados) => [...prevDados, ...novosDados]);
+      setFinalDaLista(novosDados.length < limit);
+      setOffset((prevOffset) => prevOffset + limit);
     } catch (error) {
       console.error("Erro ao carregar dados:", error.message);
       toast.error("Erro ao carregar dados!");
@@ -46,28 +36,8 @@ function HistoricoDeJogosTimeMania() {
   }
 
   async function carregarMaisDados() {
-    if (finalDaLista || !lastVisible) return;
-
-    setCarregando(true);
-    try {
-      const q = query(
-        collection(db, "historico_timemania"),
-        orderBy("sorteio", "desc"),
-        startAfter(lastVisible),
-        limit(10)
-      );
-
-      const querySnapshot = await getDocs(q);
-      const novosDados = querySnapshot.docs.map((doc) => doc.data());
-      setDados((prevDados) => [...prevDados, ...novosDados]);
-
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-      setFinalDaLista(querySnapshot.empty);
-    } catch (error) {
-      console.error("Erro ao carregar mais dados:", error.message);
-    } finally {
-      setCarregando(false);
-    }
+    if (finalDaLista) return;
+    await carregarDados();
   }
 
   useEffect(() => {
@@ -96,11 +66,12 @@ function HistoricoDeJogosTimeMania() {
                 <td>{jogo.data_do_sorteio}</td>
                 <td>
                   <div className="numeros-sorteados-container">
-                    {jogo.numeros_sorteados.map((numero, idx) => (
-                      <div key={idx} className="numero-sorteado">
-                        {numero}
-                      </div>
-                    ))}
+                    {jogo.numeros_sorteados &&
+                      jogo.numeros_sorteados.map((numero, idx) => (
+                        <div key={idx} className="numero-sorteado">
+                          {numero}
+                        </div>
+                      ))}
                   </div>
                 </td>
                 <td>
@@ -115,42 +86,40 @@ function HistoricoDeJogosTimeMania() {
                     <tbody>
                       <tr>
                         <td>7</td>
-                        <td>{jogo.premios?.v1a || "N/A"}</td>
-                        <td>{jogo.premios?.w1a || "N/A"}</td>
+                        <td>{jogo.premios_v1a || "N/A"}</td>
+                        <td>{jogo.premios_w1a || "N/A"}</td>
                       </tr>
                       <tr>
                         <td>6</td>
-                        <td>{jogo.premios?.v2a || "N/A"}</td>
-                        <td>{jogo.premios?.w2a || "N/A"}</td>
+                        <td>{jogo.premios_v2a || "N/A"}</td>
+                        <td>{jogo.premios_w2a || "N/A"}</td>
                       </tr>
                       <tr>
                         <td>5</td>
-                        <td>{jogo.premios?.v3a || "N/A"}</td>
-                        <td>{jogo.premios?.w3a || "N/A"}</td>
+                        <td>{jogo.premios_v3a || "N/A"}</td>
+                        <td>{jogo.premios_w3a || "N/A"}</td>
                       </tr>
                       <tr>
                         <td>4</td>
-                        <td>{jogo.premios?.v4a || "N/A"}</td>
-                        <td>{jogo.premios?.w4a || "N/A"}</td>
+                        <td>{jogo.premios_v4a || "N/A"}</td>
+                        <td>{jogo.premios_w4a || "N/A"}</td>
                       </tr>
                       <tr>
                         <td>3</td>
-                        <td>{jogo.premios?.v5a || "N/A"}</td>
-                        <td>{jogo.premios?.w5a || "N/A"}</td>
+                        <td>{jogo.premios_v5a || "N/A"}</td>
+                        <td>{jogo.premios_w5a || "N/A"}</td>
                       </tr>
                       <tr>
                         <td>TIME</td>
-                        <td>{jogo.premios?.tcv || "N/A"}</td>
-                        <td>{jogo.premios?.tcw || "N/A"}</td>
+                        <td>{jogo.time_coracao_valor || "N/A"}</td>
+                        <td>{jogo.time_coracao_ganhadores|| "N/A"}</td>
                       </tr>
                     </tbody>
                   </table>
                 </td>
                 <td>
                   <div className="time-coracao">
-                    <p>Nome: {jogo.time_coracao?.nome || "N/A"}</p>
-                    <p>Valor: {jogo.time_coracao?.valor || "N/A"}</p>
-                    <p>Ganhadores: {jogo.time_coracao?.ganhadores || "N/A"}</p>
+                    <p>Nome: {jogo.time_coracao_nome || "N/A"}</p>
                   </div>
                 </td>
               </tr>
