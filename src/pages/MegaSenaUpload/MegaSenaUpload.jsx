@@ -102,13 +102,14 @@ function MegaSenaUpload() {
 
   const abrirModal = (padrao) => {
     setModalPadrao(padrao);
-
+  
     const jogosGerados = [];
     for (let i = 0; i < 3; i++) {
       const novoJogo = [];
       padrao.split(",").forEach((quantidade, idx) => {
-        const min = idx * 5 + 1;
-        const max = idx * 5 + 5;
+        // Alteração nos intervalos: de grupos de 5 para grupos de 10
+        const min = idx * 10 + 1;
+        const max = idx * 10 + 10;
         while (novoJogo.filter((num) => num >= min && num <= max).length < parseInt(quantidade)) {
           const numero = Math.floor(Math.random() * (max - min + 1)) + min;
           if (!novoJogo.includes(numero)) novoJogo.push(numero);
@@ -116,10 +117,10 @@ function MegaSenaUpload() {
       });
       jogosGerados.push(novoJogo.sort((a, b) => a - b));
     }
-
+  
     setModalJogos(jogosGerados);
     setModalOpen(true);
-  };
+  };  
 
   const salvarJogosNoFirebase = async () => {
     if (!user || !user.uid) {

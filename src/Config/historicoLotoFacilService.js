@@ -25,7 +25,7 @@ async function coletarDadosLotofacilPG() {
     const ultimoId = await obterUltimoIdPG();
     console.log("Último ID encontrado:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 4; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 2; id++) {
       console.log(`Coletando dados do sorteio ${id}...`);
 
       try {
