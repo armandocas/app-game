@@ -14,6 +14,9 @@ import coletarDadosQuinaPG from "./Config/historicoQuinaService";
 import coletarDadosLotomaniaPG from "./Config/historicoLotomaniaService";
 import coletarDadosDuplaSenaPG from "./Config/historicoDuplaSenaService";
 import coletarDadosTimemaniaPG from "./Config/historicoTimemaniaService";
+import coletarDadosDiaDeSortePG from "./Config/historicoDiaDeSorteService";
+import coletarDadosSuperSetePG from "./Config/historicoSuperSete";
+import coletarDadosMaisMilionariaPG from "./Config/historicoMaisMilionaria";
 
 function agendarAtualizacaoHistorico() {
 
@@ -161,6 +164,36 @@ function agendarAtualizacaoHistorico() {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
     try {
       await coletarDadosTimemaniaPG();
+      console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("26 20 * * *", async () => {
+    console.log("Executando a tarefa da Mega-Sena às 20:16...");
+    try {
+      await coletarDadosDiaDeSortePG();
+      console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("05 22 * * *", async () => {
+    console.log("Executando a tarefa da Mega-Sena às 20:16...");
+    try {
+      await coletarDadosSuperSetePG();
+      console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
+    } catch (error) {
+      console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
+    }
+  });
+
+  schedule.scheduleJob("10 23 * * *", async () => {
+    console.log("Executando a tarefa da Mega-Sena às 20:16...");
+    try {
+      await coletarDadosMaisMilionariaPG();
       console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);

@@ -71,6 +71,9 @@ import ConferirJogosLotoMania from './pages/ConferirJogosLotoMania/ConferirJogos
 import DuplaSenaEstatistica from './pages/DuplaSenaEstatistica/DuplaSenaEstatistica.jsx';
 import HistoricoDeJogosDuplaSena from './pages/HistoricoDeJogosDuplaSena/HistoricoDeJogosDuplaSena.jsx';
 import HistoricoDeJogosTimeMania from './pages/HistoricoDeJogosTimeMania/HistoricoDeJogosTimeMania.jsx';
+import HistoricoDeJogosDiaDeSorte from './pages/HistoricoDeJogosDiaDeSorte/HistoricoDeJogosDiaDeSorte.jsx';
+import HistoricoDeJogosSuperSete from './pages/HistoricoDeJogosSuperSete/HistoricoDeJogosSuperSete.jsx';
+import HistoricoDeJogosMaisMilionaria from './pages/HistoricoDeJogosMaisMilionaria/HistoricoDeJogosMaisMilionaria.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -148,7 +151,9 @@ function App() {
         <Route path="/app/duplasena-estatistica" element={<DuplaSenaEstatistica />} />
         <Route path="/app/duplasena/historico-de-jogos-duplasena" element={<HistoricoDeJogosDuplaSena />} />
         <Route path="/app/timemania/historico-de-jogos-timemania" element={<HistoricoDeJogosTimeMania />} />
-        
+        <Route path="/app/diadesorte/historico-de-jogos-diadesorte" element={<HistoricoDeJogosDiaDeSorte />} />
+        <Route path="/app/supersete/historico-de-jogos-supersete" element={<HistoricoDeJogosSuperSete />} />
+        <Route path="/app/milionaria/historico-de-jogos-milionaria" element={<HistoricoDeJogosMaisMilionaria />} />
         <Route
           path="/app/home"
           element={

@@ -22,13 +22,13 @@ function DiaDeSorteHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/diadesorte-estatistica" className="btn btn-primary-diadesorte w-100">
-              Estatísticas
+            <Link to="/app/diadesorte/historico-de-jogos-diadesorte" className="btn btn-primary-diadesorte w-100">
+              Histórico de Jogos
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/diadesorte/historico-de-jogos-diadesorte" className="btn btn-primary-diadesorte w-100">
-              Histórico de Jogos
+            <Link to="/app/diadesorte-estatistica" className="btn btn-primary-diadesorte w-100">
+              Estatísticas
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">

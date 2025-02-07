@@ -2,23 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { query } from "../../Config/postgresConfig"; // Função para realizar queries no PostgreSQL
-import "./HistoricoDeJogosTimeMania.css";
+import { query } from "../../Config/postgresConfig"; // Função para executar queries no PostgreSQL
+import "./HistoricoDeJogosMaisMilionaria.css";
 
-function HistoricoDeJogosTimeMania() {
+function HistoricoDeJogosMaisMilionaria() {
   const [dados, setDados] = useState([]);
   const [carregando, setCarregando] = useState(false);
   const [finalDaLista, setFinalDaLista] = useState(false);
   const [offset, setOffset] = useState(0);
   const limit = 10; // Número de registros por página
 
-  // Carrega os dados paginados
+  // Carrega os dados com paginação
   async function carregarDados() {
     setCarregando(true);
     try {
       const result = await query(
         `SELECT *
-         FROM historico_timemania
+         FROM historico_maismilionaria
          ORDER BY sorteio DESC
          LIMIT $1 OFFSET $2`,
         [limit, offset]
@@ -47,41 +47,35 @@ function HistoricoDeJogosTimeMania() {
       autoClose: 3000,
       position: "top-center",
     });
+
     try {
       const result = await query(
         `SELECT *
-         FROM historico_timemania
+         FROM historico_maismilionaria
          ORDER BY sorteio DESC`
       );
       const todosOsDados = result.rows;
 
-      // Cria uma linha de texto para cada jogo
+      // Para cada jogo, cria uma linha de texto com os dados desejados
       const linhas = todosOsDados.map((jogo) => {
         return `Sorteio: ${jogo.sorteio}
-Data: ${jogo.data_do_sorteio}
+Data do Sorteio: ${jogo.data_do_sorteio}
 Números Sorteados: ${
           Array.isArray(jogo.numeros_sorteados)
             ? jogo.numeros_sorteados.join(", ")
             : jogo.numeros_sorteados
         }
-Prêmios:
-  7 acertos: Prêmio: ${jogo.premios_v1a || "N/A"} - Ganhadores: ${jogo.premios_w1a || "N/A"}
-  6 acertos: Prêmio: ${jogo.premios_v2a || "N/A"} - Ganhadores: ${jogo.premios_w2a || "N/A"}
-  5 acertos: Prêmio: ${jogo.premios_v3a || "N/A"} - Ganhadores: ${jogo.premios_w3a || "N/A"}
-  4 acertos: Prêmio: ${jogo.premios_v4a || "N/A"} - Ganhadores: ${jogo.premios_w4a || "N/A"}
-  3 acertos: Prêmio: ${jogo.premios_v5a || "N/A"} - Ganhadores: ${jogo.premios_w5a || "N/A"}
-Time do Coração:
-  Nome: ${jogo.time_coracao_nome || "N/A"}
-  Prêmio: ${jogo.time_coracao_valor || "N/A"}
-  Ganhadores: ${jogo.time_coracao_ganhadores || "N/A"}
---------------------------------------\n`;
+Trevos Sorteados: ${jogo.trevos_trv1} - ${jogo.trevos_trv2}
+Data de Fechamento: ${jogo.data_de_fechamento || "N/A"}
+Valor do Próximo Prêmio: ${jogo.valor_do_proximo_premio || "N/A"}
+---------------------------\n`;
       });
 
       const conteudo = linhas.join("\n");
       const blob = new Blob([conteudo], { type: "text/plain" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "historico_timemania.txt";
+      link.download = "historico_maismilionaria.txt";
       link.click();
 
       toast.success("Arquivo gerado com sucesso!", {
@@ -96,21 +90,24 @@ Time do Coração:
 
   useEffect(() => {
     carregarDados();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="historico-container">
-      <h1>Histórico de Jogos - Timemania</h1>
+      <h1>Histórico de Jogos - Mais Milionária</h1>
       <ToastContainer />
       <div className="tabela-container">
         <table className="tabela-historico">
           <thead>
             <tr>
               <th>Sorteio</th>
-              <th>Data</th>
+              <th>Data do Sorteio</th>
               <th>Números Sorteados</th>
-              <th>Detalhes do Prêmio</th>
-              <th>Time do Coração</th>
+              <th>Trevos Sorteados</th>
+              <th>Detalhes dos Prêmios</th>
+              <th>Data de Fechamento</th>
+              <th>Valor do Próximo Prêmio</th>
             </tr>
           </thead>
           <tbody>
@@ -120,7 +117,7 @@ Time do Coração:
                 <td>{jogo.data_do_sorteio}</td>
                 <td>
                   <div className="numeros-sorteados-container">
-                    {jogo.numeros_sorteados &&
+                    {Array.isArray(jogo.numeros_sorteados) &&
                       jogo.numeros_sorteados.map((numero, idx) => (
                         <div key={idx} className="numero-sorteado">
                           {numero}
@@ -129,72 +126,55 @@ Time do Coração:
                   </div>
                 </td>
                 <td>
+                 <div className="trevos-container">
+                  <span className="trevo">
+                   {jogo.trevos_trv1}
+                  </span>
+                  <span className="trevo">
+                   {jogo.trevos_trv2}
+                  </span>
+                 </div>
+                </td>
+                <td>
                   <table className="premio-detalhes">
                     <thead>
                       <tr>
-                        <th>Acertos</th>
+                        <th>Faixa</th>
                         <th>Prêmio</th>
                         <th>Ganhadores</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>7</td>
-                        <td>{jogo.premios_v1a || "N/A"}</td>
-                        <td>{jogo.premios_w1a || "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>{jogo.premios_v2a || "N/A"}</td>
-                        <td>{jogo.premios_w2a || "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>{jogo.premios_v3a || "N/A"}</td>
-                        <td>{jogo.premios_w3a || "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>{jogo.premios_v4a || "N/A"}</td>
-                        <td>{jogo.premios_w4a || "N/A"}</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>{jogo.premios_v5a || "N/A"}</td>
-                        <td>{jogo.premios_w5a || "N/A"}</td>
-                      </tr>
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((faixa) => (
+                        <tr key={faixa}>
+                          <td>{faixa}</td>
+                          <td>{jogo[`premios_v${faixa}a`] || "N/A"}</td>
+                          <td>{jogo[`premios_w${faixa}a`] || "N/A"}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </td>
-                <td>
-                  <div className="time-coracao-card">
-                    <span className="time-nome">
-                      {jogo.time_coracao_nome || "N/A"}
-                    </span>
-                    <div className="time-info">
-                      🏆 <strong>Prêmio:</strong> {jogo.time_coracao_valor || "N/A"}
-                      <br />
-                      👥 <strong>Ganhadores:</strong> {jogo.time_coracao_ganhadores || "N/A"}
-                    </div>
-                  </div>
-                </td>
+                <td>{jogo.data_de_fechamento || "N/A"}</td>
+                <td>{jogo.valor_do_proximo_premio || "N/A"}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="mt-3">
-        <Link to="/app/timemaniahome" className="btn btn-secondary">
-          Voltar
-        </Link>
 
       <div className="mt-3">
+        <Link to="/app/milionariahome" className="btn btn-secondary">
+          Voltar
+        </Link>
+        <div className="mt-3">
         <button className="btn btn-success ml-2" onClick={baixarTodosJogos}>
           <ToastContainer />
           Baixar Todos os Jogos (.txt)
         </button>
       </div>
       </div>
+
       {!finalDaLista && (
         <button
           className="btn btn-primary mt-3"
@@ -208,4 +188,4 @@ Time do Coração:
   );
 }
 
-export default HistoricoDeJogosTimeMania;
+export default HistoricoDeJogosMaisMilionaria;

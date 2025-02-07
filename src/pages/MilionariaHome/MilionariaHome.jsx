@@ -22,13 +22,13 @@ function MilionariaHome() {
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/milionaria/milionaria-estatistica" className="btn btn-primary-milionaria w-100">
-              Estatísticas
+            <Link to="/app/milionaria/historico-de-jogos-milionaria" className="btn btn-primary-milionaria w-100">
+              Histórico de Jogos
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
-            <Link to="/app/milionaria/historico-de-jogos-milionaria" className="btn btn-primary-milionaria w-100">
-              Histórico de Jogos
+            <Link to="/app/milionaria/milionaria-estatistica" className="btn btn-primary-milionaria w-100">
+              Estatísticas
             </Link>
           </div>
           <div className="col-md-4 col-sm-6 mb-3">
