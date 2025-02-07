@@ -22,6 +22,9 @@ p {
 input[type="file"] {
   margin-bottom: 20px;
   width: 100%;
+  border: 1px solid #ced4da;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .frequencia-item {
@@ -81,8 +84,6 @@ input[type="file"] {
   justify-content: center;
   margin-bottom: 20px;
 }
-
-
 
 .botoes-container {
   display: flex;
@@ -152,66 +153,96 @@ input[type="file"] {
   padding: 40px;
 }
 
-input[type="file"] {
+/* Novas regras para a seção de padrões que nunca saíram */
+.padroes-nao-sorteados {
+  text-align: left;
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #ffffff;
   border: 1px solid #ced4da;
-  padding: 5px;
   border-radius: 5px;
-  width: 100%;
 }
 
+.padroes-nao-sorteados h2 {
+  font-size: 1.5rem;
+  color: #343a40;
+  margin-bottom: 15px;
+}
+
+.sugestao-padrao-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.sugestao-padrao-item:last-child {
+  border-bottom: none;
+}
+
+.sugestao-padrao-item button {
+  margin-right: 10px;
+}
+
+.sugestao-padrao-item span {
+  flex: 1;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .loto-facil-container {
-      padding: 15px;
-      max-width: 100%;
+    padding: 15px;
+    max-width: 100%;
   }
 
   h1 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 
   p {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 
   .btn {
-      font-size: 0.9rem;
-      padding: 8px 15px;
+    font-size: 0.9rem;
+    padding: 8px 15px;
   }
 
   .botoes-container {
-      flex-direction: column;
-      gap: 10px;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .contagens p,
   .frequencias p {
-      margin-left: 10px;
-      font-size: 0.9rem;
+    margin-left: 10px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 576px) {
   h1 {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
   }
 
   p {
-      font-size: 0.8rem;
+    font-size: 0.8rem;
   }
 
   .btn {
-      font-size: 0.8rem;
-      padding: 6px 10px;
+    font-size: 0.8rem;
+    padding: 6px 10px;
   }
 
   .contagens h2,
   .frequencias h2 {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .contagens p,
   .frequencias p {
-      font-size: 0.8rem;
+    font-size: 0.8rem;
   }
 }
