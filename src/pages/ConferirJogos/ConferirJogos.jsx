@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-import firebaseApp from "../../Config/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { query } from "../../Config/postgresConfig"; // Importe a função query do PostgreSQL
 import "./ConferirJogos.css";
 
 const ConferirJogos = () => {
@@ -14,28 +12,30 @@ const ConferirJogos = () => {
   const [matchCount, setMatchCount] = useState(0);
   const [history, setHistory] = useState([]);
 
-  const db = getFirestore(firebaseApp);
-
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "historico_megasena"));
-        const historicalGames = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setHistory(historicalGames);
+        const result = await query(`
+          SELECT 
+              hm.*,
+              COALESCE(json_agg(cm) FILTER (WHERE cm.id IS NOT NULL), '[]') AS cidades
+          FROM historico_megasena hm
+          LEFT JOIN cidades_megasena cm ON cm.sorteio = hm.sorteio
+          GROUP BY hm.id
+          ORDER BY hm.sorteio DESC
+        `);
+        setHistory(result.rows);
       } catch (error) {
         console.error("Erro ao carregar o histórico:", error.message);
       }
     };
 
     fetchHistory();
-  }, [db]);
+  }, []);
 
   useEffect(() => {
     if (selectedGame) {
-      const game = history.find((item) => item.id === selectedGame);
+      const game = history.find((item) => item.sorteio === parseInt(selectedGame, 10));
       if (game) {
         setSortedNumbers((game.numeros_sorteados || []).map((n) => parseInt(n, 10)));
         setSelectedNumbers([]);
@@ -45,17 +45,17 @@ const ConferirJogos = () => {
   }, [selectedGame, history]);
 
   const toggleNumberSelection = (number) => {
-    const num = parseInt(number, 10); 
+    const num = parseInt(number, 10);
     if (selectedNumbers.includes(num)) {
       const newSelection = selectedNumbers.filter((n) => n !== num);
       setSelectedNumbers(newSelection);
-  
+
       const matches = newSelection.filter((n) => sortedNumbers.includes(n));
       setMatchCount(matches.length);
     } else if (selectedNumbers.length < 6) {
       const newSelection = [...selectedNumbers, num];
       setSelectedNumbers(newSelection);
-  
+
       const matches = newSelection.filter((n) => sortedNumbers.includes(n));
       setMatchCount(matches.length);
     } else {
@@ -65,7 +65,6 @@ const ConferirJogos = () => {
       });
     }
   };
-  
 
   return (
     <div className="conferir-jogos-container">
@@ -81,8 +80,8 @@ const ConferirJogos = () => {
         >
           <option value="">Selecione</option>
           {history.map((game) => (
-            <option key={game.id} value={game.id}>
-              Concurso {game.id} - {game.data_do_sorteio}
+            <option key={game.sorteio} value={game.sorteio}>
+              Concurso {game.sorteio} - {game.data_do_sorteio}
             </option>
           ))}
         </select>
@@ -93,7 +92,12 @@ const ConferirJogos = () => {
           <h3>Números Sorteados:</h3>
           <div className="numbers-container">
             {sortedNumbers.map((num, idx) => (
-              <div key={idx} className="number sorted">
+              <div
+                key={idx}
+                className={`number sorted ${
+                  selectedNumbers.includes(num) ? "matched" : ""
+                }`}
+              >
                 {num}
               </div>
             ))}
@@ -122,11 +126,11 @@ const ConferirJogos = () => {
         <h3>Resultado:</h3>
         <p>Números Acertados: {matchCount}</p>
       </div>
-        <div className="mb-3">
-            <Link to="/app/megasenahome" className="btn btn-secondary">
-                Voltar
-            </Link>
-        </div>
+      <div className="mb-3">
+        <Link to="/app/megasenahome" className="btn btn-secondary">
+          Voltar
+        </Link>
+      </div>
     </div>
   );
 };
