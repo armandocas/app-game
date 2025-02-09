@@ -110,7 +110,7 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("01 20 * * *", async () => {
+  schedule.scheduleJob("09 20 * * *", async () => {
     console.log("🤠 Executando a tarefa da Mega-Sena às 20:16...");
     try {
       await coletarDadosLotofacilPG(); 
