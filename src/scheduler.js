@@ -110,10 +110,10 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("56 15 * * *", async () => {
-    console.log("Executando a tarefa da Mega-Sena às 20:16...");
+  schedule.scheduleJob("04 19 * * *", async () => {
+    console.log("🤠 Executando a tarefa da Mega-Sena às 20:16...");
     try {
-      await coletarDadosLotofacilPG();
+      await coletarDadosLotofacilPG(); 
       console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
