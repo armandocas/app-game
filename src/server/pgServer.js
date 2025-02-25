@@ -13,19 +13,19 @@ app.use(cors());
 app.use(express.json());
 
 // Adicione isso antes de criar o pool
-console.log('Configurações do PostgreSQL:', {
-  user: process.env.REACT_APP_PG_USER,
+console.log('👻👻👻👻Configurações do PostgreSQL:', {
+  user: process.env.PG_USER,
+  password: String(process.env.PG_PASSWORD),
   host: process.env.REACT_APP_PG_HOST,
-  database: process.env.REACT_APP_PG_DATABASE,
-  port: process.env.REACT_APP_PG_PORT
+  port: process.env.REACT_APP_PG_PORT,
+  database: process.env.REACT_APP_PG_DATABASE
 });
 
 const pool = new Pool({
-  user: process.env.REACT_APP_PG_USER,
+  user: process.env.PG_USER,
   host: process.env.REACT_APP_PG_HOST,
   database: process.env.REACT_APP_PG_DATABASE,
-  // password: process.env.REACT_APP_PG_PASSWORD,
-  password: String(process.env.REACT_APP_PG_PASSWORD),
+  password: String(process.env.PG_PASSWORD),
   port: process.env.REACT_APP_PG_PORT,
 });
 
