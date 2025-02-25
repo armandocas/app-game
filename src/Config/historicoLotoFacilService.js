@@ -10,7 +10,7 @@ async function obterUltimoIdPG() {
     if (result.rows.length > 0) {
       return result.rows[0].sorteio;
     }
-    return 0;
+    return 1141;
   } catch (error) {
     console.error("Erro ao obter o último ID:", error.message);
     throw new Error("Erro ao obter o último ID");
