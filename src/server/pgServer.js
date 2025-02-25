@@ -24,7 +24,8 @@ const pool = new Pool({
   user: process.env.REACT_APP_PG_USER,
   host: process.env.REACT_APP_PG_HOST,
   database: process.env.REACT_APP_PG_DATABASE,
-  password: process.env.REACT_APP_PG_PASSWORD,
+  // password: process.env.REACT_APP_PG_PASSWORD,
+  password: String(process.env.REACT_APP_PG_PASSWORD),
   port: process.env.REACT_APP_PG_PORT,
 });
 
