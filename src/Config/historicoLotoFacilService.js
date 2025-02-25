@@ -7,10 +7,15 @@ async function obterUltimoIdPG() {
       'SELECT sorteio FROM historico_lotofacil ORDER BY sorteio DESC LIMIT 1'
     );
     
+    if (!result || !result.rows) {
+      console.error("Erro: Resultado da query inválido");
+      return 1141; // Fallback
+    }
+
     if (result.rows.length > 0) {
       return result.rows[0].sorteio;
     }
-    return 1141;
+    return 1141; // Fallback se a tabela estiver vazia
   } catch (error) {
     console.error("Erro ao obter o último ID:", error.message);
     throw new Error("Erro ao obter o último ID");
