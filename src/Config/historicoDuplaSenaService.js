@@ -1,5 +1,5 @@
 import axios from "axios";
-import { query } from "./postgresConfig"; // Importe a função query do PostgreSQL
+import { query } from "./postgresConfig.js"; // Importe a função query do PostgreSQL
 
 async function obterUltimoIdDuplaSena() {
   try {

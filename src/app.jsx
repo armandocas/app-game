@@ -74,6 +74,7 @@ import HistoricoDeJogosTimeMania from './pages/HistoricoDeJogosTimeMania/Histori
 import HistoricoDeJogosDiaDeSorte from './pages/HistoricoDeJogosDiaDeSorte/HistoricoDeJogosDiaDeSorte.jsx';
 import HistoricoDeJogosSuperSete from './pages/HistoricoDeJogosSuperSete/HistoricoDeJogosSuperSete.jsx';
 import HistoricoDeJogosMaisMilionaria from './pages/HistoricoDeJogosMaisMilionaria/HistoricoDeJogosMaisMilionaria.jsx';
+import ConjuntoLotofacil from './pages/ConjuntoLotofacil/ConjuntoLotofacil.jsx';
 
 function App() {
   const { logado } = useContext(AuthContext);
@@ -154,6 +155,8 @@ function App() {
         <Route path="/app/diadesorte/historico-de-jogos-diadesorte" element={<HistoricoDeJogosDiaDeSorte />} />
         <Route path="/app/supersete/historico-de-jogos-supersete" element={<HistoricoDeJogosSuperSete />} />
         <Route path="/app/milionaria/historico-de-jogos-milionaria" element={<HistoricoDeJogosMaisMilionaria />} />
+        <Route path="/app/lotofacil-conjunto" element={<ConjuntoLotofacil />} />
+
         <Route
           path="/app/home"
           element={

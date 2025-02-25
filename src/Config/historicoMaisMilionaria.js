@@ -1,5 +1,5 @@
 import axios from "axios";
-import { query } from "./postgresConfig"; // Função para executar queries no PostgreSQL
+import { query } from "./postgresConfig.js"; // Função para executar queries no PostgreSQL
 
 /**
  * Obtém o último sorteio registrado na tabela historico_maismilionaria.
@@ -32,7 +32,7 @@ async function coletarDadosMaisMilionariaPG() {
     console.log("Último ID encontrado da Mais Milionária:", ultimoId);
 
     // O loop abaixo coleta apenas o próximo sorteio (pode ser ajustado se necessário)
-    for (let id = ultimoId + 1; id <= ultimoId + 221; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
       console.log("Coletando dados do sorteio", id);
 
       try {

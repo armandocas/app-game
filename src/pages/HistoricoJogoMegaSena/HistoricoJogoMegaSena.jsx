@@ -13,11 +13,15 @@ function HistoricoJogoMegaSena() {
   async function carregarDados() {
     setCarregando(true);
     try {
+      console.log("Iniciando carregamento de dados...");
       const novosDados = await obterHistoricoMegaSena();
+      console.log("Dados recebidos:", novosDados);
       setDados(novosDados.slice(0, 5)); // Carregar apenas os 5 primeiros jogos
       setFinalDaLista(novosDados.length <= 5); // Verifica se há mais jogos
     } catch (error) {
-      console.error("Erro ao carregar dados:", error.message);
+      console.error("Erro ao carregar dados:", error);
+      // Adicione um toast de erro aqui
+      toast.error("Erro ao carregar dados: " + error.message);
     } finally {
       setCarregando(false);
     }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { query } from "./postgresConfig";
+import { query } from "./postgresConfig.js";
 
 async function obterUltimoIdQuina() {
   try {
@@ -25,7 +25,7 @@ async function coletarDadosQuinaPG() {
     const ultimoId = await obterUltimoIdQuina();
     console.log("Último ID encontrado:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 2984; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
       console.log(`Coletando dados do sorteio ${id}...`);
 
       try {
@@ -147,6 +147,5 @@ export const obterHistoricoQuina = async () => {
     throw error;
   }
 };
-
 
 export default coletarDadosQuinaPG;

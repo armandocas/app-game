@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app.jsx';
-import { AuthProvider } from './app/Context/auth';
-import agendarAtualizacaoHistorico from './scheduler';
+import { AuthProvider } from './app/Context/auth.jsx';
+import agendarAtualizacaoHistorico from './scheduler.mjs';
 
 
 agendarAtualizacaoHistorico();

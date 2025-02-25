@@ -1,5 +1,5 @@
 import axios from "axios";
-import { query } from "./postgresConfig"; // Importe a função query do PostgreSQL
+import { query } from "./postgresConfig.js"; // Importe a função query do PostgreSQL
 
 async function obterUltimoIdSuperSete() {
   try {
@@ -25,7 +25,7 @@ async function coletarDadosSuperSetePG() {
     const ultimoId = await obterUltimoIdSuperSete();
     console.log("Último ID encontrado do Super Sete:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 653; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 1; id++) {
       console.log("Coletando dados do sorteio", id);
 
       try {

@@ -1,0 +1,17 @@
+[Unit]
+Description=Lottery Scheduler Service
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=armando
+WorkingDirectory=/home/armando/Documentos/app-game
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/node /home/armando/Documentos/app-game/src/startScheduler.mjs
+Restart=always
+Environment=NODE_ENV=production
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_PATH=/home/armando/Documentos/app-game/node_modules
+
+[Install]
+WantedBy=multi-user.target 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { query } from "./postgresConfig";
+import { query } from "./postgresConfig.js";
 
 async function obterUltimoIdPG() {
   try {
@@ -25,7 +25,7 @@ async function coletarDadosMegaSenaPG() {
     const ultimoId = await obterUltimoIdPG();
     console.log("Último ID encontrado:", ultimoId);
 
-    for (let id = ultimoId + 1; id <= ultimoId + 2; id++) {
+    for (let id = ultimoId + 1; id <= ultimoId + 5; id++) {
       console.log(`Coletando dados do sorteio ${id}...`);
 
       try {

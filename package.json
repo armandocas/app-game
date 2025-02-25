@@ -13,6 +13,7 @@
     "@types/react": "19.0.6",
     "axios": "^1.7.9",
     "babel-preset-react-app": "^10.0.1",
+    "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "5.0.1",
@@ -22,7 +23,7 @@
     "pdfmake": "^0.2.2",
     "pg": "^8.13.1",
     "react": "19.0.0",
-    "react-bootstrap": "^2.6.0",
+    "react-bootstrap": "^2.10.9",
     "react-bootstrap-dropdown": "^0.3.0",
     "react-bootstrap-sweetalert": "^5.2.0",
     "react-dom": "19.0.0",
@@ -35,7 +36,8 @@
     "start": "react-scripts start",
     "server": "node src/Config/proxy.js",
     "pgserver": "node src/server/pgServer.js",
-    "dev": "concurrently \"yarn start\" \"yarn server\" \"yarn pgserver\"",
+    "scheduler": "node src/startScheduler.mjs",
+    "dev": "concurrently --kill-others-on-fail \"yarn pgserver\" \"yarn server\" \"yarn scheduler\" \"yarn start\"",
     "build": "react-scripts build"
   },
   "eslintConfig": {
@@ -62,5 +64,6 @@
     "concurrently": "^9.1.0",
     "eslint": "^9.14.0",
     "eslint-config-react-app": "^7.0.1"
-  }
+  },
+  "type": "module"
 }

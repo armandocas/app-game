@@ -1,12 +1,12 @@
-import schedule from "node-schedule";
-import coletarDadosMegaSena from "./Config/historicoMegaSenaService";
-import coletarDadosQuina from "./Config/historicoQuinaService";
-import coletarDadosLotomania from "./Config/historicoLotomaniaService";
-import coletarDadosDuplaSena from "./Config/historicoDuplaSenaService";
-import coletarDadosTimemania from "./Config/historicoTimemaniaService";
-import coletarDadosDiaDeSorte from "./Config/historicoDiaDeSorteService";
-import coletarDadosSuperSete from "./Config/historicoSuperSete";
-import coletarDadosMaisMilionaria from "./Config/historicoMaisMilionaria";
+const schedule = require("node-schedule");
+const coletarDadosMegaSena = require("./Config/historicoMegaSenaService");
+const coletarDadosQuina = require("./Config/historicoQuinaService");
+const coletarDadosLotomania = require("./Config/historicoLotomaniaService");
+const coletarDadosDuplaSena = require("./Config/historicoDuplaSenaService");
+const coletarDadosTimemania = require("./Config/historicoTimemaniaService");
+const coletarDadosDiaDeSorte = require("./Config/historicoDiaDeSorteService");
+const coletarDadosSuperSete = require("./Config/historicoSuperSete");
+const coletarDadosMaisMilionaria = require("./Config/historicoMaisMilionaria");
 import deletarRegistrosTimemania from "./Config/deleteTimemaniaRecords";
 import coletarDadosLotofacilPG from "./Config/historicoLotoFacilService";
 import coletarDadosMegaSenaPG from "./Config/historicoMegaSenaService";
@@ -19,6 +19,20 @@ import coletarDadosSuperSetePG from "./Config/historicoSuperSete";
 import coletarDadosMaisMilionariaPG from "./Config/historicoMaisMilionaria";
 
 function agendarAtualizacaoHistorico() {
+  console.log('Serviço de agendamento iniciado com sucesso');
+  console.log('Próximas execuções agendadas:');
+  
+  // Adicionando logs para debug
+  const jobs = [
+    {time: "05 14 * * *", name: "Mega-Sena"},
+    {time: "25 15 * * *", name: "Lotofácil"},
+    // ... outros jobs ...
+  ];
+
+  jobs.forEach(job => {
+    const nextInvocation = schedule.scheduleJob(job.time, () => {}).nextInvocation();
+    console.log(`${job.name}: próxima execução em ${nextInvocation}`);
+  });
 
   schedule.scheduleJob("05 14 * * *", async () => {
     console.log("Executando a tarefa da Mega-Sena às 20:16...");
@@ -110,10 +124,10 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("09 20 * * *", async () => {
-    console.log("🤠 Executando a tarefa da Mega-Sena às 20:16...");
+  schedule.scheduleJob("59 18 * * *", async () => {
+    console.log("Executando a tarefa da Mega-Sena às 20:16...");
     try {
-      await coletarDadosLotofacilPG(); 
+      await coletarDadosLotofacilPG();
       console.log("Atualização do histórico da Mega-Sena concluída com sucesso!");
     } catch (error) {
       console.error("Erro durante a atualização do histórico da Mega-Sena:", error.message);
@@ -201,4 +215,4 @@ function agendarAtualizacaoHistorico() {
   });
 }
 
-export default agendarAtualizacaoHistorico;
+module.exports = agendarAtualizacaoHistorico;

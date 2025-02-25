@@ -1,11 +1,12 @@
-import { getFirestore, collection, query, orderBy, limit, getDocs, doc, writeBatch } from "firebase/firestore";
-import firebaseApp from "../Config/firebase";
+import { getFirestore, collection, query as firebaseQuery, orderBy, limit, getDocs, doc, writeBatch } from "firebase/firestore";
+import firebaseApp from "./firebase.js";
+// import { query as pgQuery } from "./postgresConfig.js";
 
 const db = getFirestore(firebaseApp);
 
 async function deletarRegistrosTimemania() {
   try {
-    const q = query(
+    const q = firebaseQuery(
       collection(db, "historico_timemania"),
       orderBy("sorteio", "desc"),
       limit(999)

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { query } from "./postgresConfig";
+import { query } from "./postgresConfig.js";
 
 async function obterUltimoIdLotomania() {
   try {
