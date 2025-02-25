@@ -53,9 +53,12 @@ async function coletarDadosLotofacilPG() {
             premios_v5a: dados.v5a, 
             premios_w5a: dados.w5a, 
             data_de_fechamento: dados.nxd,
-            valor_do_proximo_premio: dados.nxv, // Mantém como string
+            valor_do_proximo_premio: dados.nxv,
             atualizado_em: new Date().toISOString()
           };
+
+          // Log dos dados que serão inseridos
+          console.log("Dados a serem inseridos:", documento);
 
           // Inserir no PostgreSQL
           const insertQuery = `
@@ -99,7 +102,27 @@ async function coletarDadosLotofacilPG() {
             documento.atualizado_em
           ];
 
-          await query(insertQuery, values);
+          // Log da query e valores
+          console.log("Query de inserção:", insertQuery);
+          console.log("Valores:", values);
+
+          // Executa a query de inserção e adiciona a depuração adicional
+          try {
+            const result = await query(insertQuery, values);
+            console.log("Resultado da query de inserção:", result); // Log completo do resultado
+
+            if (result && result.rows && result.rows.length > 0) {
+              console.log("Inserção bem-sucedida:", result.rows[0]);
+            } else {
+              console.error("Erro: Nenhum registro foi inserido.");
+              console.error("Query executada:", insertQuery);
+              console.error("Valores passados:", values);
+            }
+          } catch (error) {
+            console.error("Erro durante a inserção:", error.message);
+            console.error("Query executada:", insertQuery);
+            console.error("Valores passados:", values);
+          }
 
           // Inserir cidades em uma tabela separada
           if (dados.city && dados.city.length > 0) {
