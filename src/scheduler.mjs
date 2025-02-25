@@ -56,7 +56,7 @@ function agendarAtualizacaoHistorico() {
     }
   });
 
-  schedule.scheduleJob("15 21 * * *", async () => {
+  schedule.scheduleJob("00 22 * * *", async () => {
     console.log("🚨 Executando a tarefa da Lotofácil...");
     try {
       await coletarDadosLotofacilPG();
